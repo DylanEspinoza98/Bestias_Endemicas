@@ -44,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingStart="16dp"
+                android:padding="16dp"
                 android:text="@string/inf_Huillin"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inf_RanitaDarwin"
-                android:paddingStart="16dp"
+                android:padding="16dp"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inf_FocaCangrejera"
-                android:paddingStart="16dp"
+                android:padding="16dp"
                 android:textSize="14sp" />
         </LinearLayout>
 

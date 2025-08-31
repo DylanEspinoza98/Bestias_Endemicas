@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestiasEndemicas">
         <activity
+            android:name=".activity_insectos"
+            android:exported="false" />
+        <activity
+            android:name=".activity_acuaticos"
+            android:exported="false" />
+        <activity
+            android:name=".activity_Terrestres"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

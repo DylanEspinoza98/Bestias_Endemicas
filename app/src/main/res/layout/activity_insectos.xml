@@ -24,30 +24,30 @@
             android:paddingBottom="16dp"/>
 
 
-    <!-- Insecto 1: Tijereta -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="16dp">
-
-        <ImageView
-            android:id="@+id/Img_Tijereta"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            android:src="@drawable/tijereta" />
-
-        <TextView
-            android:id="@+id/Info_Tijereta"
-            android:layout_width="0dp"
+        <!-- Insecto 1: Tijereta -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/inf_Tijereta"
-            android:paddingStart="16dp"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/Img_Tijereta"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tijereta" />
+
+            <TextView
+                android:id="@+id/Info_Tijereta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inf_Tijereta"
+                android:padding="16dp"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <!-- Insecto 2: Cabrito Duraznero -->
         <LinearLayout
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inf_CDuraznero"
-                android:paddingStart="16dp"
+                android:padding="16dp"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inf_ChincheGigante"
-                android:paddingStart="16dp"
+                android:padding="16dp"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -113,4 +113,3 @@
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
-
