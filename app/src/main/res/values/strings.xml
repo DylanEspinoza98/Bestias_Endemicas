@@ -1,6 +1,7 @@
 <resources>
     <!--String variados distribuidos en la mayoria de las ventanas-->
     <string name="Txt_Btn_Volver">Volver</string>
+    <string name="app_name">Bestias Endemicas</string>
 
     <!--String para el main Activity-->
     <string name="titulo_principal">Bienvenidos a “Bestias Endémicas”\nDonde podrás conocer animales y bichos nativos de Chile</string>
