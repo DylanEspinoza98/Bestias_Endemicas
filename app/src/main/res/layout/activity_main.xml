@@ -9,8 +9,8 @@
     tools:context=".MainActivity">
 
     <!-- Título principal -->
-
-    <!-- Fila Terrestres e Insectos -->
+                    
+    <!-- Fila Norte y Centro -->
 
     <TextView
         android:id="@+id/titulo"
@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Botón Terrestres -->
+        <!-- Botón Norte-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:layout_margin="8dp">
 
             <ImageButton
-                android:id="@+id/btnTerrestres"
+                android:id="@+id/btnNorte"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
@@ -58,14 +58,14 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/terrestres"
-                android:textSize="15sp"
+                android:layout_height="18dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/norte"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="4dp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
-        <!-- Botón Insectos -->
+        <!-- Botón Centro -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             android:layout_margin="8dp">
 
             <ImageButton
-                android:id="@+id/btnInsectos"
+                android:id="@+id/btnCentro"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
@@ -85,14 +85,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/insectos"
+                android:text="@string/centro"
                 android:textSize="15sp"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Botón Acuáticos -->
+    <!-- Botón Sur -->
     <LinearLayout
         android:id="@+id/fila2"
         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
-            android:id="@+id/btnAcuaticos"
+            android:id="@+id/btnSur"
             android:layout_width="175dp"
             android:layout_height="175dp"
             android:background="@android:color/transparent"
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/acuaticos"
+            android:text="@string/sur"
             android:textSize="15sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp" />

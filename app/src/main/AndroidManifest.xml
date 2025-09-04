@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestiasEndemicas">
         <activity
-            android:name=".activity_insectos"
+            android:name=".Activity_Centro"
             android:exported="false" />
         <activity
-            android:name=".activity_acuaticos"
+            android:name=".Activity_Sur"
             android:exported="false" />
         <activity
-            android:name=".activity_Terrestres"
+            android:name=".Activity_Norte"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

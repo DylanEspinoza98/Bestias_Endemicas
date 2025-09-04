@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainSur"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/bg_sur"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,11 +17,11 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Titulo_aAcuaticos"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:gravity="center"
-            android:paddingBottom="16dp"/>
+            android:paddingBottom="16dp"
+            android:text="@string/Titulo_Sur"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <!-- Animal 1: Huillin -->
@@ -69,8 +69,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/inf_RanitaDarwin"
                 android:padding="16dp"
+                android:text="@string/inf_RanitaDarwin"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -94,17 +94,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/inf_FocaCangrejera"
                 android:padding="16dp"
+                android:text="@string/inf_FocaCangrejera"
                 android:textSize="14sp" />
         </LinearLayout>
 
 
-
-
         <!-- Botón Volver -->
         <Button
-            android:id="@+id/btnVolver"
+            android:id="@+id/btnVolverS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainNorte"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/bg_norte"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,11 +17,11 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Titulo_aTerrestres"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:gravity="center"
-            android:paddingBottom="16dp"/>
+            android:paddingBottom="16dp"
+            android:text="@string/Titulo_Norte"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <!-- Animal 1 Gato Andino-->
         <LinearLayout
@@ -34,17 +34,17 @@
                 android:id="@+id/img_GatoAndino"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/gato_andino_chile"
-                android:contentDescription="@null" />
+                android:src="@drawable/gato_andino_chile" />
 
             <TextView
                 android:id="@+id/info_GatoAndino"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/inf_GatoAndino"
                 android:padding="16dp"
+                android:text="@string/inf_GatoAndino"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -60,17 +60,17 @@
                 android:id="@+id/img_GatoColocolo"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/_3218_colocolo_marcio_motta"
-                android:contentDescription="@null"/>
+                android:src="@drawable/_3218_colocolo_marcio_motta" />
 
             <TextView
                 android:id="@+id/info_GatoColocolo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/inf_GatoColocolo"
                 android:padding="16dp"
+                android:text="@string/inf_GatoColocolo"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -86,17 +86,17 @@
                 android:id="@+id/img_Pudu"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/_541_pudu_1"
-                android:contentDescription="@null"/>
+                android:src="@drawable/_541_pudu_1" />
 
             <TextView
                 android:id="@+id/Info_Pudu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/info_pudu"
                 android:padding="16dp"
+                android:text="@string/info_pudu"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -104,7 +104,7 @@
 
         <!-- Botón Volver -->
         <Button
-            android:id="@+id/btnVolver"
+            android:id="@+id/btnVolverS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

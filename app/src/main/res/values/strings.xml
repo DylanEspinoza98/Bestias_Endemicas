@@ -4,28 +4,28 @@
     <string name="app_name">Bestias Endemicas</string>
 
     <!--String para el main Activity-->
-    <string name="titulo_principal">Bienvenidos a “Bestias Endémicas”\nDonde podrás conocer animales y bichos nativos de Chile</string>
-    <string name="terrestres">Terrestres</string>
-    <string name="insectos">Insectos</string>
-    <string name="acuaticos">Acuáticos</string>
+    <string name="titulo_principal">Bienvenidos a “Animales de Chile”\nDonde podrás conocer animales e insectos nativos de Chile</string>
+    <string name="norte">Norte</string>
+    <string name="centro">Centro</string>
+    <string name="sur">Sur</string>
 
 
-    <!--String para la ventana Terrestres-->
-    <string name="Titulo_aTerrestres">Animales Terrestres</string>
+    <!--String para la ventana Norte-->
+    <string name="Titulo_Norte">Animales del norte</string>
     <string name="inf_GatoAndino">El gato andino: Es un pequeño felino en peligro de extinción que vive en las alturas de los Andes, desde Perú hasta Argentina y Bolivia</string>
     <string name="info_pudu">Es el ciervo más pequeño del mundo, habitante de los bosques templados de Chile y Argentina, conocido por su tamaño diminuto (hasta 40 cm de altura y 10 kg) y su pelaje rojizo</string>
     <string name="inf_GatoColocolo"> Es un felino sudamericano de tamaño pequeño y pelaje plomizo-rubio con manchas, que habita en diversos ambientes desde el nivel del mar hastas los 5.000 metros de altitud, y se alimenta de roedores y aves </string>
 
 
-    <!--String para la ventana Insectos-->
-    <string name="Titulo_Insectos">Insectos</string>
+    <!--String para la ventana Centro-->
+    <string name="Titulo_Centro">Animales Del Centro</string>
     <string name="inf_Tijereta">Es un insecto dermáptero de 3 cm de longitud, provisto de dos apéndices en forma de pinza al final de su abdomen. Normalmente se encuentra bajo las piedras y en hortalizas de hojas o en las frutas.</string>
     <string name="inf_CDuraznero">Su cuerpo es robusto, de color negro con bandas blancas transversales, y también se le conoce como "marinerito" o "cabrito" en general.</string>
     <string name="inf_ChincheGigante">Es un insecto acuático depredador del tamaño de una mano que se alimenta de peces, crustáceos y anfibios, e inyecta una saliva que licua y digiere a su presa.</string>
 
 
-    <!--String para la ventana Animales Acuaticos-->
-    <string name="Titulo_aAcuaticos">Animales Acuaticos</string>
+    <!--String para la ventana Sur-->
+    <string name="Titulo_Sur">Animales Del Sur</string>
     <string name="inf_Huillin"> Es una nutria endémica de la Patagonia chilena de la que se sabe muy poco. Esta especie es el mustélido de mayor tamaño que hay en Chile y habita en los ríos del sur de nuestro país</string>
     <string name="inf_RanitaDarwin">Es un pequeño anfibio endémico de los bosques templados del sur de Chile y Argentina, famoso por su singular estrategia reproductiva</string>
     <string name="inf_FocaCangrejera">Es la foca más abundante de todo el mundo, con una población estimada entre 15 y 40 millones de ejemplares. Son altamente gregarias, viven sobre el hielo y son presa de focas leopardo y orcas.</string>

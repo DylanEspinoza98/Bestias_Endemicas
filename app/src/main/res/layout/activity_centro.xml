@@ -2,8 +2,9 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/mainCentro"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/bg_centro"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,7 +18,7 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Titulo_Insectos"
+            android:text="@string/Titulo_Centro"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -104,7 +105,7 @@
 
         <!-- Botón Volver -->
         <Button
-            android:id="@+id/btnVolver"
+            android:id="@+id/btnVolverS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
