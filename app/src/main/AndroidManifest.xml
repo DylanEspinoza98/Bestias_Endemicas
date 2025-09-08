@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestiasEndemicas">
         <activity
+            android:name=".Activity_Austral"
+            android:exported="false" />
+        <activity
             android:name=".Activity_Centro"
             android:exported="false" />
         <activity

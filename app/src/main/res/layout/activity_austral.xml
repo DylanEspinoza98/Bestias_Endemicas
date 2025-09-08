@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainSur"
+    android:id="@+id/mainAustral"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_sur"
+    android:background="@drawable/bg_austral"
     android:fillViewport="true">
 
     <LinearLayout
@@ -19,12 +19,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="16dp"
-            android:text="@string/Titulo_Sur"
+            android:text="@string/Titulo_Austral"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
-        <!-- Animal 1: Huillin -->
+        <!-- Animal 1 Huemul-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,24 +31,25 @@
             android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/Img_Huillin"
+                android:id="@+id/img_huemul"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/huill_n" />
+                android:src="@drawable/huemul" />
 
             <TextView
-                android:id="@+id/Info_Huillin"
+                android:id="@+id/info_Huemul"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:text="@string/inf_Huillin"
+                android:text="@string/inf_Huemul"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Animal 2: Ranita de Darwin -->
+        <!-- Animal 2 Delfin Chileno-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,24 +57,25 @@
             android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/Img_RanitaDarwin"
+                android:id="@+id/img_DelfinChileno"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/rana_de_darwin" />
+                android:src="@drawable/delfin_chileno" />
 
             <TextView
-                android:id="@+id/Info_RanitaDarwin"
+                android:id="@+id/info_DelfinChileno"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:text="@string/inf_RanitaDarwin"
+                android:text="@string/inf_DelfinChileno"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Animal 3: Foca Cangrejera -->
+        <!-- Animal 3: Zorro Culpeo -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,24 +83,25 @@
             android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/Img_FocaCangrejera"
+                android:id="@+id/img_ZorroCulpeo"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/foca_cangrejera_caracteristicas" />
+                android:src="@drawable/zorro_culpeo" />
 
             <TextView
-                android:id="@+id/Inf_FocaCangrejera"
+                android:id="@+id/Info_ZorroCulpeo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:text="@string/inf_FocaCangrejera"
+                android:text="@string/inf_ZorroCulpeo"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Animal 4: Tucuquera -->
+        <!-- Animal 4: Carancho Cordillerano -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,24 +109,25 @@
             android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/Img_Tucuquera"
+                android:id="@+id/img_CaranchoCordillerano"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/tucu" />
+                android:src="@drawable/carancho_cordillerano" />
 
             <TextView
-                android:id="@+id/Inf_Tucuquera"
+                android:id="@+id/Info_CaranchoCordillerano"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:text="@string/inf_Tucuquere"
+                android:text="@string/inf_CaranchoCordillerano"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Animal 5: Concón -->
+        <!-- Animal 5: Condor Andino -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,23 +135,23 @@
             android:paddingBottom="16dp">
 
             <ImageView
-                android:id="@+id/Img_Concón"
+                android:id="@+id/img_CondorAndino"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
-                android:src="@drawable/concon" />
+                android:src="@drawable/condor_andino" />
 
             <TextView
-                android:id="@+id/Inf_Concón"
+                android:id="@+id/Info_CondorAndino"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
-                android:text="@string/inf_Concón"
+                android:text="@string/inf_CondorAndino"
                 android:textSize="14sp" />
-        </LinearLayout>
 
+        </LinearLayout>
 
         <!-- Botón Volver -->
         <Button

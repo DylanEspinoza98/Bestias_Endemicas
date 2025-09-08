@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <!-- Título principal -->
-                    
+
     <!-- Fila Norte y Centro -->
 
     <TextView
@@ -92,34 +92,69 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Botón Sur -->
+    <!-- Fila 2: Sur y Austral, misma estructura que fila1 -->
     <LinearLayout
         android:id="@+id/fila2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/fila1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnSur"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/rana_de_darwin"
-            android:contentDescription="@null" />
-
-        <TextView
+        <!-- Botón Sur -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sur"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="4dp" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/btnSur"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/rana_de_darwin"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/sur"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Botón Austral -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/btnAustral"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/delfin_chileno"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/austral"
+                android:textSize="15sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
