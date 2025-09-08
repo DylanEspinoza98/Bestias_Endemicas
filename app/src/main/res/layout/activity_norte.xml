@@ -75,7 +75,33 @@
 
         </LinearLayout>
 
-        <!-- Animal 3: Pudu -->
+        <!-- Animal 3: Flamenco Chileno -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/img_FlamencoChileno"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/flamencochileno" />
+
+            <TextView
+                android:id="@+id/Info_FlamencoChileno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/inf_Flamencochileno"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Animal 4: Pudu -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,6 +123,32 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="@string/info_pudu"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Animal 5: Culebra -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/img_Culebra"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/culebra" />
+
+            <TextView
+                android:id="@+id/Info_Culebra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/inf_Culebradecolalarga"
                 android:textSize="14sp" />
 
         </LinearLayout>

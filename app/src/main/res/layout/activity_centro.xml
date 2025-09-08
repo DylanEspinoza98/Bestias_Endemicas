@@ -75,7 +75,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Insecto 2: Chinche de Agua -->
+        <!-- Insecto 3: Chinche de Agua -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +96,56 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/inf_ChincheGigante"
+                android:padding="16dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Animal 1: Loica -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/Img_Loica"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/loica" />
+
+            <TextView
+                android:id="@+id/Info_Loica"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inf_Loica"
+                android:padding="16dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Insecto 4: Abejorro Nativo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <ImageView
+                android:id="@+id/Img_AbejorroNativo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/abejorronativo" />
+
+            <TextView
+                android:id="@+id/Info_AbejorroNativo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/inf_Abejorronativo"
                 android:padding="16dp"
                 android:textSize="14sp" />
         </LinearLayout>
