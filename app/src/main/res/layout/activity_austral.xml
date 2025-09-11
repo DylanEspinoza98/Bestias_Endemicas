@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainAustral"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,146 +22,272 @@
             android:paddingBottom="16dp"
             android:text="@string/Titulo_Austral"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
 
-        <!-- Animal 1 Huemul-->
+        <!-- HUEMUL -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_huemul"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/huemul" />
 
             <TextView
-                android:id="@+id/info_Huemul"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/huemul"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_Huemul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_Huemul"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_huemul"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 2 Delfin Chileno-->
+        <!-- DELFÍN CHILENO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_DelfinChileno"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/delfin_chileno" />
 
             <TextView
-                android:id="@+id/info_DelfinChileno"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/delfinchileno"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_DelfinChileno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_DelfinChileno"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_DelfinChileno"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 3: Zorro Culpeo -->
+        <!-- ZORRO CULPEO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_ZorroCulpeo"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/zorro_culpeo" />
 
             <TextView
-                android:id="@+id/Info_ZorroCulpeo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/zorroculpeo"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_ZorroCulpeo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_ZorroCulpeo"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_ZorroCulpeo"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 4: Carancho Cordillerano -->
+        <!-- CARANCHO CORDILLERANO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_CaranchoCordillerano"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/carancho_cordillerano" />
 
             <TextView
-                android:id="@+id/Info_CaranchoCordillerano"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/caranchocordillerano"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_CaranchoCordillerano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_CaranchoCordillerano"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_CaranchoCordillerano"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 5: Condor Andino -->
+        <!-- CÓNDOR ANDINO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_CondorAndino"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/condor_andino" />
 
             <TextView
-                android:id="@+id/Info_CondorAndino"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/condorandino"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_CondorAndino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_CondorAndino"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_CondorAndino"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
         <!-- Botón Volver -->
         <Button
             android:id="@+id/btnVolverS"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="16dp"
-            android:text="@string/Txt_Btn_Volver" />
+            android:layout_marginTop="16dp"
+            android:text="@string/Txt_Btn_Volver"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.Button" />
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

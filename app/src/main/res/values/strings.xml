@@ -9,15 +9,30 @@
     <string name="centro">Centro</string>
     <string name="sur">Sur</string>
     <string name="austral">Austral</string>
+    <string name="ver">Ver más</string>
 
 
     <!--String para la ventana Norte-->
     <string name="Titulo_Norte">Animales del norte</string>
     <string name="inf_GatoAndino">El gato andino: Es un pequeño felino en peligro de extinción que vive en las alturas de los Andes, desde Perú hasta Argentina y Bolivia</string>
-    <string name="info_pudu">Es el ciervo más pequeño del mundo, habitante de los bosques templados de Chile y Argentina, conocido por su tamaño diminuto (hasta 40 cm de altura y 10 kg) y su pelaje rojizo</string>
+    <string name="inf_pudu">Es el ciervo más pequeño del mundo, habitante de los bosques templados de Chile y Argentina, conocido por su tamaño diminuto (hasta 40 cm de altura y 10 kg) y su pelaje rojizo</string>
     <string name="inf_GatoColocolo"> Es un felino sudamericano de tamaño pequeño y pelaje plomizo-rubio con manchas, que habita en diversos ambientes desde el nivel del mar hastas los 5.000 metros de altitud, y se alimenta de roedores y aves </string>
     <string name="inf_Flamencochileno">Es un Ave de plumaje rosado que vive en humedales de Sudamérica y se alimenta filtrando pequeños invertebrados. Es sociable y vive en colonias grandes.</string>
     <string name="inf_Culebradecolalarga"> Es una Serpiente venenosa endémica de Chile, de cuerpo delgado y hasta 2 metros de largo. Habita desde desiertos hasta ciudades y se alimenta de reptiles y pequeños animales.</string>
+    <string name="gatoandino">Gato Andino</string>
+    <string name="pudu">Pudu</string>
+    <string name="gato">Gato Colo Colo</string>
+    <string name="flamenco">Flamenco Chileno</string>
+    <string name="culebra">Culebra De Cola Larga</string>
+
+    <!--String para la ventana Norte ver mas-->
+    <string name="inf_GatoAndinoMas">  El gato andino es considerado uno de los felinos más amenazados del mundo. Vive en las zonas rocosas y áridas de la cordillera de los Andes, a altitudes superiores a los 3.000 metros. Su pelaje espeso lo protege del frío extremo, y sus grandes patas actúan como raquetas de nieve.</string>
+    <string name="inf_puduMas">  El color varía de café rojizo a grisáceo amarillento. Los recién nacidos presentan un tono café rojizo con pequeños puntos blancos o crema dependiendo en cada caso, siendo la gran mayoría blancos.</string>
+    <string name="inf_GatoColocoloMas"> Es relativamente más grande que el gato doméstico, puede medir aproximadamente de 43 a 80 cm (cabeza y cuerpo) y su cola puede llegar a medir de 23 a 33 cm. Su altura puede llegar a los 35 cm.[</string>
+    <string name="inf_FlamencochilenoMas">  El flamenco se alimenta removiendo el sedimento con sus patas y luego filtrando los organismos en suspensión con las láminas que tiene en el pico. Los flamencos suelen girar 360º dejando anillos de alimentación en la superficie del sedimento.</string>
+    <string name="inf_CulebradecolalargaMas">  Los juveniles presentan un régimen alimentario omnívoro, pero ya adultos poseen una dieta carnívora, alimentándose de reptiles pequeños .</string>
+
+
 
     <!--String para la ventana Centro-->
     <string name="Titulo_Centro">Animales Del Centro</string>
@@ -26,6 +41,11 @@
     <string name="inf_ChincheGigante">Es un insecto acuático depredador del tamaño de una mano que se alimenta de peces, crustáceos y anfibios, e inyecta una saliva que licua y digiere a su presa.</string>
     <string name="inf_Loica">Es una Pequeña ave negra con manchas coloridas, común en zonas abiertas de Chile y Argentina, conocida por su canto.</string>
     <string name="inf_Abejorronativo"> Es un Insecto polinizador nativo de Chile, peludo y vital para las plantas nativas. </string>
+    <string name="tijereta">Tijereta</string>
+    <string name="cabritoduraznero">Cabrito Duraznero</string>
+    <string name="chinchegigante">Chinche Gigante</string>
+    <string name="loica">Loica</string>
+    <string name="abejorronativo">Abejorro Nativo</string>
 
     <!--String para la ventana Sur-->
     <string name="Titulo_Sur">Animales Del Sur</string>
@@ -34,6 +54,11 @@
     <string name="inf_FocaCangrejera">Es la foca más abundante de todo el mundo, con una población estimada entre 15 y 40 millones de ejemplares. Son altamente gregarias, viven sobre el hielo y son presa de focas leopardo y orcas.</string>
     <string name="inf_Tucuquere">Es un ave nocturna de plumaje marrón rayado, que habita bosques y matorrales, cazando principalmente roedores.</string>
     <string name="inf_Concón"> Es un es un búho mediano de cabeza redonda y plumaje barrado rojizo a negruzco, que vive en bosques templados de Chile y Argentina. </string>
+    <string name="huillin">Huillin</string>
+    <string name="ranitadedarwin">Ranita De Darwin</string>
+    <string name="focacangrejera">Foca Cangrejera</string>
+    <string name="tucuquera">Tucuquera</string>
+    <string name="concon">Concón</string>
 
     <!--String para la ventana Austral-->
     <string name="Titulo_Austral">Animales De La Zona Austral</string>
@@ -41,5 +66,24 @@
     <string name="inf_DelfinChileno">Es un Delfín pequeño endémico de Chile, vive en fiordos y estuarios australes.</string>
     <string name="inf_ZorroCulpeo">Es un Cánido patagónico, depredador de roedores y aves, también come frutos y carroña.</string>
     <string name="inf_CaranchoCordillerano">Ave rapaz carroñera de Tierra del Fuego, oportunista y terrestre.</string>
-    <string name="inf_CondorAndino">Animales De La Zona Austral</string>
+    <string name="inf_CondorAndino">El ave voladora más grande del mundo: hasta 3,3 metros de envergadura.</string>
+    <string name="huemul">Huemul</string>
+    <string name="delfinchileno">Delfin Chileno</string>
+    <string name="zorroculpeo">Zorro Culpeo</string>
+    <string name="caranchocordillerano">Carancho Cordillerano</string>
+    <string name="condorandino">Condor Andino</string>
+
+    <!--String para ver mas austral-->
+    <string name="inf_HuemulMas">Está adaptado para recorrer terrenos rocosos y escarpados, con pezuñas anchas y almohadillas antideslizantes.</string>
+    <string name="inf_DelfinChilenoMas">Prefiere ambientes protegidos de baja profundidad, cerca de desembocaduras de ríos y bancos de huiro, con un alto grado de fidelidad al sitio.</string>
+    <string name="inf_ZorroCulpeoMas">El zorro culpeo juega un papel fundamental como controlador de plagas naturales, aunque sigue siendo perseguido en varios sectores rurales por considerarse amenaza para la ganadería.</string>
+    <string name="inf_CaranchoCordilleranoMas">Su inteligencia es notable: pueden usar piedras y palos para abrir huevos o carroña difícil. Además, forma parejas de por vida y ambos padres participan en el cuidado de las crías.</string>
+    <string name="inf_CondorAndinoMas">El cóndor es símbolo de poder y libertad en las culturas andinas, y protagonista de rituales de cortejo que incluyen saltos, despliegue de alas y danzas en los riscos.</string>
+
+    <!--String para animal details-->
+    <string name="nombreanimal">Nombre del Animal</string>
+    <string name="descripciondetallada">Descripción detallada del animal...</string>
+    <string name="compartir">Compartir</string>
+    <string name="favorito">Favorito</string>
+
 </resources>
