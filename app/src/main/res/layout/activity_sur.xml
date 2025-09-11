@@ -21,143 +21,271 @@
             android:paddingBottom="16dp"
             android:text="@string/Titulo_Sur"
             android:textSize="20sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
 
         <!-- HUILLIN -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/Img_Huillin"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:id="@+id/img_Huillin"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/huill_n" />
+                android:src="@drawable/huillin" />
 
             <TextView
-                android:id="@+id/Info_Huillin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/huillin"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_Huillin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_Huillin"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Hullin"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
         </LinearLayout>
 
-        <!-- RANITA DE DARWIN -->
+        <!-- RANITA DARWIN -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/Img_RanitaDarwin"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:id="@+id/img_Rana_darwing"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/rana_de_darwin" />
 
             <TextView
-                android:id="@+id/Info_RanitaDarwin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/ranitadedarwin"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_ranitadedarwin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_RanitaDarwin"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_RanitaD"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
         </LinearLayout>
 
         <!-- FOCA CANGREJERA -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/Img_FocaCangrejera"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:id="@+id/img_FocaCangrejera"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/foca_cangrejera_caracteristicas" />
 
             <TextView
-                android:id="@+id/Inf_FocaCangrejera"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/focacangrejera"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_FlamencoChileno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_FocaCangrejera"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_FocaCangrejera"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
         </LinearLayout>
 
         <!-- TUCUQUERA -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/Img_Tucuquera"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:id="@+id/img_Tucuquera"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/tucu" />
 
             <TextView
-                android:id="@+id/Inf_Tucuquera"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/tucuquere"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_Tucuquere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_Tucuquere"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Tucuquere"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
         </LinearLayout>
 
-        <!-- CONCÓN -->
+        <!-- CONCON -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
-                android:id="@+id/Img_Concón"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:id="@+id/img_Concon"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/concon" />
 
             <TextView
-                android:id="@+id/Inf_Concón"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="@string/inf_Concón"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:text="@string/concon"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
+            <TextView
+                android:id="@+id/Info_Concon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inf_Concón"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Concon"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
 
         <!-- Botón Volver -->
         <Button
             android:id="@+id/btnVolverS"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="16dp"
-            android:text="@string/Txt_Btn_Volver" />
+            android:layout_marginTop="16dp"
+            android:text="@string/Txt_Btn_Volver"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.Button" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

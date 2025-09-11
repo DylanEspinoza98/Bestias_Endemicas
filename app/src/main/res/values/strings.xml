@@ -57,8 +57,16 @@
     <string name="huillin">Huillin</string>
     <string name="ranitadedarwin">Ranita De Darwin</string>
     <string name="focacangrejera">Foca Cangrejera</string>
-    <string name="tucuquera">Tucuquera</string>
+    <string name="tucuquere">Tucuquere</string>
     <string name="concon">Concón</string>
+
+    <!--String para la ventana Sur ver mas-->
+    <string name="inf_HuillinMas">  Su nombre científico, Lontra provocax, hace alusión a su carácter a veces esquivo y desafiante, aunque en realidad son animales principalmente tímidos y difíciles de observar en su entorno natural. </string>"
+    <string name="inf_RanitaDarwinMas"> Este diminuto anfibio, que apenas alcanza los 2.5 a 3.5 centímetros de longitud, debe su nombre al naturalista Charles Darwin, quien la descubrió durante su viaje a bordo del Beagle en 1834..</string>
+    <string name="inf_FocaCangrejeraMas"> Su nombre científico es Lobodon carcinophaga, que curiosamente se traduce como "comedora de cangrejos". Sin embargo, este nombre es un tanto engañoso, ya que su dieta principal no consiste en cangrejos (que son escasos en la Antártida), sino que está altamente especializada en el krill antártico (Euphausia superba).</string>
+    <string name="inf_TucuquereMas"> Su nombre científico es Bubo magellanicus (aunque durante mucho tiempo se consideró una subespecie de Bubo virginianus).El Tucúquere es un ave rapaz de tamaño considerable, uno de los búhos más grandes de Sudamérica. Puede alcanzar una longitud de entre 45 y 60 cm y una envergadura alar que supera el metro..</string>"
+    <string name="inf_ConconMas"> Esta especie, también conocida como lechuza bataraza austral, es un habitante característico y a menudo elusivo de los densos bosques Nothofagus (como los de lenga, coihue y ñirre).</string>
+
 
     <!--String para la ventana Austral-->
     <string name="Titulo_Austral">Animales De La Zona Austral</string>
