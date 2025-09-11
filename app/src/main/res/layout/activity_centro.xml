@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< Updated upstream
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainCentro"
+>>>>>>> Stashed changes
     android:layout_width="match_parent"
     android:id="@+id/mainCentro"
     android:layout_height="match_parent"
@@ -24,6 +29,7 @@
             android:gravity="center"
             android:paddingBottom="16dp"/>
 
+<<<<<<< Updated upstream
 
         <!-- TIJERETA -->
         <LinearLayout
@@ -31,6 +37,64 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="16dp">
+=======
+        <!-- Filtros -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGrupoFiltros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/todos" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagTerrestre"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terrestre" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagVolador"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volador" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagAcuatico"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acuatico" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    <LinearLayout
+        android:id="@+id/contenedorAnimalesC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Abejorro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp"
+            android:tag="volador">
+>>>>>>> Stashed changes
 
             <ImageView
                 android:id="@+id/Img_Tijereta"
@@ -54,8 +118,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< Updated upstream
             android:orientation="horizontal"
             android:paddingBottom="16dp">
+=======
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp"
+            android:tag="volador">
+>>>>>>> Stashed changes
 
             <ImageView
                 android:id="@+id/Img_CDuraznero"
@@ -129,8 +201,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< Updated upstream
             android:orientation="horizontal"
             android:paddingBottom="16dp">
+=======
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp"
+            android:tag="terrestre">
+>>>>>>> Stashed changes
 
             <ImageView
                 android:id="@+id/Img_AbejorroNativo"
@@ -151,7 +231,113 @@
         </LinearLayout>
 
 
+<<<<<<< Updated upstream
 
+=======
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp"
+            android:tag="terrestre">
+
+            <ImageView
+                android:id="@+id/img_DegunComun"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null"
+                android:src="@drawable/degu_comun" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Degu_Comun"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_DeguComun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inf_Degu"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Degu_Comun"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+
+        <!-- loro tricahue -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp"
+            android:tag="volador">
+
+            <ImageView
+                android:id="@+id/img_LoroTricahue"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/loro2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Loro_Tricahue"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_CondorAndino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inf_lTricahue"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Loro_Tricahue"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+>>>>>>> Stashed changes
 
         <!-- Botón Volver -->
         <Button
@@ -162,5 +348,6 @@
             android:paddingTop="16dp"
             android:text="@string/Txt_Btn_Volver" />
 
+        </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

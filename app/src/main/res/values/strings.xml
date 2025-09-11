@@ -94,4 +94,10 @@
     <string name="compartir">Compartir</string>
     <string name="favorito">Favorito</string>
 
+    <!--String para tags de animales-->
+    <string name="todos">Todos</string>
+    <string name="terrestre">Terrestre</string>
+    <string name="volador">Volador</string>
+    <string name="acuatico">Acuatico</string>
+
 </resources>
