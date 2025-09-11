@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainNorte"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,147 +22,272 @@
             android:paddingBottom="16dp"
             android:text="@string/Titulo_Norte"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
 
-        <!-- Animal 1 Gato Andino-->
+        <!-- GATO ANDINO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_GatoAndino"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/gato_andino_chile" />
 
             <TextView
-                android:id="@+id/info_GatoAndino"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/gatoandino"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_GatoAndino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_GatoAndino"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_GatoAndino"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 2 Gato Colo Colo-->
+        <!-- COLOCOLO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_GatoColocolo"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/_3218_colocolo_marcio_motta" />
 
             <TextView
-                android:id="@+id/info_GatoColocolo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/gato"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/info_GatoColocolo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_GatoColocolo"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_GatoColoColo"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 3: Flamenco Chileno -->
+        <!-- FLAMENCO CHILENO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_FlamencoChileno"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/flamencochileno" />
 
             <TextView
-                android:id="@+id/Info_FlamencoChileno"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/flamenco"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_FlamencoChileno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_Flamencochileno"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_FlamencoChileno"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 4: Pudu -->
+        <!-- PUDÚ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_Pudu"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/_541_pudu_1" />
 
             <TextView
-                android:id="@+id/Info_Pudu"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="@string/info_pudu"
-                android:textSize="14sp" />
+                android:text="@string/pudu"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_Pudu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inf_pudu"
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_Pudu"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
 
-        <!-- Animal 5: Culebra -->
+        <!-- CULEBRA -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_animal_card"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_Culebra"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/culebra" />
 
             <TextView
-                android:id="@+id/Info_Culebra"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
+                android:text="@string/culebra"
+                android:textAlignment="center"
+                android:textColor="#2E7D32"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/Info_Culebra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/inf_Culebradecolalarga"
-                android:textSize="14sp" />
+                android:textColor="#424242"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+            <Button
+                android:id="@+id/btn_ver_mas_CulebraDeColaLarga"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="end"
+                android:text="@string/ver"
+                android:textSize="12sp"
+                android:backgroundTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.Button" />
 
         </LinearLayout>
-
 
         <!-- Botón Volver -->
         <Button
             android:id="@+id/btnVolverS"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="16dp"
-            android:text="@string/Txt_Btn_Volver" />
+            android:layout_marginTop="16dp"
+            android:text="@string/Txt_Btn_Volver"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.Button" />
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>
