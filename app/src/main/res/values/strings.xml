@@ -10,7 +10,7 @@
     <string name="sur">Sur</string>
     <string name="austral">Austral</string>
     <string name="ver">Ver más</string>
-
+    <string name="RedesSociales">Visitenos en nuestras Redes Sociales</string>
 
     <!--String para la ventana Norte-->
     <string name="Titulo_Norte">Animales del norte</string>
@@ -34,18 +34,31 @@
 
 
 
+
     <!--String para la ventana Centro-->
     <string name="Titulo_Centro">Animales Del Centro</string>
-    <string name="inf_Tijereta">Es un insecto dermáptero de 3 cm de longitud, provisto de dos apéndices en forma de pinza al final de su abdomen. Normalmente se encuentra bajo las piedras y en hortalizas de hojas o en las frutas.</string>
-    <string name="inf_CDuraznero">Su cuerpo es robusto, de color negro con bandas blancas transversales, y también se le conoce como "marinerito" o "cabrito" en general.</string>
-    <string name="inf_ChincheGigante">Es un insecto acuático depredador del tamaño de una mano que se alimenta de peces, crustáceos y anfibios, e inyecta una saliva que licua y digiere a su presa.</string>
-    <string name="inf_Loica">Es una Pequeña ave negra con manchas coloridas, común en zonas abiertas de Chile y Argentina, conocida por su canto.</string>
-    <string name="inf_Abejorronativo"> Es un Insecto polinizador nativo de Chile, peludo y vital para las plantas nativas. </string>
-    <string name="tijereta">Tijereta</string>
-    <string name="cabritoduraznero">Cabrito Duraznero</string>
-    <string name="chinchegigante">Chinche Gigante</string>
-    <string name="loica">Loica</string>
+
     <string name="abejorronativo">Abejorro Nativo</string>
+    <string name="inf_Abejorro">El abejorro chileno, abejorro colorado, abejorro gigante, mangangá del Sur o moscardón del bosque es una especie de abeja carismática</string>
+    <string name="info_AbejorroMas">caracterizado por su gran tamaño, abundante pelaje anaranjado y su importancia como polinizador en los bosques del sur de Chile. Este abejorro está en peligro de extinción debido a la introducción del abejorro europeo (Bombus terrestris), que compite por alimento y desplaza al nativo</string>
+
+    <string name="loica">Loica</string>
+    <string name="inf_Loica">Es una Pequeña ave negra con manchas coloridas, común en zonas abiertas de Chile y Argentina, conocida por su canto.</string>
+    <string name="inf_LoicaMas"> Lo que más caracteriza a esta aves es su mancha roja en su pecho, garganta y cara. La mayoría de su parte trasera es de un color negruzco y café. Posee una cola corta, patas grises, y nariz grisáceo. En su cabeza tiene una especie de banda blanquecina.</string>
+
+    <string name="MonitodelMonte">Monito del Monte</string>
+    <string name="inf_MdelMonte">una especie endémica chilena que vive en los bosques y es muy buena para dormir</string>
+    <string name="inf_MdelMonteMas">¿Sabías que este marsupial pasa todo el invierno hibernando? Así es, que solo podrás verlo en épocas de calor como en verano o primavera. Durante este largo periodo este pequeño animalito de 26 cm. y 31 gr. entra en un sueño profundo, donde su temperatura corporal puede llegar hasta los 5°C dándole un aspecto como si estuviera muerto. Con esta modalidad ahorra energía para utilizar en las otras épocas del año, la cual puede prolongarse desde varios días hasta algunos meses, dependiendo de su necesidad.</string>
+
+
+    <string name="Degu_Comun">Degu</string>
+    <string name="inf_Degu">es una especie de roedor histricomorfo de la familia Octodontidae.</string>
+    <string name="inf_DeguMas">El degú común es un animal pequeño, con una longitud corporal de 25 a 31 cm (9,8 a 12,2 pulgadas) y un peso de 170 a 400 g (6 a 14,1 oz). Su pelaje es de color marrón amarillento por encima y amarillo cremoso por debajo, con amarillo alrededor de los ojos y una banda más clara alrededor del cuello. Tiene una cola larga y delgada con la punta negra y mechonada, orejas oscuras con poco pelo y dedos gris pálido. Su quinto dedo es pequeño, con una uña, en lugar de una garra, en las patas delanteras. Sus patas traseras están erizadas. Sus dientes laterales tienen forma de ocho, de ahí el nombre genérico del degú: Octodon .</string>
+
+    <string name="Loro_Tricahue">Loro Tricahue</string>
+    <string name="inf_lTricahue"> es una especie de ave psitaciforme de la familia de los psitácidos que habita en la meseta patagónica y en las laderas de las montañas de la cordillera de los Andes.</string>
+    <string name="inf_lTricahueMas"> Es la única especie viviente del género Cyanoliseus. Su cabeza y lomo son de color verde oliva oscuro. Presenta un anillo ocular de color blanco. La parte superior del pecho es blancuzca (solo en la raza de Chile), mientras que la parte inferior es verde oliva. Las plumas del abdomen, patas, lomo y supracaudales son de color desde amarillo hasta verde oliva (según la subespecie). La parte central del abdomen es rojo-anaranjada.</string>
+
 
     <!--String para la ventana Sur-->
     <string name="Titulo_Sur">Animales Del Sur</string>

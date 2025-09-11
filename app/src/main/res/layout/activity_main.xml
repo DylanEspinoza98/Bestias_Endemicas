@@ -16,7 +16,7 @@
         android:id="@+id/titulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:padding="16dp"
         android:text="@string/titulo_principal"
@@ -28,33 +28,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Fila 2: Sur y Austral, misma estructura que fila1 -->
+
     <LinearLayout
         android:id="@+id/fila1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/titulo"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/titulo">
 
         <!-- Botón Norte-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
             android:gravity="center"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnNorte"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/gato_andino_chile"
-                android:contentDescription="@null" />
+                android:src="@drawable/gato_andino_chile" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,57 +72,57 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
             android:gravity="center"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnCentro"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/el_caballito"
-                android:contentDescription="@null" />
+                android:src="@drawable/el_caballito" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="@string/centro"
-                android:textSize="15sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="4dp" />
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Fila 2: Sur y Austral, misma estructura que fila1 -->
     <LinearLayout
         android:id="@+id/fila2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/fila1"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/fila1">
 
         <!-- Botón Sur -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
             android:gravity="center"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnSur"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/rana_de_darwin"
-                android:contentDescription="@null" />
+                android:src="@drawable/rana_de_darwin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,27 +137,98 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="8dp"
             android:gravity="center"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnAustral"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/delfin_chileno"
-                android:contentDescription="@null" />
+                android:src="@drawable/delfin_chileno" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/austral"
-                android:textSize="15sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_conocenos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Texto superior -->
+
+        <!-- Fila de iconos -->
+
+        <TextView
+            android:id="@+id/text_conocenos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="@string/RedesSociales"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnFacebook"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/facebooklogo" />
+
+
+            <ImageButton
+                android:id="@+id/btnInstagram"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/instagramlogo" />
+
+
+            <ImageButton
+                android:id="@+id/btnX"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/x_logo" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
