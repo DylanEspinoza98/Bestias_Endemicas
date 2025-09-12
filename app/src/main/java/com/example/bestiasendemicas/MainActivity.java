@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             String url = "https://x.com/?lang=es";
             abrirUrl(url);
         });
+
     }
 
     private void abrirUrl(String url) {
@@ -91,3 +92,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+    }
+
+    private void abrirUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
+
+}
+

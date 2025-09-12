@@ -241,7 +241,7 @@
                 android:layout_height="200dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/carancho_cordillerano" />
+                android:src="@drawable/carancho" />
 
             <TextView
                 android:layout_width="match_parent"

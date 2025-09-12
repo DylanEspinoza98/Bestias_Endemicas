@@ -160,7 +160,9 @@
         </LinearLayout>
     </LinearLayout>
 
+
     <!--lAYOUT PARA RRSS-->
+
     <LinearLayout
         android:id="@+id/layout_conocenos"
         android:layout_width="0dp"
