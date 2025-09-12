@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainCentro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TÃ­tulo -->
+
         <TextView
             android:id="@+id/titulo"
             android:layout_width="match_parent"
@@ -24,6 +25,52 @@
             android:textStyle="bold"
             android:textColor="#FFFFFF" />
 
+        <!-- Filtros -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGrupoFiltros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/todos" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagTerrestre"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terrestre" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagVolador"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volador" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/TagAcuatico"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acuatico" />
+
+        </com.google.android.material.chip.ChipGroup>
+    <LinearLayout
+        android:id="@+id/contenedorAnimalesC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <!-- Abejorro -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +78,8 @@
             android:orientation="vertical"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:tag="volador">
 
             <ImageView
                 android:id="@+id/img_abejorroNativo"
@@ -83,7 +131,8 @@
             android:orientation="vertical"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:tag="volador">
 
             <ImageView
                 android:id="@+id/img_Loica"
@@ -135,7 +184,8 @@
             android:orientation="vertical"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:tag="terrestre">
 
             <ImageView
                 android:id="@+id/img_MonitoDelMonte"
@@ -187,7 +237,8 @@
             android:orientation="vertical"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:tag="terrestre">
 
             <ImageView
                 android:id="@+id/img_DegunComun"
@@ -239,7 +290,8 @@
             android:orientation="vertical"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:tag="volador">
 
             <ImageView
                 android:id="@+id/img_LoroTricahue"
@@ -296,6 +348,7 @@
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.Button" />
 
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

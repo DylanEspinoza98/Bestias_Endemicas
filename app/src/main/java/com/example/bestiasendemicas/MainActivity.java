@@ -1,6 +1,7 @@
 package com.example.bestiasendemicas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -60,5 +61,33 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //Botones para redes sociales
+
+        // Facebook
+        ImageButton btnFacebook = findViewById(R.id.btnFacebook);
+        btnFacebook.setOnClickListener(v -> {
+            String url = "https://www.facebook.com/?locale=es_LA";
+            abrirUrl(url);
+        });
+
+        // Instagram
+        ImageButton btnInstagram = findViewById(R.id.btnInstagram);
+        btnInstagram.setOnClickListener(v -> {
+            String url = "https://www.instagram.com/";
+            abrirUrl(url);
+        });
+
+        // Twitter/X
+        ImageButton btnTwitter = findViewById(R.id.btnX);
+        btnTwitter.setOnClickListener(v -> {
+            String url = "https://x.com/?lang=es";
+            abrirUrl(url);
+        });
+    }
+
+    private void abrirUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
     }
 }
