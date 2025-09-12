@@ -85,7 +85,6 @@
             android:padding="16dp"
             android:tag="volador">
 
-            android:padding="16dp">
 
 
             <ImageView
@@ -142,8 +141,6 @@
             android:padding="16dp"
             android:tag="volador">
 
-            android:padding="16dp">
-
 
             <ImageView
                 android:id="@+id/img_Loica"
@@ -166,9 +163,9 @@
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/info_LoicaComun"
+                android:id="@+id/info_LComun"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
             <TextView
@@ -217,8 +214,6 @@
             android:padding="16dp"
             android:tag="terrestre">
 
-            android:padding="16dp">
-
 
             <ImageView
                 android:id="@+id/img_MonitoDelMonte"
@@ -241,9 +236,9 @@
                 android:layout_marginBottom="8dp" />
 
             <TextView
-                android:id="@+id/info_MonitoDelMonte"
+                android:id="@+id/info_MDelMonte"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content"/>
 
 
             <TextView
@@ -291,8 +286,6 @@
 
             android:padding="16dp"
             android:tag="terrestre">
-
-            android:padding="16dp">
 
 
             <ImageView
@@ -348,8 +341,6 @@
 
             android:padding="16dp"
             android:tag="volador">
-
-            android:padding="16dp">
 
 
             <ImageView
@@ -413,5 +404,4 @@
 
 </androidx.core.widget.NestedScrollView>
 
-</androidx.core.widget.NestedScrollView>
 

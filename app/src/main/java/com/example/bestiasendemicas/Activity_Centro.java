@@ -244,5 +244,4 @@ public class Activity_Centro extends AppCompatActivity {
 
 }
 
-}
 

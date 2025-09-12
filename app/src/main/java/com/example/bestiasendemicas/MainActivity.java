@@ -92,13 +92,3 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-    }
-
-    private void abrirUrl(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-}
-
