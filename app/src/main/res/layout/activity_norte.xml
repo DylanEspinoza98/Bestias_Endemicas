@@ -279,12 +279,15 @@
         </LinearLayout>
 
         <!-- CULEBRA -->
+
+        <!-- Botón Volver -->
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="368dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_animal_card"
+            android:orientation="vertical"
             android:padding="16dp"
             android:tag="terrestre">
 
@@ -299,50 +302,55 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="@string/culebra"
                 android:textAlignment="center"
                 android:textColor="#2E7D32"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Info_Culebra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:text="@string/inf_Culebradecolalarga"
                 android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btn_ver_mas_CulebraDeColaLarga"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
                 android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
+                android:text="@string/ver"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
-        <!-- Botón Volver -->
         <Button
             android:id="@+id/btnVolverS"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/Txt_Btn_Volver"
             android:backgroundTint="#FF5722"
+            android:text="@string/Txt_Btn_Volver"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold"
-            style="@style/Widget.MaterialComponents.Button" />
+            android:textStyle="bold" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar" />
+
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -330,16 +330,22 @@
         <!-- Botón Volver -->
         <Button
             android:id="@+id/btnVolverS"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/Txt_Btn_Volver"
             android:backgroundTint="#FF5722"
+            android:text="@string/Txt_Btn_Volver"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold"
-            style="@style/Widget.MaterialComponents.Button" />
+            android:textStyle="bold" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar" />
+
+    </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
