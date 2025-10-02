@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,44 +22,64 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
     private static final String ARG_ANIMAL_DESCRIPTION = "animal_description";
     private static final String ARG_ANIMAL_IMAGE_RES = "animal_image_res";
 
-    public static AnimalBottomSheetFragment newInstance(String animalName, String description, int imageResourceId) {
+    // MÉTODO 1: Para animales hardcodeados (con drawable resource - int)
+    public static AnimalBottomSheetFragment newInstance(String nombre, String descripcion, int imageResId) {
         AnimalBottomSheetFragment fragment = new AnimalBottomSheetFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_ANIMAL_NAME, animalName);
-        args.putString(ARG_ANIMAL_DESCRIPTION, description);
-        args.putInt(ARG_ANIMAL_IMAGE_RES, imageResourceId);
+        args.putString("nombre", nombre);
+        args.putString("descripcion", descripcion);
+        args.putInt("imageResId", imageResId);  // ← INT para drawable resources
+        args.putString("imageUri", "");
         fragment.setArguments(args);
         return fragment;
     }
 
-    @Nullable
+    // MÉTODO 2: Para animales dinámicos (con URI de galería - String)
+    public static AnimalBottomSheetFragment newInstance(String nombre, String descripcion, String imageUri) {
+        AnimalBottomSheetFragment fragment = new AnimalBottomSheetFragment();
+        Bundle args = new Bundle();
+        args.putString("nombre", nombre);
+        args.putString("descripcion", descripcion);
+        args.putInt("imageResId", 0);
+        args.putString("imageUri", imageUri != null ? imageUri : ""); // ← STRING para URI
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet_animal_detail, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_animal_bottom_sheet, container, false);
 
-        // Configurar elementos del bottom sheet
-        TextView titleText = view.findViewById(R.id.tv_bottom_title);
-        TextView descriptionText = view.findViewById(R.id.tv_bottom_description);
-        ImageView animalImage = view.findViewById(R.id.iv_animal_image);
-        Button shareButton = view.findViewById(R.id.btn_share);
-        Button favoriteButton = view.findViewById(R.id.btn_favorite);
+        TextView tvNombre = view.findViewById(R.id.tv_animal_nombre);
+        TextView tvDescripcion = view.findViewById(R.id.tv_animal_descripcion);
+        ImageView ivAnimal = view.findViewById(R.id.iv_animal_imagen);
 
-        // Obtener argumentos
-        Bundle args = getArguments();
-        if (args != null) {
-            titleText.setText(args.getString(ARG_ANIMAL_NAME));
-            descriptionText.setText(args.getString(ARG_ANIMAL_DESCRIPTION));
+        if (getArguments() != null) {
+            String nombre = getArguments().getString("nombre");
+            String descripcion = getArguments().getString("descripcion");
+            int imageResId = getArguments().getInt("imageResId", 0);
+            String imageUri = getArguments().getString("imageUri", "");
 
-            // Establecer la imagen del animal
-            int imageRes = args.getInt(ARG_ANIMAL_IMAGE_RES);
-            if (imageRes != 0) {
-                animalImage.setImageResource(imageRes);
+            tvNombre.setText(nombre);
+            tvDescripcion.setText(descripcion);
+
+            // Cargar imagen según el tipo
+            if (imageResId != 0) {
+                // Imagen desde recursos (animales hardcodeados)
+                ivAnimal.setImageResource(imageResId);
+            } else if (!imageUri.isEmpty()) {
+                // Imagen desde URI de galería (animales dinámicos)
+                try {
+                    Uri uri = Uri.parse(imageUri);
+                    ivAnimal.setImageURI(uri);
+                } catch (Exception e) {
+                    ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
+                }
+            } else {
+                // Placeholder por defecto
+                ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
             }
         }
-
-        // Configurar botones de acción
-        shareButton.setOnClickListener(v -> shareAnimalInfo());
-        favoriteButton.setOnClickListener(v -> toggleFavorite());
 
         return view;
     }

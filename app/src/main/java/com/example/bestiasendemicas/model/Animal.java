@@ -4,42 +4,140 @@ public class Animal {
     private int id;
     private String nombre;
     private String descripcion;
-    private String foto_url;
-    private int regionId; // Cambio a region_id como foreign key
+    private String rutaImagen;    // Solo para imágenes de galería
+    private int regionId;
     private boolean esFavorito;
-    private String fechaIngreso;
-
-    // Constructor vacío
-    public Animal() {}
 
     // Constructor completo
-    public Animal(String nombre, String descripcion, String foto_url, int regionId, boolean esFavorito) {
+    public Animal(int id, String nombre, String descripcion, String rutaImagen, int regionId, boolean esFavorito) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.foto_url = foto_url;
+        this.rutaImagen = rutaImagen;
         this.regionId = regionId;
         this.esFavorito = esFavorito;
     }
 
-    // Getters y Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Constructor sin ID (para insertar nuevos animales)
+    public Animal(String nombre, String descripcion, String rutaImagen, int regionId, boolean esFavorito) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.rutaImagen = rutaImagen;
+        this.regionId = regionId;
+        this.esFavorito = esFavorito;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    // Constructor vacío
+    public Animal() {
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    // ================================
+    // GETTERS
+    // ================================
+    public int getId() {
+        return id;
+    }
 
-    public String getFoto_url() { return foto_url; }
-    public void setFoto_url(String foto_url) { this.foto_url = foto_url; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public int getRegionId() { return regionId; }
-    public void setRegionId(int regionId) { this.regionId = regionId; }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public boolean isEsFavorito() { return esFavorito; }
-    public void setEsFavorito(boolean esFavorito) { this.esFavorito = esFavorito; }
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
 
-    public String getFechaIngreso() { return fechaIngreso; }
-    public void setFechaIngreso(String fechaIngreso) { this.fechaIngreso = fechaIngreso; }
+    public int getRegionId() {
+        return regionId;
+    }
+
+    public boolean isEsFavorito() {
+        return esFavorito;
+    }
+
+    // ================================
+    // SETTERS
+    // ================================
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
+    public void setRegionId(int regionId) {
+        this.regionId = regionId;
+    }
+
+    public void setEsFavorito(boolean esFavorito) {
+        this.esFavorito = esFavorito;
+    }
+
+    // ================================
+    // MÉTODOS ADICIONALES
+    // ================================
+
+    // Método para verificar si tiene imagen
+    public boolean tieneImagen() {
+        return rutaImagen != null && !rutaImagen.isEmpty();
+    }
+
+    // Método toString para debugging
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", rutaImagen='" + rutaImagen + '\'' +
+                ", regionId=" + regionId +
+                ", esFavorito=" + esFavorito +
+                '}';
+    }
+
+    // Método equals para comparaciones
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Animal animal = (Animal) obj;
+        return id == animal.id;
+    }
+
+    // Método hashCode
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+
+    // Método para obtener nombre de región (útil para displays)
+    public String getNombreRegion() {
+        switch (regionId) {
+            case 1: return "Norte";
+            case 2: return "Centro";
+            case 3: return "Sur";
+            case 4: return "Austral";
+            default: return "Sin región";
+        }
+    }
+
+    // Método para validar datos antes de guardar
+    public boolean esValido() {
+        return nombre != null && !nombre.trim().isEmpty() &&
+                descripcion != null && !descripcion.trim().isEmpty() &&
+                regionId > 0;
+    }
 }

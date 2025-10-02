@@ -36,7 +36,7 @@ public class AnimalCrud {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
         values.put(AnimalEntry.COLUMN_DESCRIPCION, animal.getDescripcion());
-        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getFoto_url());
+        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen());  // ← CAMBIO: usar getRutaImagen()
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
 
@@ -56,10 +56,10 @@ public class AnimalCrud {
                 animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
                 animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
                 animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-                animal.setFoto_url(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL)));
+                animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
                 animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
                 animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-                animal.setFechaIngreso(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FECHA_INGRESO)));
+                // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
 
                 animales.add(animal);
             } while (cursor.moveToNext());
@@ -91,10 +91,10 @@ public class AnimalCrud {
                 animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
                 animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
                 animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-                animal.setFoto_url(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL)));
+                animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
                 animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
                 animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-                animal.setFechaIngreso(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FECHA_INGRESO)));
+                // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
 
                 animales.add(animal);
             } while (cursor.moveToNext());
@@ -124,10 +124,10 @@ public class AnimalCrud {
             animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
             animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
             animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-            animal.setFoto_url(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL)));
+            animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
             animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
             animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-            animal.setFechaIngreso(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FECHA_INGRESO)));
+            // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
         }
         cursor.close();
         return animal;
@@ -138,7 +138,7 @@ public class AnimalCrud {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
         values.put(AnimalEntry.COLUMN_DESCRIPCION, animal.getDescripcion());
-        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getFoto_url());
+        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen()); // ← CAMBIO: usar getRutaImagen()
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
 

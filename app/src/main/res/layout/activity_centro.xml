@@ -1,413 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/mainCentro"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_centro"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_centro"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:text="@string/Titulo_Centro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGrupoFiltros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:layout_marginBottom="16dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodos"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/todos" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagTerrestre"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terrestre" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagVolador"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/volador" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagAcuatico"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/acuatico" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <LinearLayout
+                android:id="@+id/contenedorAnimalesC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="volador">
+
+                    <ImageView
+                        android:id="@+id/img_abejorroNativo"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/abejorronativo" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/abejorronativo"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/info_Abejorro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_Abejorro"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_Abejorro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="volador">
+
+                    <ImageView
+                        android:id="@+id/img_Loica"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/loica" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loica"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/info_LoicaComun"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_Loica"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_Loica"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="terrestre">
+
+                    <ImageView
+                        android:id="@+id/img_MonitoDelMonte"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/monito_del_monte_768x786" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/MonitodelMonte"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/info_MonitoDelMonte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_MdelMonte"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_MonitoDelMonte"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="terrestre">
+
+                    <ImageView
+                        android:id="@+id/img_DegunComun"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/degu_comun" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Degu_Comun"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/Info_DeguComun"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_Degu"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_Degu_Comun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="volador">
+
+                    <ImageView
+                        android:id="@+id/img_LoroTricahue"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/loro2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Loro_Tricahue"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/Info_CondorAndino"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_lTricahue"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_Loro_Tricahue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.3" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🆕 Animales Añadidos"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ================================= -->
+            <!-- RECYCLERVIEW PARA ANIMALES DINÁMICOS -->
+            <!-- ================================= -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_animales_centro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Botón Volver ORIGINAL -->
+            <Button
+                android:id="@+id/btnVolverC"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FF5722"
+                android:text="@string/Txt_Btn_Volver"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FAB para añadir animal -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_agregar_animal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-
-        <TextView
-            android:id="@+id/titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="16dp"
-            android:text="@string/Titulo_Centro"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
-
-        <!-- Filtros -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGrupoFiltros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginBottom="16dp"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTodos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/todos" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagTerrestre"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/terrestre" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagVolador"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volador" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagAcuatico"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/acuatico" />
-
-        </com.google.android.material.chip.ChipGroup>
-    <LinearLayout
-        android:id="@+id/contenedorAnimalesC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <!-- Abejorro -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-
-            android:padding="16dp"
-            android:tag="volador">
-
-
-
-            <ImageView
-                android:id="@+id/img_abejorroNativo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@null"
-                android:src="@drawable/abejorronativo" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/abejorronativo"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_Abejorro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_Abejorro"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_Abejorro"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- Loica Comun -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-
-            android:padding="16dp"
-            android:tag="volador">
-
-
-            <ImageView
-                android:id="@+id/img_Loica"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@null"
-                android:src="@drawable/loica" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/loica"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_LComun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/loica"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_LoicaComun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="@string/inf_Loica"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_Loica"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- Monito del Monte -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-
-            android:padding="16dp"
-            android:tag="terrestre">
-
-
-            <ImageView
-                android:id="@+id/img_MonitoDelMonte"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/monito_del_monte_768x786" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/MonitodelMonte"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_MDelMonte"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/MonitodelMonte"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_MonitoDelMonte"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="@string/inf_MdelMonte"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_MonitoDelMonte"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- Degu Comun -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-
-            android:padding="16dp"
-            android:tag="terrestre">
-
-
-            <ImageView
-                android:id="@+id/img_DegunComun"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@null"
-                android:src="@drawable/degu_comun" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Degu_Comun"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/Info_DeguComun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_Degu"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_Degu_Comun"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- loro tricahue -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-
-            android:padding="16dp"
-            android:tag="volador">
-
-
-            <ImageView
-                android:id="@+id/img_LoroTricahue"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/loro2" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Loro_Tricahue"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/Info_CondorAndino"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_lTricahue"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_Loro_Tricahue"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- BotÃ³n Volver -->
-        <Button
-            android:id="@+id/btnVolverS"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#FF5722"
-            android:text="@string/Txt_Btn_Volver"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar" />
-
-    </LinearLayout>
-    </LinearLayout>
-
-
-</androidx.core.widget.NestedScrollView>
-
-
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="Añadir animal"
+        app:tint="@android:color/white"
+        app:backgroundTint="#4CAF50" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

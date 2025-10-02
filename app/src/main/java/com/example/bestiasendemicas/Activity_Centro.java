@@ -23,14 +23,18 @@ import java.util.List;
 
 public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
 
+
+    private Button btnVerMasAbejorro, btnVerMasLoica, btnVerMasMonitoDelMonte;
+    private Button btnVerMasDeguComun, btnVerMasLoroTricahue, botonVolver;
+
+
     private RecyclerView recyclerViewAnimales;
     private AnimalAdapter animalAdapter;
     private AnimalCrud animalCrud;
     private FloatingActionButton fabAgregarAnimal;
-    private Button botonVolver;
     private List<Animal> listaAnimales;
 
-    private static final int REGION_CENTRO_ID = 2; // ID de la región Centro
+    private static final int REGION_CENTRO_ID = 2;
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     @Override
@@ -41,8 +45,9 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
 
         inicializarVistas();
         inicializarCrud();
+        configurarBotonesOriginales(); // MANTENER funcionalidad original
+        configurarBotonesCrud(); // AÑADIR funcionalidad CRUD
         configurarRecyclerView();
-        configurarBotones();
         cargarAnimales();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainCentro), (v, insets) -> {
@@ -53,14 +58,102 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     }
 
     private void inicializarVistas() {
+        // BOTONES ORIGINALES (mantener todos)
+        btnVerMasAbejorro = findViewById(R.id.btn_ver_mas_Abejorro);
+        btnVerMasLoica = findViewById(R.id.btn_ver_mas_Loica);
+        btnVerMasMonitoDelMonte = findViewById(R.id.btn_ver_mas_MonitoDelMonte);
+        btnVerMasDeguComun = findViewById(R.id.btn_ver_mas_Degu_Comun);
+        btnVerMasLoroTricahue = findViewById(R.id.btn_ver_mas_Loro_Tricahue);
+        botonVolver = findViewById(R.id.btnVolverC);
+
+        // NUEVAS VISTAS CRUD
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_centro);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal);
-        botonVolver = findViewById(R.id.btnVolverC);
     }
 
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
+    }
+
+
+    private void configurarBotonesOriginales() {
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        // Botones "Ver más" originales - MANTENER tu lógica existente exacta
+        btnVerMasAbejorro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                        getString(R.string.abejorronativo),
+                        getString(R.string.inf_Abejorro),
+                        R.drawable.abejorronativo
+                );
+                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
+            }
+        });
+
+        btnVerMasLoica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                        getString(R.string.loica),
+                        getString(R.string.inf_Loica),
+                        R.drawable.loica);
+                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
+            }
+        });
+
+        btnVerMasMonitoDelMonte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                        getString(R.string.MonitodelMonte),
+                        getString(R.string.inf_MdelMonte),
+                        R.drawable.monito_del_monte_768x786
+                );
+                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
+            }
+        });
+
+        btnVerMasDeguComun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                        getString(R.string.Degu_Comun),
+                        getString(R.string.inf_Degu),
+                        R.drawable.degu_comun
+                );
+                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
+            }
+        });
+
+        btnVerMasLoroTricahue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                        getString(R.string.Loro_Tricahue),
+                        getString(R.string.inf_lTricahue),
+                        R.drawable.loro2
+                );
+                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
+            }
+        });
+    }
+
+
+    private void configurarBotonesCrud() {
+        fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirActivityAgregarAnimal();
+            }
+        });
     }
 
     private void configurarRecyclerView() {
@@ -70,102 +163,76 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
         recyclerViewAnimales.setAdapter(animalAdapter);
     }
 
-    private void configurarBotones() {
-        botonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirActivityAgregarAnimal();
-            }
-        });
-    }
-
     private void cargarAnimales() {
         listaAnimales = animalCrud.obtenerAnimalesPorRegion(REGION_CENTRO_ID);
         animalAdapter.actualizarAnimales(listaAnimales);
-
-        if (listaAnimales.isEmpty()) {
-            Toast.makeText(this, "No hay animales registrados en esta región", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void abrirActivityAgregarAnimal() {
-        Intent intent = new Intent(this, AgregarEditarAnimalActivity.class);
-        intent.putExtra(AgregarEditarAnimalActivity.EXTRA_REGION_ID, REGION_CENTRO_ID);
+        Intent intent = new Intent(this, AddEditAnimal.class);
+        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_CENTRO_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
-    // Implementación de OnAnimalActionListener
 
     @Override
     public void onEditarAnimal(Animal animal) {
-        Intent intent = new Intent(this, AgregarEditarAnimalActivity.class);
-        intent.putExtra(AgregarEditarAnimalActivity.EXTRA_ANIMAL_ID, animal.getId());
+        Intent intent = new Intent(this, AddEditAnimal.class);
+        intent.putExtra(AddEditAnimal.EXTRA_ANIMAL_ID, animal.getId());
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
     @Override
     public void onEliminarAnimal(Animal animal) {
         new AlertDialog.Builder(this)
-                .setTitle("Confirmar eliminación")
-                .setMessage("¿Estás seguro de que quieres eliminar a " + animal.getNombre() + "?")
-                .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                .setTitle("⚠️ Confirmar eliminación")
+                .setMessage("¿Estás seguro de que quieres eliminar a '" + animal.getNombre() + "'?\n\nEsta acción no se puede deshacer.")
+                .setPositiveButton("🗑️ Sí, Eliminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         eliminarAnimal(animal);
                     }
                 })
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton("❌ Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
                 .show();
     }
 
+
     @Override
     public void onVerDetalles(Animal animal) {
-        // Mostrar detalles usando el BottomSheetFragment existente
-        int imageResourceId = obtenerRecursoImagen(animal.getFoto_url());
+        // Crear un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                imageResourceId
+                animal.getRutaImagen() // ← PASAR la ruta de imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
-            Toast.makeText(this, "Animal eliminado correctamente", Toast.LENGTH_SHORT).show();
-            cargarAnimales(); // Recargar lista
+            Toast.makeText(this, "✅ " + animal.getNombre() + " eliminado correctamente",
+                    Toast.LENGTH_SHORT).show();
+            cargarAnimales();
         } else {
-            Toast.makeText(this, "Error al eliminar el animal", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "❌ Error al eliminar el animal", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private int obtenerRecursoImagen(String fotoUrl) {
-        // Mapear URL a recurso local (simplificado)
-        if (fotoUrl != null && !fotoUrl.isEmpty()) {
-            // Aquí podrías implementar lógica más compleja
-            // Por ejemplo, mapear nombres específicos a recursos
-            if (fotoUrl.toLowerCase().contains("abejorro")) return R.drawable.abejorronativo;
-            if (fotoUrl.toLowerCase().contains("loica")) return R.drawable.loica;
-            if (fotoUrl.toLowerCase().contains("monito")) return R.drawable.monito_del_monte_768x786;
-            if (fotoUrl.toLowerCase().contains("degu")) return R.drawable.degu_comun;
-            if (fotoUrl.toLowerCase().contains("loro")) return R.drawable.loro2;
-        }
-        return R.drawable.ic_animal_placeholder.xml; // Imagen por defecto
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE_AGREGAR_EDITAR && resultCode == RESULT_OK) {
-            cargarAnimales(); // Recargar lista cuando se añade o edita un animal
+            cargarAnimales();
         }
     }
 
