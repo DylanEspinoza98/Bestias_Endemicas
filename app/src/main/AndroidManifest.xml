@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    package="com.example.bestiasendemicas">
 
     <application
         android:allowBackup="true"
@@ -11,8 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BestiasEndemicas">
+
+        <!-- Activity principal -->
         <activity
-            android:name=".Activity_Austral"
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activities de regiones existentes -->
+        <activity
+            android:name=".Activity_Norte"
             android:exported="false" />
         <activity
             android:name=".Activity_Centro"
@@ -21,17 +33,15 @@
             android:name=".Activity_Sur"
             android:exported="false" />
         <activity
-            android:name=".Activity_Norte"
+            android:name=".Activity_Austral"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- Nueva activity para agregar/editar animales -->
+        <activity
+            android:name=".AgregarEditarAnimalActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Imagen del animal -->
+        <ImageView
+            android:id="@+id/iv_foto_animal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="centerCrop"
+            android:background="@color/light_gray"
+            android:src="@drawable/ic_animal_placeholder" />
+
+        <!-- Información del animal -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Header con nombre y favorito -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_nombre_animal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nombre del Animal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_favorito_animal"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_favorite_filled"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- Región -->
+            <TextView
+                android:id="@+id/tv_region_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Región"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="4dp" />
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/tv_descripcion_animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción del animal..."
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="8dp" />
+
+            <!-- Botones de acción -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btn_ver_mas_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Ver más"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    style="@style/Widget.Material3.Button.TextButton" />
+
+                <Button
+                    android:id="@+id/btn_editar_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Editar"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp"
+                    style="@style/Widget.Material3.Button.TextButton" />
+
+                <Button
+                    android:id="@+id/btn_eliminar_animal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Eliminar"
+                    android:textSize="12sp"
+                    android:textColor="@color/red"
+                    style="@style/Widget.Material3.Button.TextButton" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
