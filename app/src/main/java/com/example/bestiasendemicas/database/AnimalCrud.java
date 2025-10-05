@@ -37,7 +37,7 @@ public class AnimalCrud {
         dbHelper.close();
     }
 
-    // Insertar nuevo animal
+    //Insertar nuevo animal
     public long insertarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
@@ -49,7 +49,7 @@ public class AnimalCrud {
         return database.insert(AnimalEntry.TABLE_NAME, null, values);
     }
 
-    // Actualizar animal existente
+    //Actualizar animal existente
     public int actualizarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
@@ -67,7 +67,7 @@ public class AnimalCrud {
         );
     }
 
-    // Eliminar animal
+    //Eliminar animal
     public int eliminarAnimal(int animalId) {
         return database.delete(
                 AnimalEntry.TABLE_NAME,
@@ -76,7 +76,7 @@ public class AnimalCrud {
         );
     }
 
-    // Obtener un animal por ID
+    //Obtener un animal por ID
     public Animal obtenerAnimalPorId(int animalId) {
         Cursor cursor = database.query(
                 AnimalEntry.TABLE_NAME,
@@ -98,7 +98,7 @@ public class AnimalCrud {
         return null;
     }
 
-    // Obtener todos los animales de una región
+    //Obtener todos los animales de una región
     public List<Animal> obtenerAnimalesPorRegion(int regionId) {
         List<Animal> animales = new ArrayList<>();
         Cursor cursor = database.query(
@@ -120,7 +120,7 @@ public class AnimalCrud {
 
     public List<Region> obtenerTodasLasRegiones() {
         List<Region> regiones = new ArrayList<>();
-        // Columnas de RegionEntry
+        //Columnas de RegionEntry
         String[] columnas = {
                 RegionEntry._ID,
                 RegionEntry.COLUMN_NOMBRE
@@ -141,10 +141,10 @@ public class AnimalCrud {
         return regiones;
     }
 
-    // Obtener animales favoritos de una región
 
 
-    // Convertir cursor a objeto Animal
+
+    //Convertir cursor a objeto Animal
     private Animal cursorToAnimal(Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID));
         String nombre = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE));

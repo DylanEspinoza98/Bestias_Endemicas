@@ -28,11 +28,11 @@ import java.util.List;
 
 public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
 
-    // Botones originales
+    //Botones originales
     private Button btnVerMasAbejorro, btnVerMasLoica, btnVerMasMonitoDelMonte;
     private Button btnVerMasDeguComun, btnVerMasLoroTricahue, botonVolver;
 
-    // Elementos CRUD
+    //Elementos CRUD
     private RecyclerView recyclerViewAnimales;
     private AnimalAdapter animalAdapter;
     private AnimalCrud animalCrud;
@@ -40,15 +40,15 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     private List<Animal> listaAnimales;
     private List<Animal> listaAnimalesCompleta; // Lista sin filtrar
 
-    // Elementos para filtros
+    //Elementos para filtros
     private ChipGroup chipGroupFiltros;
     private LinearLayout contenedorAnimales;
 
-    // Constantes
+    //Constantes
     private static final int REGION_CENTRO_ID = 2;
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
-    // Constantes para filtros
+    //Constantes para filtros
     private static final String TAG_TODOS = "todos";
     private static final String TAG_TERRESTRE = "terrestre";
     private static final String TAG_VOLADOR = "volador";
@@ -80,7 +80,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     }
 
     private void inicializarVistas() {
-        // BOTONES ORIGINALES (mantener todos)
+        //Botones originales
         btnVerMasAbejorro = findViewById(R.id.btn_ver_mas_Abejorro);
         btnVerMasLoica = findViewById(R.id.btn_ver_mas_Loica);
         btnVerMasMonitoDelMonte = findViewById(R.id.btn_ver_mas_MonitoDelMonte);
@@ -110,7 +110,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
             }
         });
 
-        // Botones "Ver más" originales - MANTENER tu lógica existente exacta
+        //Botones "Ver más" originales
         btnVerMasAbejorro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,7 +221,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
             });
         }
 
-        // Aplicar filtro inicial
+        //Aplicar filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
@@ -256,7 +256,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
             }
         }
 
-        // Filtrar animales dinámicos (RecyclerView)
+        //Filtrar animales dinámicos (RecyclerView)
         filtrarAnimalesDinamicos();
     }
 

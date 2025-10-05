@@ -5,13 +5,13 @@ import android.provider.BaseColumns;
 public final class AnimalContract {
     private AnimalContract() {}
 
-    // Tabla regiones
+    //Tabla regiones
     public static class RegionEntry implements BaseColumns {
         public static final String TABLE_NAME = "regiones";
         public static final String COLUMN_NOMBRE = "nombre";
     }
 
-    // Tabla animales actualizada con foreign key
+    //Tabla animales  con foreign key
     public static class AnimalEntry implements BaseColumns {
         public static final String TABLE_NAME = "animales";
         public static final String COLUMN_NOMBRE = "nombre";

@@ -79,17 +79,17 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvNombre.setText(animal.getNombre());
             tvDescripcion.setText(animal.getDescripcion());
 
-            // Mostrar indicador de favorito
+            //Mostrar indicador de favorito
             if (animal.isEsFavorito()) {
                 tvFavorito.setVisibility(View.VISIBLE);
             } else {
                 tvFavorito.setVisibility(View.GONE);
             }
 
-            // CARGAR SOLO DESDE GALERÍA
+            //Cargar solo desde galeria
             cargarImagenDeGaleria(animal.getRutaImagen(), ivFoto);
 
-            // Listeners para botones...
+            //Listeners para botones
             btnEditar.setOnClickListener(v -> listener.onEditarAnimal(animal));
             btnEliminar.setOnClickListener(v -> listener.onEliminarAnimal(animal));
             btnVerMas.setOnClickListener(v -> listener.onVerDetalles(animal));
@@ -98,15 +98,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         private void cargarImagenDeGaleria(String rutaImagen, ImageView imageView) {
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
                 try {
-                    // SOLO cargar desde URI de galería
+                    //Solo cargar desde URI de galería
                     Uri uri = Uri.parse(rutaImagen);
                     imageView.setImageURI(uri);
                 } catch (Exception e) {
-                    // Si falla, mostrar placeholder
+                    //Si falla, mostrar placeholder
                     imageView.setImageResource(R.drawable.ic_animal_placeholder);
                 }
             } else {
-                // Sin imagen, mostrar placeholder
+                //Sin imagen, mostrar placeholder
                 imageView.setImageResource(R.drawable.ic_animal_placeholder);
             }
         }

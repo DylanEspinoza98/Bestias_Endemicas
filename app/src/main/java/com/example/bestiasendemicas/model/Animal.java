@@ -4,12 +4,12 @@ public class Animal {
     private int id;
     private String nombre;
     private String descripcion;
-    private String rutaImagen;    // Solo para imágenes de galería
+    private String rutaImagen;    //Solo para imágenes de galería
     private int regionId;
     private boolean esFavorito;
     private String tipo;
 
-    // Constructor completo
+    //Constructor completo
     public Animal(int id, String nombre, String descripcion, String rutaImagen,
                   int regionId, boolean esFavorito, String tipo) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Animal {
         this.tipo = tipo;
     }
 
-    // Constructor sin ID (para insertar nuevos animales)
+    //Constructor sin ID (para insertar nuevos animales)
     public Animal(String nombre, String descripcion, String rutaImagen,
                   int regionId, boolean esFavorito, String tipo) {
         this.nombre = nombre;
@@ -32,13 +32,13 @@ public class Animal {
         this.tipo = tipo;
     }
 
-    // Constructor vacío
+    //Constructor vacío
     public Animal() {
     }
 
-    // ================================
-    // GETTERS
-    // ================================
+
+    //Getters
+
     public int getId() {
         return id;
     }
@@ -67,9 +67,9 @@ public class Animal {
         return tipo;
     }
 
-    // ================================
-    // SETTERS
-    // ================================
+
+    //Setters
+
     public void setId(int id) {
         this.id = id;
     }
@@ -98,16 +98,16 @@ public class Animal {
         this.tipo = tipo;
     }
 
-    // ================================
-    // MÉTODOS ADICIONALES
-    // ================================
 
-    // Método para verificar si tiene imagen
+    //Metodos adicionales
+
+
+    //Metodo para verificar si tiene imagen
     public boolean tieneImagen() {
         return rutaImagen != null && !rutaImagen.isEmpty();
     }
 
-    // Método toString para debugging
+    //Metodo toString
     @Override
     public String toString() {
         return "Animal{" +
@@ -120,7 +120,7 @@ public class Animal {
                 '}';
     }
 
-    // Método equals para comparaciones
+    //Metodo equals para comparaciones
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -130,13 +130,13 @@ public class Animal {
         return id == animal.id;
     }
 
-    // Método hashCode
+    //Metodo hashCode para animales base
     @Override
     public int hashCode() {
         return Integer.hashCode(id);
     }
 
-    // Método para obtener nombre de región (útil para displays)
+    //Metodo para obtener nombre de región
     public String getNombreRegion() {
         switch (regionId) {
             case 1: return "Norte";
@@ -147,7 +147,7 @@ public class Animal {
         }
     }
 
-    // Método para validar datos antes de guardar
+    //Metodo para validar datos antes de guardar
     public boolean esValido() {
         return nombre != null && !nombre.trim().isEmpty() &&
                 descripcion != null && !descripcion.trim().isEmpty() &&
