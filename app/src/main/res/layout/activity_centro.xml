@@ -67,6 +67,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/acuatico" />
 
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagFavoritos"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ Favoritos" />
+
+
             </com.google.android.material.chip.ChipGroup>
 
 

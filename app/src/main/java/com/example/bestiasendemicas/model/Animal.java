@@ -7,24 +7,29 @@ public class Animal {
     private String rutaImagen;    // Solo para imágenes de galería
     private int regionId;
     private boolean esFavorito;
+    private String tipo;
 
     // Constructor completo
-    public Animal(int id, String nombre, String descripcion, String rutaImagen, int regionId, boolean esFavorito) {
+    public Animal(int id, String nombre, String descripcion, String rutaImagen,
+                  int regionId, boolean esFavorito, String tipo) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.rutaImagen = rutaImagen;
         this.regionId = regionId;
         this.esFavorito = esFavorito;
+        this.tipo = tipo;
     }
 
     // Constructor sin ID (para insertar nuevos animales)
-    public Animal(String nombre, String descripcion, String rutaImagen, int regionId, boolean esFavorito) {
+    public Animal(String nombre, String descripcion, String rutaImagen,
+                  int regionId, boolean esFavorito, String tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.rutaImagen = rutaImagen;
         this.regionId = regionId;
         this.esFavorito = esFavorito;
+        this.tipo = tipo;
     }
 
     // Constructor vacío
@@ -58,6 +63,10 @@ public class Animal {
         return esFavorito;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     // ================================
     // SETTERS
     // ================================
@@ -83,6 +92,10 @@ public class Animal {
 
     public void setEsFavorito(boolean esFavorito) {
         this.esFavorito = esFavorito;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     // ================================

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.util.Log;
+import com.bumptech.glide.Glide;
 import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
     private static final String ARG_ANIMAL_DESCRIPTION = "animal_description";
     private static final String ARG_ANIMAL_IMAGE_RES = "animal_image_res";
 
-    // MÉTODO 1: Para animales hardcodeados (con drawable resource - int)
+    //Animales base
     public static AnimalBottomSheetFragment newInstance(String nombre, String descripcion, int imageResId) {
         AnimalBottomSheetFragment fragment = new AnimalBottomSheetFragment();
         Bundle args = new Bundle();
@@ -34,7 +36,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
         return fragment;
     }
 
-    // MÉTODO 2: Para animales dinámicos (con URI de galería - String)
+    //Animales para agregar
     public static AnimalBottomSheetFragment newInstance(String nombre, String descripcion, String imageUri) {
         AnimalBottomSheetFragment fragment = new AnimalBottomSheetFragment();
         Bundle args = new Bundle();
@@ -63,20 +65,33 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
             tvNombre.setText(nombre);
             tvDescripcion.setText(descripcion);
 
+            // Logs para debuggear (opcional, puedes quitarlos después)
+            Log.d("BottomSheet", "Nombre: " + nombre);
+            Log.d("BottomSheet", "ImageResId: " + imageResId);
+            Log.d("BottomSheet", "ImageUri: " + imageUri);
+
             // Cargar imagen según el tipo
             if (imageResId != 0) {
                 // Imagen desde recursos (animales hardcodeados)
+                Log.d("BottomSheet", "Cargando imagen desde recurso");
                 ivAnimal.setImageResource(imageResId);
             } else if (!imageUri.isEmpty()) {
-                // Imagen desde URI de galería (animales dinámicos)
+                // Imagen desde URI usando Glide (animales dinámicos)
+                Log.d("BottomSheet", "Cargando imagen con Glide desde URI: " + imageUri);
                 try {
-                    Uri uri = Uri.parse(imageUri);
-                    ivAnimal.setImageURI(uri);
+                    Glide.with(this)
+                            .load(imageUri)
+                            .placeholder(R.drawable.ic_animal_placeholder)
+                            .error(R.drawable.ic_animal_placeholder)
+                            .centerCrop()  // Para que se ajuste bien
+                            .into(ivAnimal);
                 } catch (Exception e) {
+                    Log.e("BottomSheet", "Error con Glide: " + e.getMessage());
                     ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
                 }
             } else {
-                // Placeholder por defecto
+                // No hay imagen, usar placeholder
+                Log.d("BottomSheet", "No hay imagen, usando placeholder");
                 ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
             }
         }

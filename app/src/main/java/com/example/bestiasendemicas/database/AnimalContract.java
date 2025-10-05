@@ -19,6 +19,6 @@ public final class AnimalContract {
         public static final String COLUMN_FOTO_URL = "foto_url";
         public static final String COLUMN_REGION_ID = "region_id";
         public static final String COLUMN_ES_FAVORITO = "es_favorito";
-        public static final String COLUMN_FECHA_INGRESO = "fecha_ingreso";
+        public static final String COLUMN_TIPO = "tipo";
     }
 }

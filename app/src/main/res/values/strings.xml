@@ -112,4 +112,12 @@
     <string name="terrestre">Terrestre</string>
     <string name="volador">Volador</string>
     <string name="acuatico">Acuatico</string>
+
+    <!--String para los tipos de animales-->
+    <string-array name="animal_tipos">
+        <item>terrestre</item>
+        <item>volador</item>
+        <item>acuatico</item>
+    </string-array>
+
 </resources>

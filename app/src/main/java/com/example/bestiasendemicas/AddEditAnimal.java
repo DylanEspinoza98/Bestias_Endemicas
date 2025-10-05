@@ -1,10 +1,10 @@
 package com.example.bestiasendemicas;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.activity.result.PickVisualMediaRequest;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,36 +13,37 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
+
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;
 import com.example.bestiasendemicas.model.Region;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 
 public class AddEditAnimal extends AppCompatActivity {
-
-    private EditText etNombre, etDescripcion;
-    private Spinner spinnerRegion;
-    private CheckBox cbEsFavorito;
-    private Button btnGuardar, btnCancelar, btnSeleccionarImagen;
-    private ImageView ivPreviewImagen;
-    private AnimalCrud animalCrud;
-    private List<Region> regiones;
-    private Animal animalAEditar = null;
-    private int animalId = -1;
-    private Uri imagenSeleccionadaUri = null;
-
     public static final String EXTRA_ANIMAL_ID = "animal_id";
     public static final String EXTRA_REGION_ID = "region_id";
 
+    private EditText etNombre, etDescripcion;
+    private Spinner spinnerRegion, spinnerTipo;
+    private CheckBox cbEsFavorito;
+    private Button btnGuardar, btnCancelar, btnSeleccionarImagen;
+    private ImageView ivPreviewImagen;
 
+    private AnimalCrud animalCrud;
+    private List<Region> regiones;
+    private Animal animalAEditar = null;
+    private Uri imagenSeleccionadaUri = null;
+    private int animalId = -1;
 
-    // ActivityResultLauncher para seleccionar imagen
-    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
+    private final androidx.activity.result.ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     imagenSeleccionadaUri = uri;
@@ -68,13 +69,15 @@ public class AddEditAnimal extends AppCompatActivity {
         etNombre = findViewById(R.id.et_nombre_animal);
         etDescripcion = findViewById(R.id.et_descripcion_animal);
         spinnerRegion = findViewById(R.id.spinner_region);
+        spinnerTipo = findViewById(R.id.spinner_tipo);
         cbEsFavorito = findViewById(R.id.cb_es_favorito);
         btnGuardar = findViewById(R.id.btn_guardar_animal);
         btnCancelar = findViewById(R.id.btn_cancelar_animal);
         btnSeleccionarImagen = findViewById(R.id.btn_seleccionar_imagen);
         ivPreviewImagen = findViewById(R.id.iv_preview_imagen);
 
-
+        spinnerRegion.setEnabled(false);
+        spinnerRegion.setAlpha(0.5f);
     }
 
     private void inicializarCrud() {
@@ -84,35 +87,41 @@ public class AddEditAnimal extends AppCompatActivity {
 
     private void cargarRegiones() {
         regiones = animalCrud.obtenerTodasLasRegiones();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item);
-
-        for (Region region : regiones) {
-            adapter.add(region.getNombre());
+        ArrayAdapter<String> adapterRegiones = new ArrayAdapter<>(
+                this, R.layout.spinner_item_black_text);
+        for (Region r : regiones) {
+            adapterRegiones.add(r.getNombre());
         }
+        adapterRegiones.setDropDownViewResource(R.layout.spinner_item_black_text);
+        spinnerRegion.setAdapter(adapterRegiones);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerRegion.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(
+                this, R.array.animal_tipos, R.layout.spinner_item_black_text);
+        adapterTipos.setDropDownViewResource(R.layout.spinner_item_black_text);
+        spinnerTipo.setAdapter(adapterTipos);
     }
 
     private void verificarModoEdicion() {
         Intent intent = getIntent();
         animalId = intent.getIntExtra(EXTRA_ANIMAL_ID, -1);
-
         if (animalId != -1) {
-            // Modo edición
             setTitle("Editar Animal");
             btnGuardar.setText("Actualizar");
+            spinnerRegion.setEnabled(true);
+            spinnerRegion.setAlpha(1f);
+            spinnerTipo.setEnabled(true);
+            spinnerTipo.setAlpha(1f);
             cargarDatosAnimal();
         } else {
-            // Modo añadir
             setTitle("Añadir Animal");
             btnGuardar.setText("Guardar");
             int regionIdSeleccionada = intent.getIntExtra(EXTRA_REGION_ID, -1);
             if (regionIdSeleccionada != -1) {
                 seleccionarRegionEnSpinner(regionIdSeleccionada);
             }
+            spinnerTipo.setEnabled(true);
+            spinnerTipo.setAlpha(1f);
         }
     }
 
@@ -123,8 +132,10 @@ public class AddEditAnimal extends AppCompatActivity {
             etDescripcion.setText(animalAEditar.getDescripcion());
             cbEsFavorito.setChecked(animalAEditar.isEsFavorito());
             seleccionarRegionEnSpinner(animalAEditar.getRegionId());
+            int posTipo = ((ArrayAdapter) spinnerTipo.getAdapter())
+                    .getPosition(animalAEditar.getTipo());
+            spinnerTipo.setSelection(posTipo);
 
-            // Cargar imagen si existe
             String rutaImagen = animalAEditar.getRutaImagen();
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
                 try {
@@ -148,101 +159,103 @@ public class AddEditAnimal extends AppCompatActivity {
     }
 
     private void configurarBotones() {
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guardarAnimal();
-            }
-        });
+        btnSeleccionarImagen.setOnClickListener(v ->
+                pickMedia.launch(new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build())
+        );
 
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        btnSeleccionarImagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirGaleria();
-            }
-        });
+        btnCancelar.setOnClickListener(v -> finish());
+        btnGuardar.setOnClickListener(v -> guardarAnimal());
     }
-
-
-
-    private void abrirGaleria() {
-        pickMedia.launch(new PickVisualMediaRequest.Builder()
-                .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                .build());
-    }
-
-
-
-
 
     private void guardarAnimal() {
         String nombre = etNombre.getText().toString().trim();
         String descripcion = etDescripcion.getText().toString().trim();
         boolean esFavorito = cbEsFavorito.isChecked();
+        String tipoSeleccionado = spinnerTipo.getSelectedItem().toString();
 
-        // Validaciones
         if (nombre.isEmpty()) {
             etNombre.setError("El nombre es obligatorio");
             etNombre.requestFocus();
             return;
         }
-
         if (descripcion.isEmpty()) {
             etDescripcion.setError("La descripción es obligatoria");
             etDescripcion.requestFocus();
             return;
         }
 
-        int posicionRegion = spinnerRegion.getSelectedItemPosition();
-        if (posicionRegion < 0 || posicionRegion >= regiones.size()) {
-            Toast.makeText(this, "Selecciona una región válida", Toast.LENGTH_SHORT).show();
-            return;
+        int regionIdSeleccionada;
+        if (animalAEditar != null) {
+            regionIdSeleccionada = regiones
+                    .get(spinnerRegion.getSelectedItemPosition()).getId();
+        } else {
+            regionIdSeleccionada = getIntent().getIntExtra(EXTRA_REGION_ID, -1);
+            if (regionIdSeleccionada == -1) {
+                Toast.makeText(this, "Error al determinar región", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
-        Region regionSeleccionada = regiones.get(posicionRegion);
-
-        // Convertir URI a string (solo si hay imagen seleccionada)
-        String rutaImagen = (imagenSeleccionadaUri != null) ? imagenSeleccionadaUri.toString() : "";
+        String rutaImagen = "";
+        if (imagenSeleccionadaUri != null) {
+            rutaImagen = copiarImagenAAlmacenamientoInterno(imagenSeleccionadaUri);
+            if (rutaImagen.isEmpty()) {
+                Toast.makeText(this, "⚠️ Error al procesar imagen", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         if (animalAEditar == null) {
-            // Modo añadir
-            Animal nuevoAnimal = new Animal(nombre, descripcion, rutaImagen,
-                    regionSeleccionada.getId(), esFavorito);
-
-            long resultado = animalCrud.insertarAnimal(nuevoAnimal);
-            if (resultado > 0) {
-                Toast.makeText(this, "✅ Animal añadido correctamente", Toast.LENGTH_SHORT).show();
+            Animal nuevo = new Animal(nombre, descripcion, rutaImagen,
+                    regionIdSeleccionada, esFavorito, tipoSeleccionado);
+            long res = animalCrud.insertarAnimal(nuevo);
+            if (res > 0) {
+                Toast.makeText(this, "✅ Añadido", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
                 finish();
             } else {
-                Toast.makeText(this, "❌ Error al añadir el animal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "❌ Error al añadir", Toast.LENGTH_SHORT).show();
             }
         } else {
-            // Modo editar
             animalAEditar.setNombre(nombre);
             animalAEditar.setDescripcion(descripcion);
-            animalAEditar.setRutaImagen(rutaImagen);  // ← Solo ruta de galería
-            animalAEditar.setRegionId(regionSeleccionada.getId());
+            if (!rutaImagen.isEmpty()) {
+                animalAEditar.setRutaImagen(rutaImagen);
+            }
+            animalAEditar.setRegionId(regionIdSeleccionada);
             animalAEditar.setEsFavorito(esFavorito);
-
-            int resultado = animalCrud.actualizarAnimal(animalAEditar);
-            if (resultado > 0) {
-                Toast.makeText(this, "✅ Animal actualizado correctamente", Toast.LENGTH_SHORT).show();
+            animalAEditar.setTipo(tipoSeleccionado);
+            int res = animalCrud.actualizarAnimal(animalAEditar);
+            if (res > 0) {
+                Toast.makeText(this, "✅ Actualizado", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
                 finish();
             } else {
-                Toast.makeText(this, "❌ Error al actualizar el animal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "❌ Error al actualizar", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    private String copiarImagenAAlmacenamientoInterno(Uri uri) {
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            if (in != null) {
+                String nombre = "animal_" + System.currentTimeMillis() + ".jpg";
+                try (FileOutputStream out = openFileOutput(nombre, Context.MODE_PRIVATE)) {
+                    byte[] buf = new byte[4096];
+                    int len;
+                    while ((len = in.read(buf)) > 0) {
+                        out.write(buf, 0, len);
+                    }
+                }
+                File f = new File(getFilesDir(), nombre);
+                return "file://" + f.getAbsolutePath();
+            }
+        } catch (Exception e) {
+            Log.e("AddEditAnimal", "Error copiando imagen: " + e.getMessage());
+        }
+        return "";
+    }
 
     @Override
     protected void onDestroy() {

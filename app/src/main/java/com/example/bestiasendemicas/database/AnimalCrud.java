@@ -3,202 +3,158 @@ package com.example.bestiasendemicas.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import com.example.bestiasendemicas.model.Animal;
-import com.example.bestiasendemicas.model.Region;
 import com.example.bestiasendemicas.database.AnimalContract.AnimalEntry;
-import com.example.bestiasendemicas.database.AnimalContract.RegionEntry;
+import com.example.bestiasendemicas.model.Animal;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.bestiasendemicas.database.AnimalContract.RegionEntry;
+import com.example.bestiasendemicas.model.Region;
 public class AnimalCrud {
-    private AnimalDBHelper dbHelper;
+
     private SQLiteDatabase database;
+    private final AnimalDBHelper dbHelper;
+    private final String[] allColumns = {
+            AnimalEntry._ID,
+            AnimalEntry.COLUMN_NOMBRE,
+            AnimalEntry.COLUMN_DESCRIPCION,
+            AnimalEntry.COLUMN_FOTO_URL,
+            AnimalEntry.COLUMN_REGION_ID,
+            AnimalEntry.COLUMN_ES_FAVORITO,
+            AnimalEntry.COLUMN_TIPO
+    };
 
     public AnimalCrud(Context context) {
         dbHelper = new AnimalDBHelper(context);
     }
 
-    public void open() {
+    public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
 
     public void close() {
-        if (database != null && database.isOpen()) {
-            database.close();
-        }
+        dbHelper.close();
     }
 
-    // ===== OPERACIONES CRUD PARA ANIMALES =====
-
-    // CREATE - Insertar animal
+    // Insertar nuevo animal
     public long insertarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
         values.put(AnimalEntry.COLUMN_DESCRIPCION, animal.getDescripcion());
-        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen());  // ← CAMBIO: usar getRutaImagen()
+        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen());
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
-
+        values.put(AnimalEntry.COLUMN_TIPO, animal.getTipo());  // ← Nuevo campo
         return database.insert(AnimalEntry.TABLE_NAME, null, values);
     }
 
-    // READ - Obtener todos los animales
-    public List<Animal> obtenerTodosLosAnimales() {
-        List<Animal> animales = new ArrayList<>();
-
-        String query = "SELECT * FROM " + AnimalEntry.TABLE_NAME;
-        Cursor cursor = database.rawQuery(query, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Animal animal = new Animal();
-                animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
-                animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
-                animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-                animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
-                animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
-                animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-                // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
-
-                animales.add(animal);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return animales;
-    }
-
-    // READ - Obtener animales por región
-    public List<Animal> obtenerAnimalesPorRegion(int regionId) {
-        List<Animal> animales = new ArrayList<>();
-
-        String selection = AnimalEntry.COLUMN_REGION_ID + " = ?";
-        String[] selectionArgs = { String.valueOf(regionId) };
-
-        Cursor cursor = database.query(
-                AnimalEntry.TABLE_NAME,
-                null,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                AnimalEntry.COLUMN_NOMBRE + " ASC"
-        );
-
-        if (cursor.moveToFirst()) {
-            do {
-                Animal animal = new Animal();
-                animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
-                animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
-                animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-                animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
-                animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
-                animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-                // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
-
-                animales.add(animal);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return animales;
-    }
-
-    // READ - Obtener animal por ID
-    public Animal obtenerAnimalPorId(int id) {
-        String selection = AnimalEntry._ID + " = ?";
-        String[] selectionArgs = { String.valueOf(id) };
-
-        Cursor cursor = database.query(
-                AnimalEntry.TABLE_NAME,
-                null,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
-
-        Animal animal = null;
-        if (cursor.moveToFirst()) {
-            animal = new Animal();
-            animal.setId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID)));
-            animal.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE)));
-            animal.setDescripcion(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION)));
-            animal.setRutaImagen(cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL))); // ← CAMBIO: usar setRutaImagen()
-            animal.setRegionId(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID)));
-            animal.setEsFavorito(cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1);
-            // ← ELIMINAR: animal.setFechaIngreso(...) si no lo necesitas
-        }
-        cursor.close();
-        return animal;
-    }
-
-    // UPDATE - Actualizar animal
+    // Actualizar animal existente
     public int actualizarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
         values.put(AnimalEntry.COLUMN_DESCRIPCION, animal.getDescripcion());
-        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen()); // ← CAMBIO: usar getRutaImagen()
+        values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen());
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
+        values.put(AnimalEntry.COLUMN_TIPO, animal.getTipo());
 
-        String selection = AnimalEntry._ID + " = ?";
-        String[] selectionArgs = { String.valueOf(animal.getId()) };
-
-        return database.update(AnimalEntry.TABLE_NAME, values, selection, selectionArgs);
+        return database.update(
+                AnimalEntry.TABLE_NAME,
+                values,
+                AnimalEntry._ID + " = ?",
+                new String[]{ String.valueOf(animal.getId()) }
+        );
     }
 
-    // DELETE - Eliminar animal
-    public int eliminarAnimal(int id) {
-        String selection = AnimalEntry._ID + " = ?";
-        String[] selectionArgs = { String.valueOf(id) };
-
-        return database.delete(AnimalEntry.TABLE_NAME, selection, selectionArgs);
+    // Eliminar animal
+    public int eliminarAnimal(int animalId) {
+        return database.delete(
+                AnimalEntry.TABLE_NAME,
+                AnimalEntry._ID + " = ?",
+                new String[]{ String.valueOf(animalId) }
+        );
     }
 
-    // ===== OPERACIONES PARA REGIONES =====
+    // Obtener un animal por ID
+    public Animal obtenerAnimalPorId(int animalId) {
+        Cursor cursor = database.query(
+                AnimalEntry.TABLE_NAME,
+                allColumns,
+                AnimalEntry._ID + " = ?",
+                new String[]{ String.valueOf(animalId) },
+                null, null, null
+        );
 
-    // READ - Obtener todas las regiones
+        if (cursor != null && cursor.moveToFirst()) {
+            Animal animal = cursorToAnimal(cursor);
+            cursor.close();
+            return animal;
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+        return null;
+    }
+
+    // Obtener todos los animales de una región
+    public List<Animal> obtenerAnimalesPorRegion(int regionId) {
+        List<Animal> animales = new ArrayList<>();
+        Cursor cursor = database.query(
+                AnimalEntry.TABLE_NAME,
+                allColumns,
+                AnimalEntry.COLUMN_REGION_ID + " = ?",
+                new String[]{ String.valueOf(regionId) },
+                null, null, null
+        );
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                animales.add(cursorToAnimal(cursor));
+            }
+            cursor.close();
+        }
+        return animales;
+    }
+
     public List<Region> obtenerTodasLasRegiones() {
         List<Region> regiones = new ArrayList<>();
-
-        String query = "SELECT * FROM " + RegionEntry.TABLE_NAME + " ORDER BY " + RegionEntry._ID;
-        Cursor cursor = database.rawQuery(query, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                Region region = new Region();
-                region.setId(cursor.getInt(cursor.getColumnIndexOrThrow(RegionEntry._ID)));
-                region.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(RegionEntry.COLUMN_NOMBRE)));
-                regiones.add(region);
-            } while (cursor.moveToNext());
+        // Columnas de RegionEntry
+        String[] columnas = {
+                RegionEntry._ID,
+                RegionEntry.COLUMN_NOMBRE
+        };
+        Cursor cursor = database.query(
+                RegionEntry.TABLE_NAME,
+                columnas,
+                null, null, null, null, null
+        );
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(RegionEntry._ID));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow(RegionEntry.COLUMN_NOMBRE));
+                regiones.add(new Region(id, nombre));
+            }
+            cursor.close();
         }
-        cursor.close();
         return regiones;
     }
 
-    // READ - Obtener región por ID
-    public Region obtenerRegionPorId(int id) {
-        String selection = RegionEntry._ID + " = ?";
-        String[] selectionArgs = { String.valueOf(id) };
+    // Obtener animales favoritos de una región
 
-        Cursor cursor = database.query(
-                RegionEntry.TABLE_NAME,
-                null,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
 
-        Region region = null;
-        if (cursor.moveToFirst()) {
-            region = new Region();
-            region.setId(cursor.getInt(cursor.getColumnIndexOrThrow(RegionEntry._ID)));
-            region.setNombre(cursor.getString(cursor.getColumnIndexOrThrow(RegionEntry.COLUMN_NOMBRE)));
-        }
-        cursor.close();
-        return region;
+    // Convertir cursor a objeto Animal
+    private Animal cursorToAnimal(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID));
+        String nombre = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE));
+        String descripcion = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_DESCRIPCION));
+        String rutaImagen = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL));
+        int regionId = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID));
+        boolean esFavorito = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1;
+        String tipo = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_TIPO));  // ← Nuevo campo
+
+        Animal animal = new Animal(id, nombre, descripcion, rutaImagen, regionId, esFavorito, tipo);
+        return animal;
     }
 }

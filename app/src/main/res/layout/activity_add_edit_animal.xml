@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Campo Nombre con diseño colorido -->
+            <!-- Campo Nombre -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +50,7 @@
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />
 
+                <!-- EditText con letras negras sobre fondo blanco -->
                 <EditText
                     android:id="@+id/et_nombre_animal"
                     android:layout_width="match_parent"
@@ -58,11 +59,11 @@
                     android:inputType="textCapWords"
                     android:background="#FFFFFF"
                     android:padding="12dp"
-                    android:textSize="16sp" />
-
+                    android:textSize="16sp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
-            <!-- Campo Descripción con diseño colorido -->
+            <!-- Campo Descripción -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,6 +82,7 @@
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />
 
+                <!-- EditText con letras negras sobre fondo blanco -->
                 <EditText
                     android:id="@+id/et_descripcion_animal"
                     android:layout_width="match_parent"
@@ -91,11 +93,11 @@
                     android:gravity="top"
                     android:background="#FFFFFF"
                     android:padding="12dp"
-                    android:textSize="16sp" />
-
+                    android:textSize="16sp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
-            <!-- Sección Imagen con diseño colorido -->
+            <!-- Sección Imagen -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +128,7 @@
                     android:elevation="4dp"
                     style="@style/Widget.MaterialComponents.Button" />
 
-                <!-- Preview de imagen con marco bonito -->
+                <!-- Preview de imagen -->
                 <FrameLayout
                     android:layout_width="220dp"
                     android:layout_height="220dp"
@@ -142,12 +144,10 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_animal_placeholder"
                         android:visibility="visible" />
-
                 </FrameLayout>
-
             </LinearLayout>
 
-            <!-- Campo Región con diseño colorido -->
+            <!-- Campo Región separado con diseño original -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +172,34 @@
                     android:layout_height="48dp"
                     android:background="#FFFFFF"
                     android:padding="12dp" />
+            </LinearLayout>
 
+            <!-- Campo Tipo separado con el mismo diseño de los campos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#E5F3EB"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📋 Tipo"
+                    android:textStyle="bold"
+                    android:textColor="#00796B"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_tipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#FFFFFF"
+                    android:padding="12dp"
+                    android:entries="@array/animal_tipos" />
             </LinearLayout>
 
             <!-- Checkbox Favorito con diseño colorido -->
@@ -192,11 +219,8 @@
                     android:textColor="#C2185B"
                     android:textStyle="bold"
                     android:textSize="16sp" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
     <!-- Botones con diseño colorido -->
@@ -233,7 +257,5 @@
             android:textColor="#FFFFFF"
             android:elevation="6dp"
             style="@style/Widget.MaterialComponents.Button" />
-
     </LinearLayout>
-
 </LinearLayout>
