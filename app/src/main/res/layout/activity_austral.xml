@@ -1,351 +1,405 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainAustral"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_austral"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_austral"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:text="@string/Titulo_Austral"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+
+            <!-- Filtros -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGrupoFiltros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:layout_marginBottom="16dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodos"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/todos" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagTerrestre"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terrestre" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagVolador"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/volador" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagAcuatico"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/acuatico" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/TagFavoritos"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ Favoritos" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Animales hardcodeados originales de la región Austral -->
+            <LinearLayout
+                android:id="@+id/contenedorAnimalesA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- HUEMUL -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="terrestre">
+
+                    <ImageView
+                        android:id="@+id/img_huemul"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/huemul" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/huemul"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/info_Huemul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_Huemul"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_huemul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- DELFÍN CHILENO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="acuatico">
+
+                    <ImageView
+                        android:id="@+id/img_DelfinChileno"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/delfin_chileno" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delfinchileno"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/info_DelfinChileno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_DelfinChileno"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_DelfinChileno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- ZORRO CULPEO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="terrestre">
+
+                    <ImageView
+                        android:id="@+id/img_ZorroCulpeo"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/zorro_culpeo" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zorroculpeo"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/Info_ZorroCulpeo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_ZorroCulpeo"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_ZorroCulpeo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- CARANCHO CORDILLERANO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="volador">
+
+                    <ImageView
+                        android:id="@+id/img_CaranchoCordillerano"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/carancho_cordillerano" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/caranchocordillerano"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/Info_CaranchoCordillerano"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_CaranchoCordillerano"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_CaranchoCordillerano"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+                <!-- CÓNDOR ANDINO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_animal_card"
+                    android:padding="16dp"
+                    android:tag="volador">
+
+                    <ImageView
+                        android:id="@+id/img_CondorAndino"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"
+                        android:src="@drawable/condor_andino" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/condorandino"
+                        android:textAlignment="center"
+                        android:textColor="#2E7D32"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/Info_CondorAndino"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inf_CondorAndino"
+                        android:textColor="#424242"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"
+                        android:maxLines="3"
+                        android:ellipsize="end" />
+
+                    <Button
+                        android:id="@+id/btn_ver_mas_CondorAndino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:text="@string/ver"
+                        android:textSize="12sp"
+                        android:backgroundTint="#4CAF50"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.3" />
+
+            <!-- Título para animales añadidos -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🆕 Animales Añadidos"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- recyclerview para animales dinamicos -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_animales_austral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Botón Volver ORIGINAL -->
+            <Button
+                android:id="@+id/btnVolverS"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FF5722"
+                android:text="@string/Txt_Btn_Volver"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FAB para añadir animal -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_agregar_animal_austral"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="Añadir animal"
+        app:tint="@android:color/white"
+        app:backgroundTint="#4CAF50" />
 
-        <!-- Título -->
-        <TextView
-            android:id="@+id/titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="16dp"
-            android:text="@string/Titulo_Austral"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
-
-        <!-- Filtros -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGrupoFiltros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginBottom="16dp"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTodos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/todos" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagTerrestre"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/terrestre" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagVolador"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volador" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/TagAcuatico"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/acuatico" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-    <LinearLayout
-        android:id="@+id/contenedorAnimalesA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- HUEMUL -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-            android:padding="16dp"
-            android:tag="terrestre">
-
-            <ImageView
-                android:id="@+id/img_huemul"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/huemul" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/huemul"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_Huemul"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_Huemul"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_huemul"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- DELFÍN CHILENO -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-            android:padding="16dp"
-            android:tag="acuatico">
-
-            <ImageView
-                android:id="@+id/img_DelfinChileno"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/delfin_chileno" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/delfinchileno"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/info_DelfinChileno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_DelfinChileno"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_DelfinChileno"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- ZORRO CULPEO -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-            android:padding="16dp"
-            android:tag="terrestre">
-
-            <ImageView
-                android:id="@+id/img_ZorroCulpeo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/zorro_culpeo" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/zorroculpeo"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/Info_ZorroCulpeo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_ZorroCulpeo"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_ZorroCulpeo"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- CARANCHO CORDILLERANO -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-            android:padding="16dp"
-            android:tag="volador">
-
-            <ImageView
-                android:id="@+id/img_CaranchoCordillerano"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/carancho" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/caranchocordillerano"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/Info_CaranchoCordillerano"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_CaranchoCordillerano"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_CaranchoCordillerano"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- CÓNDOR ANDINO -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_animal_card"
-            android:padding="16dp"
-            android:tag="volador">
-
-            <ImageView
-                android:id="@+id/img_CondorAndino"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/condor_andino" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/condorandino"
-                android:textAlignment="center"
-                android:textColor="#2E7D32"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <TextView
-                android:id="@+id/Info_CondorAndino"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/inf_CondorAndino"
-                android:textColor="#424242"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"
-                android:maxLines="3"
-                android:ellipsize="end" />
-
-            <Button
-                android:id="@+id/btn_ver_mas_CondorAndino"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="end"
-                android:text="@string/ver"
-                android:textSize="12sp"
-                android:backgroundTint="#4CAF50"
-                style="@style/Widget.MaterialComponents.Button" />
-
-        </LinearLayout>
-
-        <!-- Botón Volver -->
-        <Button
-            android:id="@+id/btnVolverS"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#FF5722"
-            android:text="@string/Txt_Btn_Volver"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar" />
-
-    </LinearLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

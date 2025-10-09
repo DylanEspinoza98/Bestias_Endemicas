@@ -79,7 +79,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     }
 
     private void inicializarVistas() {
-        //Botones originales norte
+        //Botones originales
         btnVerMasGatoAndino = findViewById(R.id.btn_ver_mas_GatoAndino);
         btnVerMasPudu = findViewById(R.id.btn_ver_mas_Pudu);
         btnVerMasGatoColocolo = findViewById(R.id.btn_ver_mas_GatoColoColo);
@@ -91,7 +91,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_norte);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_norte);
 
-        //Vistas para filtros
+        //Vistas para los filtros
         chipGroupFiltros = findViewById(R.id.chipGrupoFiltros);
         contenedorAnimales = findViewById(R.id.contenedorAnimalesN);
     }
@@ -277,7 +277,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                     case TAG_TERRESTRE:
                     case TAG_VOLADOR:
                     case TAG_ACUATICO:
-                        // COMPARAR con animal.getTipo()
+                        //Comparar con animal.getTipo()
                         mostrar = filtroActual.equals(animal.getTipo());
                         break;
                 }
@@ -294,7 +294,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     private void cargarAnimales() {
         listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_NORTE_ID);
         Log.d("Activity_Norte", "Animales cargados: " + listaAnimalesCompleta.size());
-        filtrarAnimalesDinamicos(); // Aplicar filtro actual
+        filtrarAnimalesDinamicos(); //Aplicar filtro actual
     }
 
     private void abrirActivityAgregarAnimal() {
@@ -336,7 +336,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         Log.d("Activity_Norte", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Norte", "Ruta imagen: " + animal.getRutaImagen());
 
-        // Crear un BottomSheet personalizado que cargue la imagen desde URI
+        //Crear un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
