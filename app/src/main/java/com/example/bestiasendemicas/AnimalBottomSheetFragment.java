@@ -1,28 +1,20 @@
 package com.example.bestiasendemicas;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.util.Log;
 import com.bumptech.glide.Glide;
-import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
 
-    private static final String ARG_ANIMAL_NAME = "animal_name";
-    private static final String ARG_ANIMAL_DESCRIPTION = "animal_description";
-    private static final String ARG_ANIMAL_IMAGE_RES = "animal_image_res";
 
     //Animales base
     public static AnimalBottomSheetFragment newInstance(String nombre, String descripcion, int imageResId) {
@@ -30,7 +22,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
         Bundle args = new Bundle();
         args.putString("nombre", nombre);
         args.putString("descripcion", descripcion);
-        args.putInt("imageResId", imageResId);  // ← INT para drawable resources
+        args.putInt("imageResId", imageResId); //INT para los recursos drawable
         args.putString("imageUri", "");
         fragment.setArguments(args);
         return fragment;
@@ -43,7 +35,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
         args.putString("nombre", nombre);
         args.putString("descripcion", descripcion);
         args.putInt("imageResId", 0);
-        args.putString("imageUri", imageUri != null ? imageUri : ""); // ← STRING para URI
+        args.putString("imageUri", imageUri != null ? imageUri : "");//String para URI
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,59 +57,34 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
             tvNombre.setText(nombre);
             tvDescripcion.setText(descripcion);
 
-            // Logs para debuggear (opcional, puedes quitarlos después)
-            Log.d("BottomSheet", "Nombre: " + nombre);
-            Log.d("BottomSheet", "ImageResId: " + imageResId);
-            Log.d("BottomSheet", "ImageUri: " + imageUri);
 
-            // Cargar imagen según el tipo
+
+            //Carga imagen según el tipo
             if (imageResId != 0) {
-                // Imagen desde recursos (animales hardcodeados)
+                //Imagen desde recursos (animales hardcodeados)
                 Log.d("BottomSheet", "Cargando imagen desde recurso");
                 ivAnimal.setImageResource(imageResId);
             } else if (!imageUri.isEmpty()) {
-                // Imagen desde URI usando Glide (animales dinámicos)
+                //Imagen desde URI usando Glide (animales dinámicos)
                 Log.d("BottomSheet", "Cargando imagen con Glide desde URI: " + imageUri);
                 try {
                     Glide.with(this)
                             .load(imageUri)
                             .placeholder(R.drawable.ic_animal_placeholder)
                             .error(R.drawable.ic_animal_placeholder)
-                            .centerCrop()  // Para que se ajuste bien
+                            .centerCrop()  //Para que se centre
                             .into(ivAnimal);
                 } catch (Exception e) {
                     Log.e("BottomSheet", "Error con Glide: " + e.getMessage());
                     ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
                 }
             } else {
-                // No hay imagen, usar placeholder
+                //No hay imagen se usa el placeholder
                 Log.d("BottomSheet", "No hay imagen, usando placeholder");
                 ivAnimal.setImageResource(R.drawable.ic_animal_placeholder);
             }
         }
 
         return view;
-    }
-
-    private void shareAnimalInfo() {
-        Bundle args = getArguments();
-        if (args != null) {
-            String animalName = args.getString(ARG_ANIMAL_NAME);
-            String description = args.getString(ARG_ANIMAL_DESCRIPTION);
-
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Animal Endémico de Chile: " + animalName);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, animalName + "\n\n" + description + "\n\nCompartido desde Bestias Endémicas");
-            startActivity(Intent.createChooser(shareIntent, "Compartir información del " + animalName));
-        }
-    }
-
-    private void toggleFavorite() {
-        Bundle args = getArguments();
-        if (args != null) {
-            String animalName = args.getString(ARG_ANIMAL_NAME);
-            Toast.makeText(getContext(), animalName + " agregado a favoritos", Toast.LENGTH_SHORT).show();
-        }
     }
 }

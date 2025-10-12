@@ -38,14 +38,14 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     private AnimalCrud animalCrud;
     private FloatingActionButton fabAgregarAnimal;
     private List<Animal> listaAnimales;
-    private List<Animal> listaAnimalesCompleta; // Lista sin filtrar
+    private List<Animal> listaAnimalesCompleta; //Lista sin filtrar
 
     //Elementos para filtros
     private ChipGroup chipGroupFiltros;
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_NORTE_ID = 1;
+    private static final int REGION_NORTE_ID = 1; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -87,7 +87,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         btnVerMasCulebraDeColaLarga = findViewById(R.id.btn_ver_mas_CulebraDeColaLarga);
         botonVolver = findViewById(R.id.btnVolverS);
 
-        //Nuevas vistas crud
+        //Nuevas vistas para el crud
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_norte);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_norte);
 
@@ -221,7 +221,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
             });
         }
 
-        //Aplicar filtro inicial
+        //Aplica filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
@@ -229,7 +229,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         filtroActual = tipoFiltro;
         Log.d("Activity_Norte", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtrar animales hardcodeados (estáticos base)
+        //Filtra animales hardcodeados (estáticos base)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -242,7 +242,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                             mostrar = true;
                             break;
                         case TAG_FAVORITOS:
-                            mostrar = false; //Los hardcodeados(animales base) no son favoritos
+                            mostrar = false; //Los datos hardcodeados(animales base) no son favoritos
                             break;
                         case TAG_TERRESTRE:
                         case TAG_VOLADOR:
@@ -256,7 +256,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
             }
         }
 
-        //Filtrar animales dinámicos (RecyclerView)
+        //Filtra animales dinámicos (RecyclerView)
         filtrarAnimalesDinamicos();
     }
 
@@ -277,7 +277,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                     case TAG_TERRESTRE:
                     case TAG_VOLADOR:
                     case TAG_ACUATICO:
-                        //Comparar con animal.getTipo()
+                        //Compara con animal.getTipo()
                         mostrar = filtroActual.equals(animal.getTipo());
                         break;
                 }
@@ -294,7 +294,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     private void cargarAnimales() {
         listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_NORTE_ID);
         Log.d("Activity_Norte", "Animales cargados: " + listaAnimalesCompleta.size());
-        filtrarAnimalesDinamicos(); //Aplicar filtro actual
+        filtrarAnimalesDinamicos(); //Aplica filtro actual
     }
 
     private void abrirActivityAgregarAnimal() {
@@ -336,11 +336,11 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         Log.d("Activity_Norte", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Norte", "Ruta imagen: " + animal.getRutaImagen());
 
-        //Crear un BottomSheet personalizado que cargue la imagen desde URI
+        //Crea un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() // ← PASAR la ruta de imagen
+                animal.getRutaImagen() //Pasa la ruta de la imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }

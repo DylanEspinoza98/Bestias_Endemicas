@@ -15,14 +15,14 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //Crear tabla regiones
+    //Crea tabla regiones
     private static final String SQL_CREATE_REGIONES =
             "CREATE TABLE " + RegionEntry.TABLE_NAME + " (" +
                     RegionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     RegionEntry.COLUMN_NOMBRE + " VARCHAR(50) NOT NULL" +
                     ");";
 
-    //Crear tabla animales con columna 'tipo'
+    //Crea tabla animales con columna 'tipo'
     private static final String SQL_CREATE_ANIMALES =
             "CREATE TABLE " + AnimalEntry.TABLE_NAME + " (" +
                     AnimalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -36,7 +36,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
                     RegionEntry.TABLE_NAME + "(" + RegionEntry._ID + ")" +
                     ");";
 
-    //Insertar regiones por defecto
+    //Inserta regiones por defecto
     private static final String SQL_INSERT_REGIONES =
             "INSERT INTO " + RegionEntry.TABLE_NAME +
                     " (" + RegionEntry.COLUMN_NOMBRE + ") VALUES " +
