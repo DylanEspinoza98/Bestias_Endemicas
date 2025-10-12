@@ -45,7 +45,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_CENTRO_ID = 2;
+    private static final int REGION_CENTRO_ID = 2; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -88,7 +88,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
         btnVerMasLoroTricahue = findViewById(R.id.btn_ver_mas_Loro_Tricahue);
         botonVolver = findViewById(R.id.btnVolverC);
 
-        //Nuevas vistas crud
+        //Nuevas vistas para el crud
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_centro);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal);
 
@@ -242,7 +242,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
                             mostrar = true;
                             break;
                         case TAG_FAVORITOS:
-                            mostrar = false; //Los hardcodeados no son favoritos
+                            mostrar = false; //Los datos hardcodeados(animales base) no son favoritos
                             break;
                         case TAG_TERRESTRE:
                         case TAG_VOLADOR:
@@ -256,7 +256,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
             }
         }
 
-        //Filtrar animales dinámicos (RecyclerView)
+        //Filtra animales dinámicos (RecyclerView)
         filtrarAnimalesDinamicos();
     }
 
@@ -277,7 +277,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
                     case TAG_TERRESTRE:
                     case TAG_VOLADOR:
                     case TAG_ACUATICO:
-                        //Comparar con animal.getTipo()
+                        //Compara con animal.getTipo()
                         mostrar = filtroActual.equals(animal.getTipo());
                         break;
                 }
@@ -295,7 +295,7 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     private void cargarAnimales() {
         listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_CENTRO_ID);
         Log.d("Activity_Centro", "Animales cargados: " + listaAnimalesCompleta.size());
-        filtrarAnimalesDinamicos(); //Aplicar filtro actual
+        filtrarAnimalesDinamicos(); //Aplica filtro actual
     }
 
     private void abrirActivityAgregarAnimal() {
@@ -337,11 +337,11 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
         Log.d("Activity_Centro", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Centro", "Ruta imagen: " + animal.getRutaImagen());
 
-        //Crear un BottomSheet personalizado que cargue la imagen desde URI
+        //Crea un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() // ← PASAR la ruta de imagen
+                animal.getRutaImagen() //Pasa la ruta de imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }

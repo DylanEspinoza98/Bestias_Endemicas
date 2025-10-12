@@ -45,7 +45,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_SUR_ID = 3; // Ajustar según tu BD
+    private static final int REGION_SUR_ID = 3; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -87,7 +87,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         btnVerMasConcon = findViewById(R.id.btn_ver_mas_Concon);
         botonVolver = findViewById(R.id.btnVolverS);
 
-        //nuevas vistas crud
+        //Nuevas vistas para el crud
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_sur);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_sur);
 
@@ -162,7 +162,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             });
         }
 
-        //Aplicar filtro inicial
+        //Aplica filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
@@ -217,7 +217,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         filtroActual = tipoFiltro;
         Log.d("Activity_Sur", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtrar animales hardcodeados (estáticos)
+        //Filtra animales hardcodeados (estáticos)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -230,7 +230,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
                             mostrar = true;
                             break;
                         case TAG_FAVORITOS:
-                            mostrar = false; //Los hardcodeados no son favoritos
+                            mostrar = false; //Los datos hardcodeados(animales base) no son favoritos
                             break;
                         case TAG_TERRESTRE:
                         case TAG_VOLADOR:
@@ -244,7 +244,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             }
         }
 
-        //Filtrar animales dinámicos (RecyclerView)
+        //Filtra animales dinámicos (RecyclerView)
         filtrarAnimalesDinamicos();
     }
 
@@ -324,11 +324,11 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         Log.d("Activity_Sur", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Sur", "Ruta imagen: " + animal.getRutaImagen());
 
-        // Crear un BottomSheet personalizado que cargue la imagen desde URI
+        //Crea un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() // ← PASAR la ruta de imagen
+                animal.getRutaImagen() //Pasa la ruta de la imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }

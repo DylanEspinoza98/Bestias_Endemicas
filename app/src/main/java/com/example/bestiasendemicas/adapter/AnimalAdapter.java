@@ -86,7 +86,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                 tvFavorito.setVisibility(View.GONE);
             }
 
-            //Cargar solo desde galeria
+            //Carga solo desde la galeria
             cargarImagenDeGaleria(animal.getRutaImagen(), ivFoto);
 
             //Listeners para botones

@@ -64,21 +64,21 @@ public class MainActivity extends AppCompatActivity {
 
         //Botones para redes sociales
 
-        // Facebook
+        //Facebook
         ImageButton btnFacebook = findViewById(R.id.btnFacebook);
         btnFacebook.setOnClickListener(v -> {
             String url = "https://www.facebook.com/?locale=es_LA";
             abrirUrl(url);
         });
 
-        // Instagram
+        //Instagram
         ImageButton btnInstagram = findViewById(R.id.btnInstagram);
         btnInstagram.setOnClickListener(v -> {
             String url = "https://www.instagram.com/";
             abrirUrl(url);
         });
 
-        // Twitter/X
+        //Twitter/X
         ImageButton btnTwitter = findViewById(R.id.btnX);
         btnTwitter.setOnClickListener(v -> {
             String url = "https://x.com/?lang=es";

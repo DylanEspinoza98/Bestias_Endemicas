@@ -38,14 +38,14 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     private AnimalCrud animalCrud;
     private FloatingActionButton fabAgregarAnimal;
     private List<Animal> listaAnimales;
-    private List<Animal> listaAnimalesCompleta; // Lista sin filtrar
+    private List<Animal> listaAnimalesCompleta; //Lista sin filtrar
 
     //Elementos para filtros
     private ChipGroup chipGroupFiltros;
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_AUSTRAL_ID = 4; // Ajustar según tu BD
+    private static final int REGION_AUSTRAL_ID = 4; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -87,7 +87,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         btnVerMasCondorAndino = findViewById(R.id.btn_ver_mas_CondorAndino);
         botonVolver = findViewById(R.id.btnVolverS);
 
-        //Nuevas vistas crud
+        //Nuevas vistas para el crud
         recyclerViewAnimales = findViewById(R.id.recycler_view_animales_austral);
         fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_austral);
 
@@ -162,7 +162,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
             });
         }
 
-        //Aplicar filtro inicial
+        //Aplica filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
@@ -227,7 +227,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         filtroActual = tipoFiltro;
         Log.d("Activity_Austral", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtrar animales hardcodeados (estáticos)
+        //Filtra animales hardcodeados (estáticos)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -240,7 +240,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
                             mostrar = true;
                             break;
                         case TAG_FAVORITOS:
-                            mostrar = false; //Los hardcodeados no son favoritos
+                            mostrar = false; //Los datos hardcodeados(animales base) no son favoritos
                             break;
                         case TAG_TERRESTRE:
                         case TAG_VOLADOR:
@@ -338,7 +338,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() // ← PASAR la ruta de imagen
+                animal.getRutaImagen() // Pasa la ruta de la imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
