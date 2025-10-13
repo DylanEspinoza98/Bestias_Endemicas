@@ -112,6 +112,9 @@ Model
 – Animal.java: tabla animal con id, nombre, descripción, rutaImagen, regionId, esFavorito, tipo.
 – Region.java: tabla region con id y nombre.
 
+AnimalManifest
+Se declara los activitys y se añade los permisos necesarios para usar la galeria.
+
 Integrantes:
 NramirezAndroid = Nicolás Ramírez
 alecari = Alejandro Carilao
