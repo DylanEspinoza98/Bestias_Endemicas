@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.BestiasEndemicas" parent="Base.Theme.BestiasEndemicas" />
+
+
+    <!-- Codigo que permite la capacidad de no repetir un codigo y simplemente se hara un llamado-->
+    <style name="SocialMediaButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
 </resources>

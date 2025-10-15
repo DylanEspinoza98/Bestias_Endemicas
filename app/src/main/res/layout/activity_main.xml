@@ -9,160 +9,42 @@
     tools:context=".MainActivity">
 
     <!-- Título principal -->
-
-    <!-- Fila Norte y Centro -->
-
+    <!-- Asegúrate de tener aquí el TextView con id="@+id/titulo" -->
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/titulo_principal"
+        android:text="Bestias Endémicas de Chile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="HardcodedText" />
 
-    <!-- Fila 2: Sur y Austral, misma estructura que fila1 -->
 
-    <LinearLayout
-        android:id="@+id/fila1"
+    <!-- ESTE ES EL NUEVO CARRUSEL -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/carouselViewPager"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.4"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+
+        android:clipChildren="false"
+        android:clipToPadding="false"
+
+        app:layout_constraintTop_toBottomOf="@id/titulo"
+        app:layout_constraintBottom_toTopOf="@id/layout_conocenos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titulo">
-
-        <!-- Botón Norte-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnNorte"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/gato_andino_chile" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="18dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/norte"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <!-- Botón Centro -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnCentro"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/el_caballito" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/centro"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fila2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fila1">
-
-        <!-- Botón Sur -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnSur"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/rana_de_darwin" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/sur"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <!-- Botón Austral -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btnAustral"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/delfin_chileno" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/austral"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <!--lAYOUT PARA RRSS-->
-
     <LinearLayout
         android:id="@+id/layout_conocenos"
         android:layout_width="0dp"
@@ -177,9 +59,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Texto superior -->
-
-        <!-- Fila de iconos -->
+        <!-- ... Tu código de redes sociales sigue igual ... -->
 
         <TextView
             android:id="@+id/text_conocenos"
@@ -200,35 +80,18 @@
 
             <ImageButton
                 android:id="@+id/btnFacebook"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="8dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/facebooklogo" />
-
+                android:src="@drawable/facebooklogo"
+                style="@style/SocialMediaButton" />
 
             <ImageButton
                 android:id="@+id/btnInstagram"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="8dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/instagramlogo" />
-
+                android:src="@drawable/instagramlogo"
+                style="@style/SocialMediaButton" />
 
             <ImageButton
                 android:id="@+id/btnX"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="8dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                android:src="@drawable/x_logo" />
+                android:src="@drawable/x_logo"
+                style="@style/SocialMediaButton" />
 
         </LinearLayout>
     </LinearLayout>
