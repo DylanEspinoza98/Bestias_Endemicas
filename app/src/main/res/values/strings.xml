@@ -12,6 +12,9 @@
     <string name="ver">Ver más</string>
     <string name="RedesSociales">Visitenos en nuestras Redes Sociales</string>
 
+    <string name="Txt_ReproducirAudio">Presiona el Boton para escuchar el sonido del animal</string>
+    <string name="Txt_NoAudio">No hay sonido disponible para este animal</string>
+
     <!--String para la ventana Norte-->
     <string name="Titulo_Norte">Animales del norte</string>
     <string name="inf_GatoAndino">El gato andino: Es un pequeño felino en peligro de extinción que vive en las alturas de los Andes, desde Perú hasta Argentina y Bolivia</string>

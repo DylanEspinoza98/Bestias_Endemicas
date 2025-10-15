@@ -116,7 +116,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                         "Gato Andino",
                         getString(R.string.inf_GatoAndino) + "\n\n" + getString(R.string.inf_GatoAndinoMas),
-                        R.drawable.gato_andino_chile
+                        R.drawable.gato_andino_chile,
+                        0 // sonido asociado
                 );
                 bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
             }
@@ -128,7 +129,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                         "Pudú",
                         getString(R.string.inf_pudu) + "\n\n" + getString(R.string.inf_puduMas),
-                        R.drawable._541_pudu_1
+                        R.drawable._541_pudu_1,
+                        0 // sonido asociado
                 );
                 bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
             }
@@ -140,7 +142,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                         "Gato Colocolo",
                         getString(R.string.inf_GatoColocolo) + "\n\n" + getString(R.string.inf_GatoColocoloMas),
-                        R.drawable._3218_colocolo_marcio_motta
+                        R.drawable._3218_colocolo_marcio_motta,
+                        0 // sonido asociado
                 );
                 bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
             }
@@ -152,7 +155,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                         "Flamenco chileno",
                         getString(R.string.inf_Flamencochileno) + "\n\n" + getString(R.string.inf_FlamencochilenoMas),
-                        R.drawable.flamencochileno
+                        R.drawable.flamencochileno,
+                        0 // sonido asociado
                 );
                 bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
             }
@@ -164,7 +168,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                         "Culebra De Cola Larga",
                         getString(R.string.inf_Culebradecolalarga) + "\n\n" + getString(R.string.inf_CulebradecolalargaMas),
-                        R.drawable.culebra
+                        R.drawable.culebra,
+                        0
                 );
                 bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
             }
@@ -340,7 +345,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() //Pasa la ruta de la imagen
+                animal.getRutaImagen(), //Pasa la ruta de la imagen
+                animal.getSoundResId()   // ID del sonido
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
