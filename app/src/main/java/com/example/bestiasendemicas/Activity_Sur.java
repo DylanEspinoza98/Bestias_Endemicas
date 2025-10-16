@@ -172,7 +172,9 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             public void onClick(View v) {
                 showAnimalDetail(
                         "Huillín", getString(R.string.inf_Huillin) + "\n\n" + getString(R.string.inf_HuillinMas),
-                        R.drawable.huillin);
+                        R.drawable.huillin,
+                        0);
+
             }
         });
 
@@ -181,7 +183,9 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             public void onClick(View v) {
                 showAnimalDetail(
                         "Ranita de Darwin", getString(R.string.inf_RanitaDarwin) + "\n\n" + getString(R.string.inf_RanitaDarwinMas),
-                        R.drawable.rana_de_darwin);
+                        R.drawable.rana_de_darwin,
+                        0);
+
             }
         });
 
@@ -190,7 +194,8 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             public void onClick(View v) {
                 showAnimalDetail(
                         "Foca Cangrejera", getString(R.string.inf_FocaCangrejera) + "\n\n" + getString(R.string.inf_FocaCangrejeraMas),
-                        R.drawable.foca_cangrejera_caracteristicas);
+                        R.drawable.foca_cangrejera_caracteristicas,
+                        0);
             }
         });
 
@@ -199,7 +204,9 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             public void onClick(View v) {
                 showAnimalDetail(
                         "Tucúquere", getString(R.string.inf_Tucuquere) + "\n\n" + getString(R.string.inf_TucuquereMas),
-                        R.drawable.tucu);
+                        R.drawable.tucu,
+                        0);
+
             }
         });
 
@@ -208,7 +215,9 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             public void onClick(View v) {
                 showAnimalDetail(
                         "Concón", getString(R.string.inf_Concón) + "\n\n" + getString(R.string.inf_ConconMas),
-                        R.drawable.concon);
+                        R.drawable.concon,
+                        0);
+
             }
         });
     }
@@ -328,7 +337,8 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() //Pasa la ruta de la imagen
+                animal.getRutaImagen(),
+                animal.getSoundResId()//Pasa la ruta de la imagen
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
@@ -352,8 +362,13 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         }
     }
 
-    private void showAnimalDetail(String animalName, String description, int imageResourceId) {
-        AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(animalName, description, imageResourceId);
+    private void showAnimalDetail(String animalName, String description, int imageResourceId, int soundResId) {
+        AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                animalName,
+                description,
+                imageResourceId,  // Imagen
+                soundResId        // Sonido (0 si no hay)
+        );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 

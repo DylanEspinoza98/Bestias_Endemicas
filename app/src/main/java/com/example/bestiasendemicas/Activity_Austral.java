@@ -167,61 +167,42 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     }
 
     private void setupVerMasButtons(){
-        btnVerMasHuemul.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Huemul",
-                        getString(R.string.inf_Huemul) +"\n\n"+ getString(R.string.inf_HuemulMas),
-                        R.drawable.huemul
-                );
-            }
-        });
+        btnVerMasHuemul.setOnClickListener(v -> showAnimalDetail(
+                "Huemul",
+                getString(R.string.inf_Huemul) +"\n\n"+ getString(R.string.inf_HuemulMas),
+                R.drawable.huemul,
+                R.raw.sonido_huemul  // Reemplaza con el ID de tu recurso de sonido
+        ));
 
-        btnVerMasDelfinChileno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Delfín Chileno",
-                        getString(R.string.inf_DelfinChileno) +"\n\n"+ getString(R.string.inf_DelfinChilenoMas),
-                        R.drawable.delfin_chileno
-                );
-            }
-        });
+        btnVerMasDelfinChileno.setOnClickListener(v -> showAnimalDetail(
+                "Delfín Chileno",
+                getString(R.string.inf_DelfinChileno) +"\n\n"+ getString(R.string.inf_DelfinChilenoMas),
+                R.drawable.delfin_chileno,
+                R.raw.sonido_delfin
+        ));
 
-        btnVerMasZorroCulpeo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Zorro Culpeo",
-                        getString(R.string.inf_ZorroCulpeo) +"\n\n"+ getString(R.string.inf_ZorroCulpeoMas),
-                        R.drawable.zorro_culpeo
-                );
-            }
-        });
+        btnVerMasZorroCulpeo.setOnClickListener(v -> showAnimalDetail(
+                "Zorro Culpeo",
+                getString(R.string.inf_ZorroCulpeo) +"\n\n"+ getString(R.string.inf_ZorroCulpeoMas),
+                R.drawable.zorro_culpeo,
+                0
+        ));
 
-        btnVerMasCaranchoCordillerano.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Carancho Cordillerano",
-                        getString(R.string.inf_CaranchoCordillerano) +"\n\n"+ getString(R.string.inf_CaranchoCordilleranoMas),
-                        R.drawable.carancho_cordillerano
-                );
-            }
-        });
+        btnVerMasCaranchoCordillerano.setOnClickListener(v -> showAnimalDetail(
+                "Carancho Cordillerano",
+                getString(R.string.inf_CaranchoCordillerano) +"\n\n"+ getString(R.string.inf_CaranchoCordilleranoMas),
+                R.drawable.carancho_cordillerano,
+                0
+        ));
 
-        btnVerMasCondorAndino.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Cóndor Andino",
-                        getString(R.string.inf_CondorAndino) +"\n\n"+ getString(R.string.inf_CondorAndinoMas),
-                        R.drawable.condor_andino
-                );
-            }
-        });
+        btnVerMasCondorAndino.setOnClickListener(v -> showAnimalDetail(
+                "Cóndor Andino",
+                getString(R.string.inf_CondorAndino) +"\n\n"+ getString(R.string.inf_CondorAndinoMas),
+                R.drawable.condor_andino,
+                0
+        ));
     }
+
 
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
@@ -334,14 +315,17 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Austral", "Ruta imagen: " + animal.getRutaImagen());
 
-        //Crear un BottomSheet personalizado que cargue la imagen desde URI
+        // Crear un BottomSheet personalizado que cargue la imagen y el sonido
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() // Pasa la ruta de la imagen
+                animal.getRutaImagen(),      // URI de la imagen
+                animal.getSoundResId()       // ID del recurso de sonido (0 si no tiene)
         );
+
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
 
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
@@ -362,10 +346,16 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         }
     }
 
-    private void showAnimalDetail(String animalName, String description, int imageResourceId) {
-        AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(animalName, description, imageResourceId);
+    private void showAnimalDetail(String animalName, String description, int imageResourceId, int soundResId) {
+        AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                animalName,
+                description,
+                imageResourceId,  // Imagen
+                soundResId        // Sonido (0 si no hay)
+        );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
 
     @Override
     protected void onDestroy() {

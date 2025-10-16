@@ -154,7 +154,13 @@ public class AnimalCrud {
         boolean esFavorito = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1;
         String tipo = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_TIPO));  // ← Nuevo campo
 
-        Animal animal = new Animal(id, nombre, descripcion, rutaImagen, regionId, esFavorito, tipo);
+        int sonido = -1;
+        int indexSonido = cursor.getColumnIndex("sonido"); // o AnimalEntry.COLUMN_SONIDO si lo agregas
+        if (indexSonido != -1) {
+            sonido = cursor.getInt(indexSonido);
+        }
+
+        Animal animal = new Animal(nombre, descripcion, rutaImagen, regionId, esFavorito, tipo, sonido);
         return animal;
     }
 }

@@ -103,73 +103,60 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
     }
 
     private void configurarBotonesOriginales() {
-        botonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        botonVolver.setOnClickListener(v -> finish());
+
+        // Botones "Ver más" originales con sonido
+        btnVerMasAbejorro.setOnClickListener(v -> {
+            AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                    getString(R.string.abejorronativo),
+                    getString(R.string.inf_Abejorro),
+                    R.drawable.abejorronativo,
+                    0  // ID del sonido
+            );
+            bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
         });
 
-        //Botones "Ver más" originales
-        btnVerMasAbejorro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
-                        getString(R.string.abejorronativo),
-                        getString(R.string.inf_Abejorro),
-                        R.drawable.abejorronativo
-                );
-                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
-            }
+        btnVerMasLoica.setOnClickListener(v -> {
+            AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                    getString(R.string.loica),
+                    getString(R.string.inf_Loica),
+                    R.drawable.loica,
+                    0  // ID del sonido
+            );
+            bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
         });
 
-        btnVerMasLoica.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
-                        getString(R.string.loica),
-                        getString(R.string.inf_Loica),
-                        R.drawable.loica);
-                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
-            }
+        btnVerMasMonitoDelMonte.setOnClickListener(v -> {
+            AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                    getString(R.string.MonitodelMonte),
+                    getString(R.string.inf_MdelMonte),
+                    R.drawable.monito_del_monte_768x786,
+                    0  // ID del sonido
+            );
+            bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
         });
 
-        btnVerMasMonitoDelMonte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
-                        getString(R.string.MonitodelMonte),
-                        getString(R.string.inf_MdelMonte),
-                        R.drawable.monito_del_monte_768x786
-                );
-                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
-            }
+        btnVerMasDeguComun.setOnClickListener(v -> {
+            AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                    getString(R.string.Degu_Comun),
+                    getString(R.string.inf_Degu),
+                    R.drawable.degu_comun,
+                    0  // ID del sonido
+            );
+            bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
         });
 
-        btnVerMasDeguComun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
-                        getString(R.string.Degu_Comun),
-                        getString(R.string.inf_Degu),
-                        R.drawable.degu_comun
-                );
-                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
-            }
-        });
-
-        btnVerMasLoroTricahue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
-                        getString(R.string.Loro_Tricahue),
-                        getString(R.string.inf_lTricahue),
-                        R.drawable.loro2
-                );
-                bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
-            }
+        btnVerMasLoroTricahue.setOnClickListener(v -> {
+            AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
+                    getString(R.string.Loro_Tricahue),
+                    getString(R.string.inf_lTricahue),
+                    R.drawable.loro2,
+                    0  // ID del sonido
+            );
+            bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
         });
     }
+
 
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
@@ -337,14 +324,16 @@ public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.
         Log.d("Activity_Centro", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Centro", "Ruta imagen: " + animal.getRutaImagen());
 
-        //Crea un BottomSheet personalizado que cargue la imagen desde URI
+        // Crear un BottomSheet personalizado que cargue la imagen y el sonido
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen() //Pasa la ruta de imagen
+                animal.getRutaImagen(),  // Ruta de imagen
+                animal.getSoundResId()   // ID del sonido
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
 
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
