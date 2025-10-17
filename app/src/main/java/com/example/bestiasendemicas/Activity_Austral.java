@@ -169,37 +169,37 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     private void setupVerMasButtons(){
         btnVerMasHuemul.setOnClickListener(v -> showAnimalDetail(
                 "Huemul",
-                getString(R.string.inf_Huemul) +"\n\n"+ getString(R.string.inf_HuemulMas),
-                R.drawable.huemul,
-                R.raw.sonido_huemul  // Reemplaza con el ID de tu recurso de sonido
+                getString(R.string.inf_Huemul) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.huemul,
+                "android.resource://" + getPackageName() + "/" + R.raw.sonido_huemul
         ));
 
         btnVerMasDelfinChileno.setOnClickListener(v -> showAnimalDetail(
                 "Delfín Chileno",
-                getString(R.string.inf_DelfinChileno) +"\n\n"+ getString(R.string.inf_DelfinChilenoMas),
-                R.drawable.delfin_chileno,
-                R.raw.sonido_delfin
+                getString(R.string.inf_DelfinChileno) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.delfin_chileno,
+                "android.resource://" + getPackageName() + "/" + R.raw.sonido_delfin
         ));
 
         btnVerMasZorroCulpeo.setOnClickListener(v -> showAnimalDetail(
                 "Zorro Culpeo",
-                getString(R.string.inf_ZorroCulpeo) +"\n\n"+ getString(R.string.inf_ZorroCulpeoMas),
-                R.drawable.zorro_culpeo,
-                0
+                getString(R.string.inf_ZorroCulpeo),
+                "android.resource://" + getPackageName() + "/" + R.drawable.zorro_culpeo,
+                "" // Sin audio
         ));
 
         btnVerMasCaranchoCordillerano.setOnClickListener(v -> showAnimalDetail(
                 "Carancho Cordillerano",
-                getString(R.string.inf_CaranchoCordillerano) +"\n\n"+ getString(R.string.inf_CaranchoCordilleranoMas),
-                R.drawable.carancho_cordillerano,
-                0
+                getString(R.string.inf_CaranchoCordillerano),
+                "android.resource://" + getPackageName() + "/" + R.drawable.carancho_cordillerano,
+                "" // Sin audio
         ));
 
         btnVerMasCondorAndino.setOnClickListener(v -> showAnimalDetail(
                 "Cóndor Andino",
-                getString(R.string.inf_CondorAndino) +"\n\n"+ getString(R.string.inf_CondorAndinoMas),
-                R.drawable.condor_andino,
-                0
+                getString(R.string.inf_CondorAndino),
+                "android.resource://" + getPackageName() + "/" + R.drawable.condor_andino,
+                "" // Sin audio
         ));
     }
 
@@ -314,17 +314,19 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     public void onVerDetalles(Animal animal) {
         Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
         Log.d("Activity_Austral", "Ruta imagen: " + animal.getRutaImagen());
+        Log.d("Activity_Austral", "URI audio: " + animal.getSoundUri());
 
-        // Crear un BottomSheet personalizado que cargue la imagen y el sonido
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen(),      // URI de la imagen
-                animal.getSoundResId()       // ID del recurso de sonido (0 si no tiene)
+                animal.getRutaImagen(),   // String URI de imagen
+                animal.getSoundUri()      // String URI de audio
         );
 
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
+
 
 
     private void eliminarAnimal(Animal animal) {
@@ -346,15 +348,17 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         }
     }
 
-    private void showAnimalDetail(String animalName, String description, int imageResourceId, int soundResId) {
+    private void showAnimalDetail(String animalName, String description, String imageUri, String audioUri) {
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animalName,
                 description,
-                imageResourceId,  // Imagen
-                soundResId        // Sonido (0 si no hay)
+                imageUri != null ? imageUri : "",  // URI de la imagen
+                audioUri != null ? audioUri : ""   // URI del audio
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
+
 
 
     @Override

@@ -22,16 +22,15 @@ public class AnimalCrud {
             AnimalEntry.COLUMN_FOTO_URL,
             AnimalEntry.COLUMN_REGION_ID,
             AnimalEntry.COLUMN_ES_FAVORITO,
-            AnimalEntry.COLUMN_TIPO
+            AnimalEntry.COLUMN_TIPO,
+            AnimalEntry.COLUMN_AUDIO_URI   // ← nueva columna
     };
 
     public AnimalCrud(Context context) {
         dbHelper = new AnimalDBHelper(context);
     }
 
-    public void open() throws SQLException {
-        database = dbHelper.getWritableDatabase();
-    }
+    public void open() throws SQLException { database = dbHelper.getWritableDatabase(); }
 
     public void close() {
         dbHelper.close();
@@ -45,7 +44,9 @@ public class AnimalCrud {
         values.put(AnimalEntry.COLUMN_FOTO_URL, animal.getRutaImagen());
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
-        values.put(AnimalEntry.COLUMN_TIPO, animal.getTipo());  // ← Nuevo campo
+        values.put(AnimalEntry.COLUMN_TIPO, animal.getTipo());
+        values.put(AnimalEntry.COLUMN_AUDIO_URI, animal.getSoundUri()); // ← nueva línea
+
         return database.insert(AnimalEntry.TABLE_NAME, null, values);
     }
 
@@ -58,6 +59,7 @@ public class AnimalCrud {
         values.put(AnimalEntry.COLUMN_REGION_ID, animal.getRegionId());
         values.put(AnimalEntry.COLUMN_ES_FAVORITO, animal.isEsFavorito() ? 1 : 0);
         values.put(AnimalEntry.COLUMN_TIPO, animal.getTipo());
+        values.put(AnimalEntry.COLUMN_AUDIO_URI, animal.getSoundUri()); // ← nueva línea
 
         return database.update(
                 AnimalEntry.TABLE_NAME,
@@ -152,15 +154,14 @@ public class AnimalCrud {
         String rutaImagen = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_FOTO_URL));
         int regionId = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_REGION_ID));
         boolean esFavorito = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_ES_FAVORITO)) == 1;
-        String tipo = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_TIPO));  // ← Nuevo campo
+        String tipo = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_TIPO));
+        String audioUri = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_AUDIO_URI));
 
-        int sonido = -1;
-        int indexSonido = cursor.getColumnIndex("sonido"); // o AnimalEntry.COLUMN_SONIDO si lo agregas
-        if (indexSonido != -1) {
-            sonido = cursor.getInt(indexSonido);
-        }
+        // Crear el animal
+        Animal animal = new Animal(nombre, descripcion, rutaImagen, regionId, esFavorito, tipo, audioUri);
+        animal.setId(id);
 
-        Animal animal = new Animal(nombre, descripcion, rutaImagen, regionId, esFavorito, tipo, sonido);
         return animal;
     }
+
 }
