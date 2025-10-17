@@ -1,14 +1,17 @@
 package com.example.bestiasendemicas;
+import androidx.annotation.DrawableRes;
 
 public class CarruselItem {
     private final int imageResource;
     private final String zoneName;
     private final Class<?> activityToOpen;
+    private final int backgroundImageResource;
 
-    public CarruselItem(int imageResource, String zoneName, Class<?> activityToOpen) {
+    public CarruselItem(int imageResource, String zoneName, Class<?> activityToOpen,  @DrawableRes int backgroundImageResource) {
         this.imageResource = imageResource;
         this.zoneName = zoneName;
         this.activityToOpen = activityToOpen;
+        this.backgroundImageResource = backgroundImageResource;
     }
 
     public int getImageResource() {
@@ -22,4 +25,5 @@ public class CarruselItem {
     public Class<?> getActivityToOpen() {
         return activityToOpen;
     }
+    public int getBackgroundImageResource() { return backgroundImageResource;}
 }

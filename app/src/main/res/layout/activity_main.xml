@@ -8,6 +8,18 @@
     android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/descripcion_fondo"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/norte_chile" />
+
     <!-- Título principal -->
     <!-- Asegúrate de tener aquí el TextView con id="@+id/titulo" -->
     <TextView
@@ -15,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bestias Endémicas de Chile"
+        style="@style/TextViewConBordeBlanco"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +37,25 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-
     <!-- ESTE ES EL NUEVO CARRUSEL -->
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextViewConBordeBlanco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="132dp"
+        android:text="@string/deslizar"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/carouselViewPager"
         android:layout_width="0dp"
@@ -68,8 +98,9 @@
             android:layout_marginBottom="12dp"
             android:gravity="center"
             android:text="@string/RedesSociales"
+            style="@style/TextViewConBordeBlanco"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -95,6 +126,7 @@
 
         </LinearLayout>
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

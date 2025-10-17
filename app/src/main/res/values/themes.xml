@@ -7,6 +7,14 @@
 
     <style name="Theme.BestiasEndemicas" parent="Base.Theme.BestiasEndemicas" />
 
+    <!-- Codigo que permite la capacidad de darle un borde blanco a un texto -->
+    <style name="TextViewConBordeBlanco">
+        <item name="android:textColor">@android:color/black</item> <!-- Color principal del texto -->
+        <item name="android:shadowColor">@android:color/white</item> <!-- Color del borde -->
+        <item name="android:shadowDx">0</item> <!-- Desplazamiento horizontal del borde -->
+        <item name="android:shadowDy">0</item> <!-- Desplazamiento vertical del borde -->
+        <item name="android:shadowRadius">12</item> <!-- Grosor/Desenfoque del borde -->
+    </style>
 
     <!-- Codigo que permite la capacidad de no repetir un codigo y simplemente se hara un llamado-->
     <style name="SocialMediaButton" parent="Widget.AppCompat.ImageButton">
