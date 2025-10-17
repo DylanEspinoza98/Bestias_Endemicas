@@ -112,6 +112,4 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         }
     }
 
-
-
 }

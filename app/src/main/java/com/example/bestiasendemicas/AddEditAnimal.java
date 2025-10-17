@@ -12,12 +12,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bestiasendemicas.audio.AudioPicker;
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;
 import com.example.bestiasendemicas.model.Region;
@@ -27,23 +29,28 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
-public class AddEditAnimal extends AppCompatActivity {
+public class AddEditAnimal extends AppCompatActivity implements AudioPicker.AudioPickerListener {
+
     public static final String EXTRA_ANIMAL_ID = "animal_id";
     public static final String EXTRA_REGION_ID = "region_id";
 
     private EditText etNombre, etDescripcion;
     private Spinner spinnerRegion, spinnerTipo;
     private CheckBox cbEsFavorito;
-    private Button btnGuardar, btnCancelar, btnSeleccionarImagen;
+    private Button btnGuardar, btnCancelar, btnSeleccionarImagen, btnSeleccionarAudio;
     private ImageView ivPreviewImagen;
+    private TextView tvAudioFilename;
 
     private AnimalCrud animalCrud;
     private List<Region> regiones;
     private Animal animalAEditar = null;
     private Uri imagenSeleccionadaUri = null;
+    private Uri audioSeleccionadoUri = null;
     private int animalId = -1;
 
-    private final androidx.activity.result.ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
+    private AudioPicker audioPicker;
+
+    private final androidx.activity.result.ActivityResultLauncher<PickVisualMediaRequest> pickImagen =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     imagenSeleccionadaUri = uri;
@@ -74,15 +81,18 @@ public class AddEditAnimal extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btn_guardar_animal);
         btnCancelar = findViewById(R.id.btn_cancelar_animal);
         btnSeleccionarImagen = findViewById(R.id.btn_seleccionar_imagen);
+        btnSeleccionarAudio = findViewById(R.id.btn_select_audio);
+        tvAudioFilename = findViewById(R.id.tv_audio_filename);
         ivPreviewImagen = findViewById(R.id.iv_preview_imagen);
 
-        spinnerRegion.setEnabled(false);
-        spinnerRegion.setAlpha(0.5f);
+        spinnerRegion.setEnabled(true);
+        spinnerRegion.setAlpha(1f);
     }
 
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
+        audioPicker = new AudioPicker(this, this);
     }
 
     private void cargarRegiones() {
@@ -94,7 +104,6 @@ public class AddEditAnimal extends AppCompatActivity {
         }
         adapterRegiones.setDropDownViewResource(R.layout.spinner_item_black_text);
         spinnerRegion.setAdapter(adapterRegiones);
-
 
         ArrayAdapter<CharSequence> adapterTipos = ArrayAdapter.createFromResource(
                 this, R.array.animal_tipos, R.layout.spinner_item_black_text);
@@ -108,10 +117,6 @@ public class AddEditAnimal extends AppCompatActivity {
         if (animalId != -1) {
             setTitle("Editar Animal");
             btnGuardar.setText("Actualizar");
-            spinnerRegion.setEnabled(true);
-            spinnerRegion.setAlpha(1f);
-            spinnerTipo.setEnabled(true);
-            spinnerTipo.setAlpha(1f);
             cargarDatosAnimal();
         } else {
             setTitle("Añadir Animal");
@@ -120,8 +125,6 @@ public class AddEditAnimal extends AppCompatActivity {
             if (regionIdSeleccionada != -1) {
                 seleccionarRegionEnSpinner(regionIdSeleccionada);
             }
-            spinnerTipo.setEnabled(true);
-            spinnerTipo.setAlpha(1f);
         }
     }
 
@@ -136,6 +139,7 @@ public class AddEditAnimal extends AppCompatActivity {
                     .getPosition(animalAEditar.getTipo());
             spinnerTipo.setSelection(posTipo);
 
+            // Mostrar imagen
             String rutaImagen = animalAEditar.getRutaImagen();
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
                 try {
@@ -145,6 +149,11 @@ public class AddEditAnimal extends AppCompatActivity {
                 } catch (Exception e) {
                     ivPreviewImagen.setImageResource(R.drawable.ic_animal_placeholder);
                 }
+            }
+
+            // Mostrar nombre del audio si existe
+            if (animalAEditar.getSoundUri() != null && !animalAEditar.getSoundUri().isEmpty()) {
+                tvAudioFilename.setText(new File(animalAEditar.getSoundUri()).getName());
             }
         }
     }
@@ -160,13 +169,20 @@ public class AddEditAnimal extends AppCompatActivity {
 
     private void configurarBotones() {
         btnSeleccionarImagen.setOnClickListener(v ->
-                pickMedia.launch(new PickVisualMediaRequest.Builder()
+                pickImagen.launch(new PickVisualMediaRequest.Builder()
                         .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                         .build())
         );
 
+        btnSeleccionarAudio.setOnClickListener(v -> audioPicker.selectAudio());
         btnCancelar.setOnClickListener(v -> finish());
         btnGuardar.setOnClickListener(v -> guardarAnimal());
+    }
+
+    @Override
+    public void onAudioSelected(Uri audioUri, String fileName) {
+        audioSeleccionadoUri = audioUri;
+        tvAudioFilename.setText(fileName);
     }
 
     private void guardarAnimal() {
@@ -198,17 +214,20 @@ public class AddEditAnimal extends AppCompatActivity {
             }
         }
 
-        String rutaImagen = "";
+        // ✅ Conservar imagen/audio previos si no se reemplazan
+        String rutaImagen = (animalAEditar != null) ? animalAEditar.getRutaImagen() : "";
         if (imagenSeleccionadaUri != null) {
-            rutaImagen = copiarImagenAAlmacenamientoInterno(imagenSeleccionadaUri);
-            if (rutaImagen.isEmpty()) {
-                Toast.makeText(this, "⚠️ Error al procesar imagen", Toast.LENGTH_SHORT).show();
-            }
+            rutaImagen = copiarArchivoAAlmacenamientoInterno(imagenSeleccionadaUri, "imagen");
+        }
+
+        String rutaAudio = (animalAEditar != null) ? animalAEditar.getSoundUri() : "";
+        if (audioSeleccionadoUri != null) {
+            rutaAudio = copiarArchivoAAlmacenamientoInterno(audioSeleccionadoUri, "audio");
         }
 
         if (animalAEditar == null) {
             Animal nuevo = new Animal(nombre, descripcion, rutaImagen,
-                    regionIdSeleccionada, esFavorito, tipoSeleccionado);
+                    regionIdSeleccionada, esFavorito, tipoSeleccionado, rutaAudio);
             long res = animalCrud.insertarAnimal(nuevo);
             if (res > 0) {
                 Toast.makeText(this, "✅ Añadido", Toast.LENGTH_SHORT).show();
@@ -220,9 +239,8 @@ public class AddEditAnimal extends AppCompatActivity {
         } else {
             animalAEditar.setNombre(nombre);
             animalAEditar.setDescripcion(descripcion);
-            if (!rutaImagen.isEmpty()) {
-                animalAEditar.setRutaImagen(rutaImagen);
-            }
+            animalAEditar.setRutaImagen(rutaImagen);
+            animalAEditar.setSoundUri(rutaAudio);
             animalAEditar.setRegionId(regionIdSeleccionada);
             animalAEditar.setEsFavorito(esFavorito);
             animalAEditar.setTipo(tipoSeleccionado);
@@ -237,10 +255,11 @@ public class AddEditAnimal extends AppCompatActivity {
         }
     }
 
-    private String copiarImagenAAlmacenamientoInterno(Uri uri) {
+    private String copiarArchivoAAlmacenamientoInterno(Uri uri, String tipo) {
         try (InputStream in = getContentResolver().openInputStream(uri)) {
             if (in != null) {
-                String nombre = "animal_" + System.currentTimeMillis() + ".jpg";
+                String extension = tipo.equals("audio") ? ".mp3" : ".jpg";
+                String nombre = tipo + "_" + System.currentTimeMillis() + extension;
                 try (FileOutputStream out = openFileOutput(nombre, Context.MODE_PRIVATE)) {
                     byte[] buf = new byte[4096];
                     int len;
@@ -252,7 +271,7 @@ public class AddEditAnimal extends AppCompatActivity {
                 return "file://" + f.getAbsolutePath();
             }
         } catch (Exception e) {
-            Log.e("AddEditAnimal", "Error copiando imagen: " + e.getMessage());
+            Log.e("AddEditAnimal", "Error copiando archivo: " + e.getMessage());
         }
         return "";
     }

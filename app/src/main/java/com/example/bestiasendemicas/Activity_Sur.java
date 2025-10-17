@@ -167,60 +167,42 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
     }
 
     private void setupVerMasButtons() {
-        btnVerMasHuillin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Huillín", getString(R.string.inf_Huillin) + "\n\n" + getString(R.string.inf_HuillinMas),
-                        R.drawable.huillin,
-                        0);
+        btnVerMasHuillin.setOnClickListener(v -> showAnimalDetail(
+                "Huillín",
+                getString(R.string.inf_Huillin) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.huillin,
+                ""  // Sin audio
+        ));
 
-            }
-        });
+        btnVerMasRanitaDarwin.setOnClickListener(v -> showAnimalDetail(
+                "Ranita de Darwin",
+                getString(R.string.inf_RanitaDarwin) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.rana_de_darwin,
+                ""  // Sin audio
+        ));
 
-        btnVerMasRanitaDarwin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Ranita de Darwin", getString(R.string.inf_RanitaDarwin) + "\n\n" + getString(R.string.inf_RanitaDarwinMas),
-                        R.drawable.rana_de_darwin,
-                        0);
+        btnVerMasFocaCangrejera.setOnClickListener(v -> showAnimalDetail(
+                "Foca Cangrejera",
+                getString(R.string.inf_FocaCangrejera) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.foca_cangrejera_caracteristicas,
+                ""  // Sin audio
+        ));
 
-            }
-        });
+        btnVerMasTucuquere.setOnClickListener(v -> showAnimalDetail(
+                "Tucúquere",
+                getString(R.string.inf_Tucuquere),
+                "android.resource://" + getPackageName() + "/" + R.drawable.tucu,
+                ""  // Sin audio
+        ));
 
-        btnVerMasFocaCangrejera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Foca Cangrejera", getString(R.string.inf_FocaCangrejera) + "\n\n" + getString(R.string.inf_FocaCangrejeraMas),
-                        R.drawable.foca_cangrejera_caracteristicas,
-                        0);
-            }
-        });
-
-        btnVerMasTucuquere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Tucúquere", getString(R.string.inf_Tucuquere) + "\n\n" + getString(R.string.inf_TucuquereMas),
-                        R.drawable.tucu,
-                        0);
-
-            }
-        });
-
-        btnVerMasConcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnimalDetail(
-                        "Concón", getString(R.string.inf_Concón) + "\n\n" + getString(R.string.inf_ConconMas),
-                        R.drawable.concon,
-                        0);
-
-            }
-        });
+        btnVerMasConcon.setOnClickListener(v -> showAnimalDetail(
+                "Concón",
+                getString(R.string.inf_Concón) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.concon,
+                ""  // Sin audio
+        ));
     }
+
 
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
@@ -330,16 +312,17 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
 
     @Override
     public void onVerDetalles(Animal animal) {
-        Log.d("Activity_Sur", "Ver detalles de: " + animal.getNombre());
-        Log.d("Activity_Sur", "Ruta imagen: " + animal.getRutaImagen());
+        Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
+        Log.d("Activity_Austral", "Ruta imagen: " + animal.getRutaImagen());
+        Log.d("Activity_Austral", "URI audio: " + animal.getSoundUri());
 
-        //Crea un BottomSheet personalizado que cargue la imagen desde URI
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animal.getNombre(),
                 animal.getDescripcion(),
-                animal.getRutaImagen(),
-                animal.getSoundResId()//Pasa la ruta de la imagen
+                animal.getRutaImagen(),   // String URI de imagen
+                animal.getSoundUri()      // String URI de audio
         );
+
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
@@ -362,12 +345,12 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         }
     }
 
-    private void showAnimalDetail(String animalName, String description, int imageResourceId, int soundResId) {
+    private void showAnimalDetail(String animalName, String description, String imageUri, String audioUri) {
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animalName,
                 description,
-                imageResourceId,  // Imagen
-                soundResId        // Sonido (0 si no hay)
+                imageUri != null ? imageUri : "",  // URI de la imagen
+                audioUri != null ? audioUri : ""   // URI del audio
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }

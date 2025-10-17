@@ -9,7 +9,7 @@ import com.example.bestiasendemicas.database.AnimalContract.RegionEntry;
 
 public class AnimalDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "bestias_endemicas.db";
-    private static final int DATABASE_VERSION = 3; // Versión 3 se añadio el tipo del animal (terrestre, acuatico y volador)
+    private static final int DATABASE_VERSION = 4; // Versión 4 añade audio_uri
 
     public AnimalDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,7 +22,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
                     RegionEntry.COLUMN_NOMBRE + " VARCHAR(50) NOT NULL" +
                     ");";
 
-    //Crea tabla animales con columna 'tipo'
+    //Crea tabla animales con columna 'tipo' y 'audio_uri'
     private static final String SQL_CREATE_ANIMALES =
             "CREATE TABLE " + AnimalEntry.TABLE_NAME + " (" +
                     AnimalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -32,6 +32,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
                     AnimalEntry.COLUMN_REGION_ID + " INTEGER NOT NULL, " +
                     AnimalEntry.COLUMN_ES_FAVORITO + " BOOLEAN DEFAULT 0, " +
                     AnimalEntry.COLUMN_TIPO + " VARCHAR(20) NOT NULL DEFAULT 'terrestre', " +
+                    AnimalEntry.COLUMN_AUDIO_URI + " VARCHAR(255), " +  // ← nueva columna
                     "FOREIGN KEY(" + AnimalEntry.COLUMN_REGION_ID + ") REFERENCES " +
                     RegionEntry.TABLE_NAME + "(" + RegionEntry._ID + ")" +
                     ");";
@@ -61,13 +62,19 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //Se paso a la version 3 por lo que se añade la columna tipo por si se tenia una version anterior
+        //Se pasó a la versión 3 → columna tipo
         if (oldVersion < 3) {
             db.execSQL("ALTER TABLE " + AnimalEntry.TABLE_NAME +
                     " ADD COLUMN " + AnimalEntry.COLUMN_TIPO +
                     " VARCHAR(20) NOT NULL DEFAULT 'terrestre';");
         }
 
+        //Se pasó a la versión 4 → columna audio_uri
+        if (oldVersion < 4) {
+            db.execSQL("ALTER TABLE " + AnimalEntry.TABLE_NAME +
+                    " ADD COLUMN " + AnimalEntry.COLUMN_AUDIO_URI +
+                    " VARCHAR(255);");
+        }
     }
 
     @Override
@@ -76,3 +83,5 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 }
+
+

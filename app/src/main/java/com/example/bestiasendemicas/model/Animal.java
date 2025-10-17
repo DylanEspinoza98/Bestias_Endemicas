@@ -8,30 +8,23 @@ public class Animal {
     private int regionId;
     private boolean esFavorito;
     private String tipo;
-    private int soundResId;       // 0 significa sin sonido
+    private String soundUri;      // URI para MP3 (null si no hay audio)
 
-    // Constructor completo (para animales base con sonido)
+    // Constructor completo (para animales con audio)
     public Animal(String nombre, String descripcion, String rutaImagen,
-                  int regionId, boolean esFavorito, String tipo, int soundResId) {
-        this.id = id;
+                  int regionId, boolean esFavorito, String tipo, String soundUri) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.rutaImagen = rutaImagen;
         this.regionId = regionId;
         this.esFavorito = esFavorito;
         this.tipo = tipo;
-        this.soundResId = soundResId;
-    }
-
-    // Constructor para animales nuevos (creados desde la app, sin sonido)
-    public Animal(String nombre, String descripcion, String rutaImagen,
-                  int regionId, boolean esFavorito, String tipo) {
-        this(nombre, descripcion, rutaImagen, regionId, esFavorito, tipo, 0); // 0 = sin sonido
+        this.soundUri = soundUri; // puede ser null si no hay audio
     }
 
     // Constructor vacío
     public Animal() {
-        this.soundResId = 0; // valor por defecto
+        this.soundUri = null;
     }
 
     // Getters
@@ -42,7 +35,7 @@ public class Animal {
     public int getRegionId() { return regionId; }
     public boolean isEsFavorito() { return esFavorito; }
     public String getTipo() { return tipo; }
-    public int getSoundResId() { return soundResId; }
+    public String getSoundUri() { return soundUri; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -52,11 +45,15 @@ public class Animal {
     public void setRegionId(int regionId) { this.regionId = regionId; }
     public void setEsFavorito(boolean esFavorito) { this.esFavorito = esFavorito; }
     public void setTipo(String tipo) { this.tipo = tipo; }
-    public void setSoundResId(int soundResId) { this.soundResId = soundResId; }
+    public void setSoundUri(String soundUri) { this.soundUri = soundUri; }
 
-    // Métodos adicionales
+    // Métodos auxiliares
     public boolean tieneImagen() {
         return rutaImagen != null && !rutaImagen.isEmpty();
+    }
+
+    public boolean tieneAudio() {
+        return soundUri != null && !soundUri.isEmpty();
     }
 
     @Override
@@ -69,7 +66,7 @@ public class Animal {
                 ", regionId=" + regionId +
                 ", esFavorito=" + esFavorito +
                 ", tipo='" + tipo + '\'' +
-                ", soundResId=" + soundResId +
+                ", soundUri='" + soundUri + '\'' +
                 '}';
     }
 
