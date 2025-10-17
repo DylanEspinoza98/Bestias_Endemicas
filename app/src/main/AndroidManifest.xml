@@ -28,16 +28,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity_Norte" android:exported="false" />
-        <activity android:name=".Activity_Centro" android:exported="false" />
-        <activity android:name=".Activity_Sur" android:exported="false" />
-        <activity android:name=".Activity_Austral" android:exported="false" />
+        <activity android:name=".layouts.Activity_Norte" android:exported="false" />
+        <activity android:name=".layouts.Activity_Centro" android:exported="false" />
+        <activity android:name=".layouts.Activity_Sur" android:exported="false" />
+        <activity android:name=".layouts.Activity_Austral" android:exported="false" />
 
         <!-- Activities CRUD -->
         <activity
-            android:name=".AddEditAnimal"
+            android:name=".layouts.AddEditAnimal"
             android:exported="false"
-            android:parentActivityName=".Activity_Centro" />
+            android:parentActivityName=".layouts.Activity_Centro" />
 
     </application>
 

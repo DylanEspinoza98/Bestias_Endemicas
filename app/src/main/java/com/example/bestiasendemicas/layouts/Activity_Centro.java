@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.layouts;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bestiasendemicas.R;
 import com.example.bestiasendemicas.adapter.AnimalAdapter;
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;
@@ -26,11 +28,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
+public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
 
     //Botones originales
-    private Button btnVerMasGatoAndino, btnVerMasPudu, btnVerMasGatoColocolo;
-    private Button btnVerMasFlamencochileno, btnVerMasCulebraDeColaLarga, botonVolver;
+    private Button btnVerMasAbejorro, btnVerMasLoica, btnVerMasMonitoDelMonte;
+    private Button btnVerMasDeguComun, btnVerMasLoroTricahue, botonVolver;
 
     //Elementos CRUD
     private RecyclerView recyclerViewAnimales;
@@ -38,14 +40,14 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     private AnimalCrud animalCrud;
     private FloatingActionButton fabAgregarAnimal;
     private List<Animal> listaAnimales;
-    private List<Animal> listaAnimalesCompleta; //Lista sin filtrar
+    private List<Animal> listaAnimalesCompleta; // Lista sin filtrar
 
     //Elementos para filtros
     private ChipGroup chipGroupFiltros;
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_NORTE_ID = 1; //Ajuste que modifica el id de la region en cuestion
+    private static final int REGION_CENTRO_ID = 2; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -57,11 +59,13 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
 
     private String filtroActual = TAG_TODOS;
 
+    /** Inicializa la Activity, vistas, RecyclerView, filtros y carga animales desde la base de datos. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_norte);
+        setContentView(R.layout.activity_centro);
+
 
         inicializarVistas();
         inicializarCrud();
@@ -71,76 +75,81 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         configurarFiltros();
         cargarAnimales();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainNorte), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainCentro), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
 
+    /** Asigna todas las vistas del layout a sus variables correspondientes. */
     private void inicializarVistas() {
         //Botones originales
-        btnVerMasGatoAndino = findViewById(R.id.btn_ver_mas_GatoAndino);
-        btnVerMasPudu = findViewById(R.id.btn_ver_mas_Pudu);
-        btnVerMasGatoColocolo = findViewById(R.id.btn_ver_mas_GatoColoColo);
-        btnVerMasFlamencochileno = findViewById(R.id.btn_ver_mas_FlamencoChileno);
-        btnVerMasCulebraDeColaLarga = findViewById(R.id.btn_ver_mas_CulebraDeColaLarga);
-        botonVolver = findViewById(R.id.btnVolverS);
+        btnVerMasAbejorro = findViewById(R.id.btn_ver_mas_Abejorro);
+        btnVerMasLoica = findViewById(R.id.btn_ver_mas_Loica);
+        btnVerMasMonitoDelMonte = findViewById(R.id.btn_ver_mas_MonitoDelMonte);
+        btnVerMasDeguComun = findViewById(R.id.btn_ver_mas_Degu_Comun);
+        btnVerMasLoroTricahue = findViewById(R.id.btn_ver_mas_Loro_Tricahue);
+        botonVolver = findViewById(R.id.btnVolverC);
 
         //Nuevas vistas para el crud
-        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_norte);
-        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_norte);
+        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_centro);
+        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal);
 
         //Vistas para los filtros
         chipGroupFiltros = findViewById(R.id.chipGrupoFiltros);
-        contenedorAnimales = findViewById(R.id.contenedorAnimalesN);
+        contenedorAnimales = findViewById(R.id.contenedorAnimalesC);
     }
 
+    /** Inicializa el CRUD y abre la base de datos para operaciones de animales. */
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
     }
 
+    /** Configura los botones originales de la Activity. */
     private void configurarBotonesOriginales() {
         botonVolver.setOnClickListener(v -> finish());
 
-        btnVerMasGatoAndino.setOnClickListener(v -> showAnimalDetail(
-                "Gato Andino",
-                getString(R.string.inf_GatoAndino) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.gato_andino_chile,
+        btnVerMasAbejorro.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.abejorronativo),
+                getString(R.string.inf_Abejorro),
+                "android.resource://" + getPackageName() + "/" + R.drawable.abejorronativo,
                 ""  // Sin audio
         ));
 
-        btnVerMasPudu.setOnClickListener(v -> showAnimalDetail(
-                "Pudú",
-                getString(R.string.inf_pudu) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable._541_pudu_1,
+        btnVerMasLoica.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.loica),
+                getString(R.string.inf_Loica),
+                "android.resource://" + getPackageName() + "/" + R.drawable.loica,
                 ""  // Sin audio
         ));
 
-        btnVerMasGatoColocolo.setOnClickListener(v -> showAnimalDetail(
-                "Gato Colocolo",
-                getString(R.string.inf_GatoColocolo),
-                "android.resource://" + getPackageName() + "/" + R.drawable._3218_colocolo_marcio_motta,
+        btnVerMasMonitoDelMonte.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.MonitodelMonte),
+                getString(R.string.inf_MdelMonte),
+                "android.resource://" + getPackageName() + "/" + R.drawable.monito_del_monte_768x786,
                 ""  // Sin audio
         ));
 
-        btnVerMasFlamencochileno.setOnClickListener(v -> showAnimalDetail(
-                "Flamenco chileno",
-                getString(R.string.inf_Flamencochileno) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.flamencochileno,
+        btnVerMasDeguComun.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.Degu_Comun),
+                getString(R.string.inf_Degu),
+                "android.resource://" + getPackageName() + "/" + R.drawable.degu_comun,
                 ""  // Sin audio
         ));
 
-        btnVerMasCulebraDeColaLarga.setOnClickListener(v -> showAnimalDetail(
-                "Culebra De Cola Larga",
-                getString(R.string.inf_Culebradecolalarga),
-                "android.resource://" + getPackageName() + "/" + R.drawable.culebra,
+        btnVerMasLoroTricahue.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.Loro_Tricahue),
+                getString(R.string.inf_lTricahue),
+                "android.resource://" + getPackageName() + "/" + R.drawable.loro2,
                 ""  // Sin audio
         ));
     }
 
 
+
+    /** Configura el botón flotante para agregar un nuevo animal. */
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +159,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         });
     }
 
+    /** Inicializa la lista de animales y el Adapter para mostrar en RecyclerView.  */
     private void configurarRecyclerView() {
         listaAnimales = new ArrayList<>();
         listaAnimalesCompleta = new ArrayList<>();
@@ -158,6 +168,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         recyclerViewAnimales.setAdapter(animalAdapter);
     }
 
+
+    /** Configura los chips de filtro y aplica el filtro inicial. */
     private void configurarFiltros() {
         if (chipGroupFiltros != null) {
             chipGroupFiltros.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -191,15 +203,17 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
             });
         }
 
-        //Aplica filtro inicial
+        //Aplicar filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
+
+    /** Filtra animales hardcodeados y dinámicos según el filtro seleccionado. */
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
-        Log.d("Activity_Norte", "Aplicando filtro: " + tipoFiltro);
+        Log.d("Activity_Centro", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtra animales hardcodeados (estáticos base)
+        //Filtrar animales hardcodeados (estáticos)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -230,6 +244,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         filtrarAnimalesDinamicos();
     }
 
+    /** Filtra la lista de animales de RecyclerView según el filtro activo. */
     private void filtrarAnimalesDinamicos() {
         if (animalAdapter != null && listaAnimalesCompleta != null) {
             List<Animal> animalesFiltrados = new ArrayList<>();
@@ -261,18 +276,22 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         }
     }
 
+
+    /** Obtiene los animales de la región Centro desde la base de datos y aplica filtro. */
     private void cargarAnimales() {
-        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_NORTE_ID);
-        Log.d("Activity_Norte", "Animales cargados: " + listaAnimalesCompleta.size());
+        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_CENTRO_ID);
+        Log.d("Activity_Centro", "Animales cargados: " + listaAnimalesCompleta.size());
         filtrarAnimalesDinamicos(); //Aplica filtro actual
     }
 
+    /** Abre la Activity para agregar un nuevo animal y pasa la región. */
     private void abrirActivityAgregarAnimal() {
         Intent intent = new Intent(this, AddEditAnimal.class);
-        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_NORTE_ID);
+        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_CENTRO_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Abre la Activity para editar un animal existente. */
     @Override
     public void onEditarAnimal(Animal animal) {
         Intent intent = new Intent(this, AddEditAnimal.class);
@@ -280,6 +299,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Muestra un diálogo de confirmación para eliminar un animal. */
     @Override
     public void onEliminarAnimal(Animal animal) {
         new AlertDialog.Builder(this)
@@ -301,6 +321,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 .show();
     }
 
+    /** Muestra un BottomSheet con detalles e información multimedia del animal. */
     @Override
     public void onVerDetalles(Animal animal) {
         Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
@@ -317,6 +338,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+
+    /** Elimina el animal de la base de datos y actualiza la lista */
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
@@ -328,6 +351,16 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         }
     }
 
+    /** Recibe resultado de agregar/editar animal y recarga la lista. */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_AGREGAR_EDITAR && resultCode == RESULT_OK) {
+            cargarAnimales();
+        }
+    }
+
+    /** Muestra BottomSheet con detalles de un animal hardcodeado o seleccionado.*/
     private void showAnimalDetail(String animalName, String description, String imageUri, String audioUri) {
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animalName,
@@ -338,14 +371,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_AGREGAR_EDITAR && resultCode == RESULT_OK) {
-            cargarAnimales();
-        }
-    }
 
+    /** Cierra la base de datos al destruir la Activity. */
     @Override
     protected void onDestroy() {
         super.onDestroy();

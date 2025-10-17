@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,27 +7,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bestiasendemicas.CarruselItem;
+import com.example.bestiasendemicas.R;
 import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class CarruselAdapter extends RecyclerView.Adapter<CarruselAdapter.ViewHolder> {
 
-    // 1. >>> AÑADE ESTA INTERFAZ DENTRO DE LA CLASE <<<
-    // Esta es la definición que tu MainActivity está buscando.
+    // Permite que cualquier actividad o fragment que use el adaptador reciba eventos de click y evita acoplar el adaptador a un Context específico.
     public interface OnItemClickListener {
         void onItemClick(CarruselItem item);
     }
-
     private final List<CarruselItem> items;
-    // 2. >>> CAMBIA EL CONTEXT POR EL LISTENER <<<
     private final OnItemClickListener listener;
 
-    // 3. >>> MODIFICA EL CONSTRUCTOR <<<
-    // Ya no recibe un Context, ahora recibe la interfaz que acabamos de definir.
+    //Recibe la lista de items y el listener sin depender del contexto
     public CarruselAdapter(List<CarruselItem> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
+
 
     @NonNull
     @Override
@@ -37,9 +37,9 @@ public class CarruselAdapter extends RecyclerView.Adapter<CarruselAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    /** Usa el operador módulo (%) para que la lista se repita infinitamente.*/
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // >>> NUEVA LÍNEA: USA EL OPERADOR MÓDULO PARA CREAR UN BUCLE <<<
         final CarruselItem item = items.get(position % items.size()); // Con esto, la lista se repite
 
         holder.imageView.setImageResource(item.getImageResource());
@@ -49,7 +49,7 @@ public class CarruselAdapter extends RecyclerView.Adapter<CarruselAdapter.ViewHo
             listener.onItemClick(item);
         });
     }
-
+    /** Se combina con el metodo de arriba para que la lista nunca termine, creando el efecto de carrusel infinito.*/
     @Override
     public int getItemCount() {
         // >>> CAMBIO CLAVE: DEVUELVE UN NÚMERO MUY GRANDE <<<

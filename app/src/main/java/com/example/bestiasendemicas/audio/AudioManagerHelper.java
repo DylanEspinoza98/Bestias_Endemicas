@@ -7,11 +7,11 @@ import android.widget.Toast;
 
 public class AudioManagerHelper {
 
-    private MediaPlayer mediaPlayer;
-    private final Context context;
+    private MediaPlayer mediaPlayer; // Reproduce el audio
+    private final Context context; // Reproduce el audio
 
     public AudioManagerHelper(Context context) {
-        this.context = context.getApplicationContext();
+        this.context = context.getApplicationContext(); // Inicializa el contexto seguro
     }
 
     /**
@@ -22,23 +22,23 @@ public class AudioManagerHelper {
         release(); // liberar cualquier MediaPlayer previo
 
         if (soundUri == null || soundUri.isEmpty()) {
-            Toast.makeText(context, "No hay audio disponible", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "No hay audio disponible", Toast.LENGTH_SHORT).show(); // Aviso si no hay URI
             return;
         }
 
         if (!soundUri.toLowerCase().endsWith(".mp3")) {
-            Toast.makeText(context, "Solo se permiten archivos MP3", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Solo se permiten archivos MP3", Toast.LENGTH_SHORT).show(); // Verifica extensión
             return;
         }
 
         try {
             Uri uri = Uri.parse(soundUri);
-            mediaPlayer = MediaPlayer.create(context, uri);
+            mediaPlayer = MediaPlayer.create(context, uri); // Crea MediaPlayer con URI
             if (mediaPlayer == null) {
-                Toast.makeText(context, "Error al cargar el audio", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al cargar el audio", Toast.LENGTH_SHORT).show(); // Error si falla
             }
         } catch (Exception e) {
-            Toast.makeText(context, "No se pudo cargar el audio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "No se pudo cargar el audio", Toast.LENGTH_SHORT).show(); // Error general
             e.printStackTrace();
         }
     }
@@ -46,10 +46,10 @@ public class AudioManagerHelper {
     /** Reproduce el audio cargado desde el inicio */
     public void play() {
         if (mediaPlayer != null) {
-            mediaPlayer.seekTo(0);
-            mediaPlayer.start();
+            mediaPlayer.seekTo(0); // Reinicia el audio
+            mediaPlayer.start(); // Inicia la reproducción del audio
         } else {
-            Toast.makeText(context, "No hay audio cargado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "No hay audio cargado", Toast.LENGTH_SHORT).show(); // Aviso si no hay audio
         }
     }
 
