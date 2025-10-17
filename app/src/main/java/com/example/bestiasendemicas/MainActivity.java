@@ -12,6 +12,12 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 // --- Imports necesarios que probablemente faltaban ---
+import com.example.bestiasendemicas.layouts.Activity_Austral;
+import com.example.bestiasendemicas.layouts.Activity_Centro;
+import com.example.bestiasendemicas.layouts.Activity_Norte;
+import com.example.bestiasendemicas.layouts.Activity_Sur;
+import com.example.bestiasendemicas.adapter.CarruselAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 

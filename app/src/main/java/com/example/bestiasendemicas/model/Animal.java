@@ -1,6 +1,7 @@
 package com.example.bestiasendemicas.model;
 
 public class Animal {
+    // Propiedades de la clase Animal
     private int id;
     private String nombre;
     private String descripcion;
@@ -10,7 +11,7 @@ public class Animal {
     private String tipo;
     private String soundUri;      // URI para MP3 (null si no hay audio)
 
-    // Constructor completo (para animales con audio)
+    /** Constructor completo para inicializar todas las propiedades, incluyendo audio */
     public Animal(String nombre, String descripcion, String rutaImagen,
                   int regionId, boolean esFavorito, String tipo, String soundUri) {
         this.nombre = nombre;
@@ -22,12 +23,12 @@ public class Animal {
         this.soundUri = soundUri; // puede ser null si no hay audio
     }
 
-    // Constructor vacío
+    /** Constructor vacío, útil para inicializar sin datos */
     public Animal() {
         this.soundUri = null;
     }
 
-    // Getters
+    /** Getters */
     public int getId() { return id; }
     public String getNombre() { return nombre; }
     public String getDescripcion() { return descripcion; }
@@ -37,7 +38,7 @@ public class Animal {
     public String getTipo() { return tipo; }
     public String getSoundUri() { return soundUri; }
 
-    // Setters
+    /** Setters */
     public void setId(int id) { this.id = id; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
@@ -47,15 +48,17 @@ public class Animal {
     public void setTipo(String tipo) { this.tipo = tipo; }
     public void setSoundUri(String soundUri) { this.soundUri = soundUri; }
 
-    // Métodos auxiliares
+    /** Retorna true si el animal tiene una imagen asignada */
     public boolean tieneImagen() {
         return rutaImagen != null && !rutaImagen.isEmpty();
     }
 
+    /** Retorna true si el animal tiene audio asignado */
     public boolean tieneAudio() {
         return soundUri != null && !soundUri.isEmpty();
     }
 
+    /** Representación en string del objeto Animal */
     @Override
     public String toString() {
         return "Animal{" +
@@ -70,6 +73,7 @@ public class Animal {
                 '}';
     }
 
+    /** Dos animales son iguales si tienen el mismo id */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -78,11 +82,13 @@ public class Animal {
         return id == animal.id;
     }
 
+    /** HashCode basado en el id */
     @Override
     public int hashCode() {
         return Integer.hashCode(id);
     }
 
+    /** Retorna el nombre de la región según el id */
     public String getNombreRegion() {
         switch (regionId) {
             case 1: return "Norte";
@@ -93,6 +99,7 @@ public class Animal {
         }
     }
 
+    /** Valida si el animal tiene nombre, descripción y región válidos */
     public boolean esValido() {
         return nombre != null && !nombre.trim().isEmpty() &&
                 descripcion != null && !descripcion.trim().isEmpty() &&

@@ -5,12 +5,14 @@ public class CarruselItem {
     private final String zoneName;
     private final Class<?> activityToOpen;
 
+    /**Constructor*/
     public CarruselItem(int imageResource, String zoneName, Class<?> activityToOpen) {
         this.imageResource = imageResource;
         this.zoneName = zoneName;
         this.activityToOpen = activityToOpen;
     }
 
+    /**Getters*/
     public int getImageResource() {
         return imageResource;
     }

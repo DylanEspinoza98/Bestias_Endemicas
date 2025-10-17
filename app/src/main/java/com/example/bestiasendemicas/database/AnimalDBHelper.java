@@ -15,14 +15,14 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //Crea tabla regiones
+    /** SQL para crear tabla regiones */
     private static final String SQL_CREATE_REGIONES =
             "CREATE TABLE " + RegionEntry.TABLE_NAME + " (" +
                     RegionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     RegionEntry.COLUMN_NOMBRE + " VARCHAR(50) NOT NULL" +
                     ");";
 
-    //Crea tabla animales con columna 'tipo' y 'audio_uri'
+    /** SQL para crear tabla animales con columnas tipo y audio_uri */
     private static final String SQL_CREATE_ANIMALES =
             "CREATE TABLE " + AnimalEntry.TABLE_NAME + " (" +
                     AnimalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -37,7 +37,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
                     RegionEntry.TABLE_NAME + "(" + RegionEntry._ID + ")" +
                     ");";
 
-    //Inserta regiones por defecto
+    /** SQL para insertar regiones por defecto */
     private static final String SQL_INSERT_REGIONES =
             "INSERT INTO " + RegionEntry.TABLE_NAME +
                     " (" + RegionEntry.COLUMN_NOMBRE + ") VALUES " +
@@ -46,12 +46,15 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
                     "('Sur'), " +
                     "('Austral');";
 
-    // Eliminar tablas
+    /** SQL para eliminar tabla animales */
     private static final String SQL_DELETE_ANIMALES =
             "DROP TABLE IF EXISTS " + AnimalEntry.TABLE_NAME + ";";
+
+    /** SQL para eliminar tabla regiones */
     private static final String SQL_DELETE_REGIONES =
             "DROP TABLE IF EXISTS " + RegionEntry.TABLE_NAME + ";";
 
+    /** Crea las tablas y carga regiones por defecto */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("PRAGMA foreign_keys=ON;");
@@ -60,6 +63,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_INSERT_REGIONES);
     }
 
+    /** Actualiza la base de datos según la versión */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Se pasó a la versión 3 → columna tipo
@@ -77,6 +81,7 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    /** Configura la base de datos antes de abrirla */
     @Override
     public void onConfigure(SQLiteDatabase db) {
         super.onConfigure(db);
