@@ -26,17 +26,20 @@ public class AnimalCrud {
             AnimalEntry.COLUMN_AUDIO_URI   // ← nueva columna
     };
 
+
     public AnimalCrud(Context context) {
         dbHelper = new AnimalDBHelper(context);
     }
 
+    /** Abre la base de datos para escritura */
     public void open() throws SQLException { database = dbHelper.getWritableDatabase(); }
 
+    /** Cierra la base de datos */
     public void close() {
         dbHelper.close();
     }
 
-    //Insertar nuevo animal
+    /** Inserta un nuevo animal en la tabla */
     public long insertarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
@@ -50,7 +53,7 @@ public class AnimalCrud {
         return database.insert(AnimalEntry.TABLE_NAME, null, values);
     }
 
-    //Actualizar animal existente
+    /** Actualiza un animal existente */
     public int actualizarAnimal(Animal animal) {
         ContentValues values = new ContentValues();
         values.put(AnimalEntry.COLUMN_NOMBRE, animal.getNombre());
@@ -69,7 +72,7 @@ public class AnimalCrud {
         );
     }
 
-    //Eliminar animal
+    /** Elimina un animal por ID */
     public int eliminarAnimal(int animalId) {
         return database.delete(
                 AnimalEntry.TABLE_NAME,
@@ -78,7 +81,7 @@ public class AnimalCrud {
         );
     }
 
-    //Obtener un animal por ID
+    /** Obtiene un animal por su ID */
     public Animal obtenerAnimalPorId(int animalId) {
         Cursor cursor = database.query(
                 AnimalEntry.TABLE_NAME,
@@ -100,7 +103,7 @@ public class AnimalCrud {
         return null;
     }
 
-    //Obtener todos los animales de una región
+    /** Obtiene todos los animales de una región específica */
     public List<Animal> obtenerAnimalesPorRegion(int regionId) {
         List<Animal> animales = new ArrayList<>();
         Cursor cursor = database.query(
@@ -120,6 +123,7 @@ public class AnimalCrud {
         return animales;
     }
 
+    /** Obtiene todas las regiones */
     public List<Region> obtenerTodasLasRegiones() {
         List<Region> regiones = new ArrayList<>();
         //Columnas de RegionEntry
@@ -146,7 +150,7 @@ public class AnimalCrud {
 
 
 
-    //Convertir cursor a objeto Animal
+    /** Convierte un cursor en un objeto Animal */
     private Animal cursorToAnimal(Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndexOrThrow(AnimalEntry._ID));
         String nombre = cursor.getString(cursor.getColumnIndexOrThrow(AnimalEntry.COLUMN_NOMBRE));

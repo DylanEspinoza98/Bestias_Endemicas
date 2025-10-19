@@ -3,15 +3,15 @@ package com.example.bestiasendemicas.database;
 import android.provider.BaseColumns;
 
 public final class AnimalContract {
-    private AnimalContract() {}
+    private AnimalContract() {}  // Constructor privado para evitar instancias
 
-    // Tabla regiones
+    /** Definición de la tabla regiones */
     public static class RegionEntry implements BaseColumns {
         public static final String TABLE_NAME = "regiones";
         public static final String COLUMN_NOMBRE = "nombre";
     }
 
-    // Tabla animales con foreign key
+    /** Definición de la tabla animales con foreign key a regiones */
     public static class AnimalEntry implements BaseColumns {
         public static final String TABLE_NAME = "animales";
         public static final String COLUMN_NOMBRE = "nombre";

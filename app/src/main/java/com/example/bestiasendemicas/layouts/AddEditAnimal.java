@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.layouts;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bestiasendemicas.R;
 import com.example.bestiasendemicas.audio.AudioPicker;
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;

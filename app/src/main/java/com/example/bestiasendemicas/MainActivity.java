@@ -21,6 +21,12 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.bestiasendemicas.layouts.Activity_Austral;
+import com.example.bestiasendemicas.layouts.Activity_Centro;
+import com.example.bestiasendemicas.layouts.Activity_Norte;
+import com.example.bestiasendemicas.layouts.Activity_Sur;
+
+
 public class MainActivity extends AppCompatActivity implements CarruselAdapter.OnItemClickListener {
 
     private List<CarruselItem> carouselItems;
@@ -31,23 +37,28 @@ public class MainActivity extends AppCompatActivity implements CarruselAdapter.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // EdgeToEdge.enable(this); // EdgeToEdge se maneja mejor con el WindowInsetsListener
         setContentView(R.layout.activity_main);
 
         // Inicializamos la vista principal
         mainLayout = findViewById(R.id.main);
         backgroundImageView = findViewById(R.id.backgroundImageView);
 
-        // Ajustamos la UI a la pantalla
+        // --- CÓDIGO PARA AJUSTAR LA UI A LA PANTALLA (CORRECTAMENTE DENTRO DE ONCREATE) ---
         ViewCompat.setOnApplyWindowInsetsListener(mainLayout, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Llamamos a los métodos de configuración
+        // --- LLAMADAS A MÉTODOS DE CONFIGURACIÓN ---
         setupCarousel();
         setupSocialMediaButtons();
+
     }
+
+
+
 
     // --- MÉTODO SETUPCAROUSEL() COMPLETAMENTE LIMPIO Y CORREGIDO ---
     private void setupCarousel() {
@@ -57,25 +68,26 @@ public class MainActivity extends AppCompatActivity implements CarruselAdapter.O
         viewPager.setClipChildren(false);
         viewPager.setOffscreenPageLimit(3);
 
-        // --- 1. Crear la lista de items UNA SOLA VEZ ---
+        // --- Crear la lista de items para el carrusely su fondo ---
+        // Asegurando de que las clases Activity_Norte, etc., y los drawables existan
         carouselItems = new ArrayList<>();
         carouselItems.add(new CarruselItem(R.drawable.gato_andino_chile, "Norte", Activity_Norte.class, R.drawable.norte_chile));
         carouselItems.add(new CarruselItem(R.drawable.el_caballito, "Centro", Activity_Centro.class, R.drawable.centro_chile));
         carouselItems.add(new CarruselItem(R.drawable.rana_de_darwin, "Sur", Activity_Sur.class, R.drawable.sur_chile));
         carouselItems.add(new CarruselItem(R.drawable.delfin_chileno, "Austral", Activity_Austral.class, R.drawable.austral_chile));
 
-        // --- 2. Configurar el adaptador y la posición inicial UNA SOLA VEZ ---
+        // --- CONFIGURAR EL ADAPTADOR PASANDO 'THIS' COMO LISTENER---
         viewPager.setAdapter(new CarruselAdapter(carouselItems, this));
         int middle = Integer.MAX_VALUE / 2;
         viewPager.setCurrentItem(middle - middle % carouselItems.size(), false);
 
-        // --- 3. Configurar la animación UNA SOLA VEZ ---
+        // ---  Configurar el transformador de animación ---
         CompositePageTransformer compositeTransformer = new CompositePageTransformer();
         compositeTransformer.addTransformer(new MarginPageTransformer(40));
         compositeTransformer.addTransformer(new CarruselTransformer());
         viewPager.setPageTransformer(compositeTransformer);
 
-        // --- 4. Lógica para el cambio de fondo ---
+        // ---  Configurar el cambio de fondo ---
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -105,10 +117,15 @@ public class MainActivity extends AppCompatActivity implements CarruselAdapter.O
 
     }
 
-    // --- El resto de tus métodos (sin cambios) ---
+    // --- NUEVO MÉTODO PARA AGRUPAR LA LÓGICA DE LOS BOTONES SOCIALES ---
     private void setupSocialMediaButtons() {
+        // Facebook
         findViewById(R.id.btnFacebook).setOnClickListener(v -> abrirUrl("https://www.facebook.com/?locale=es_LA"));
+
+        // Instagram
         findViewById(R.id.btnInstagram).setOnClickListener(v -> abrirUrl("https://www.instagram.com/"));
+
+        // Twitter/X
         findViewById(R.id.btnX).setOnClickListener(v -> abrirUrl("https://x.com/?lang=es"));
     }
 
@@ -117,8 +134,10 @@ public class MainActivity extends AppCompatActivity implements CarruselAdapter.O
         startActivity(intent);
     }
 
+    // 3. IMPLEMENTACIÓN OBLIGATORIA DEL MÉTODO DE LA INTERFAZ
     @Override
     public void onItemClick(CarruselItem item) {
+        // La lógica para abrir la Activity ahora está aquí, que es el lugar correcto
         Intent intent = new Intent(MainActivity.this, item.getActivityToOpen());
         startActivity(intent);
     }

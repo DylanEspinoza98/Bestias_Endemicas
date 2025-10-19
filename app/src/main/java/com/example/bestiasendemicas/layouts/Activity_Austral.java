@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.layouts;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bestiasendemicas.R;
 import com.example.bestiasendemicas.adapter.AnimalAdapter;
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;
@@ -26,11 +28,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
+public class Activity_Austral extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
 
     //Botones originales
-    private Button btnVerMasGatoAndino, btnVerMasPudu, btnVerMasGatoColocolo;
-    private Button btnVerMasFlamencochileno, btnVerMasCulebraDeColaLarga, botonVolver;
+    private Button btnVerMasHuemul, btnVerMasDelfinChileno, btnVerMasZorroCulpeo;
+    private Button btnVerMasCaranchoCordillerano, btnVerMasCondorAndino, botonVolver;
 
     //Elementos CRUD
     private RecyclerView recyclerViewAnimales;
@@ -45,7 +47,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_NORTE_ID = 1; //Ajuste que modifica el id de la region en cuestion
+    private static final int REGION_AUSTRAL_ID = 4; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -61,7 +63,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_norte);
+        setContentView(R.layout.activity_austral);
 
         inicializarVistas();
         inicializarCrud();
@@ -71,7 +73,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         configurarFiltros();
         cargarAnimales();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainNorte), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainAustral), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -80,20 +82,20 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
 
     private void inicializarVistas() {
         //Botones originales
-        btnVerMasGatoAndino = findViewById(R.id.btn_ver_mas_GatoAndino);
-        btnVerMasPudu = findViewById(R.id.btn_ver_mas_Pudu);
-        btnVerMasGatoColocolo = findViewById(R.id.btn_ver_mas_GatoColoColo);
-        btnVerMasFlamencochileno = findViewById(R.id.btn_ver_mas_FlamencoChileno);
-        btnVerMasCulebraDeColaLarga = findViewById(R.id.btn_ver_mas_CulebraDeColaLarga);
+        btnVerMasHuemul = findViewById(R.id.btn_ver_mas_huemul);
+        btnVerMasDelfinChileno = findViewById(R.id.btn_ver_mas_DelfinChileno);
+        btnVerMasZorroCulpeo = findViewById(R.id.btn_ver_mas_ZorroCulpeo);
+        btnVerMasCaranchoCordillerano = findViewById(R.id.btn_ver_mas_CaranchoCordillerano);
+        btnVerMasCondorAndino = findViewById(R.id.btn_ver_mas_CondorAndino);
         botonVolver = findViewById(R.id.btnVolverS);
 
         //Nuevas vistas para el crud
-        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_norte);
-        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_norte);
+        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_austral);
+        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_austral);
 
         //Vistas para los filtros
         chipGroupFiltros = findViewById(R.id.chipGrupoFiltros);
-        contenedorAnimales = findViewById(R.id.contenedorAnimalesN);
+        contenedorAnimales = findViewById(R.id.contenedorAnimalesA);
     }
 
     private void inicializarCrud() {
@@ -102,44 +104,15 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     }
 
     private void configurarBotonesOriginales() {
-        botonVolver.setOnClickListener(v -> finish());
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        btnVerMasGatoAndino.setOnClickListener(v -> showAnimalDetail(
-                "Gato Andino",
-                getString(R.string.inf_GatoAndino) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.gato_andino_chile,
-                ""  // Sin audio
-        ));
-
-        btnVerMasPudu.setOnClickListener(v -> showAnimalDetail(
-                "Pudú",
-                getString(R.string.inf_pudu) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable._541_pudu_1,
-                ""  // Sin audio
-        ));
-
-        btnVerMasGatoColocolo.setOnClickListener(v -> showAnimalDetail(
-                "Gato Colocolo",
-                getString(R.string.inf_GatoColocolo),
-                "android.resource://" + getPackageName() + "/" + R.drawable._3218_colocolo_marcio_motta,
-                ""  // Sin audio
-        ));
-
-        btnVerMasFlamencochileno.setOnClickListener(v -> showAnimalDetail(
-                "Flamenco chileno",
-                getString(R.string.inf_Flamencochileno) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.flamencochileno,
-                ""  // Sin audio
-        ));
-
-        btnVerMasCulebraDeColaLarga.setOnClickListener(v -> showAnimalDetail(
-                "Culebra De Cola Larga",
-                getString(R.string.inf_Culebradecolalarga),
-                "android.resource://" + getPackageName() + "/" + R.drawable.culebra,
-                ""  // Sin audio
-        ));
+        setupVerMasButtons();
     }
-
 
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
@@ -195,11 +168,49 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         aplicarFiltro(TAG_TODOS);
     }
 
+    private void setupVerMasButtons(){
+        btnVerMasHuemul.setOnClickListener(v -> showAnimalDetail(
+                "Huemul",
+                getString(R.string.inf_Huemul) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.huemul,
+                "android.resource://" + getPackageName() + "/" + R.raw.sonido_huemul
+        ));
+
+        btnVerMasDelfinChileno.setOnClickListener(v -> showAnimalDetail(
+                "Delfín Chileno",
+                getString(R.string.inf_DelfinChileno) ,
+                "android.resource://" + getPackageName() + "/" + R.drawable.delfin_chileno,
+                "android.resource://" + getPackageName() + "/" + R.raw.sonido_delfin
+        ));
+
+        btnVerMasZorroCulpeo.setOnClickListener(v -> showAnimalDetail(
+                "Zorro Culpeo",
+                getString(R.string.inf_ZorroCulpeo),
+                "android.resource://" + getPackageName() + "/" + R.drawable.zorro_culpeo,
+                "" // Sin audio
+        ));
+
+        btnVerMasCaranchoCordillerano.setOnClickListener(v -> showAnimalDetail(
+                "Carancho Cordillerano",
+                getString(R.string.inf_CaranchoCordillerano),
+                "android.resource://" + getPackageName() + "/" + R.drawable.carancho_cordillerano,
+                "" // Sin audio
+        ));
+
+        btnVerMasCondorAndino.setOnClickListener(v -> showAnimalDetail(
+                "Cóndor Andino",
+                getString(R.string.inf_CondorAndino),
+                "android.resource://" + getPackageName() + "/" + R.drawable.condor_andino,
+                "" // Sin audio
+        ));
+    }
+
+
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
-        Log.d("Activity_Norte", "Aplicando filtro: " + tipoFiltro);
+        Log.d("Activity_Austral", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtra animales hardcodeados (estáticos base)
+        //Filtra animales hardcodeados (estáticos)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -226,7 +237,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
             }
         }
 
-        //Filtra animales dinámicos (RecyclerView)
+        //Filtrar animales dinámicos (RecyclerView)
         filtrarAnimalesDinamicos();
     }
 
@@ -247,7 +258,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                     case TAG_TERRESTRE:
                     case TAG_VOLADOR:
                     case TAG_ACUATICO:
-                        //Compara con animal.getTipo()
+                        //Comparar con animal.getTipo()
                         mostrar = filtroActual.equals(animal.getTipo());
                         break;
                 }
@@ -262,14 +273,14 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     }
 
     private void cargarAnimales() {
-        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_NORTE_ID);
-        Log.d("Activity_Norte", "Animales cargados: " + listaAnimalesCompleta.size());
-        filtrarAnimalesDinamicos(); //Aplica filtro actual
+        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_AUSTRAL_ID);
+        Log.d("Activity_Austral", "Animales cargados: " + listaAnimalesCompleta.size());
+        filtrarAnimalesDinamicos(); //Aplicar filtro actual
     }
 
     private void abrirActivityAgregarAnimal() {
         Intent intent = new Intent(this, AddEditAnimal.class);
-        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_NORTE_ID);
+        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_AUSTRAL_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
@@ -317,6 +328,9 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+
+
+
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
@@ -325,6 +339,14 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
             cargarAnimales();
         } else {
             Toast.makeText(this, "❌ Error al eliminar el animal", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_AGREGAR_EDITAR && resultCode == RESULT_OK) {
+            cargarAnimales();
         }
     }
 
@@ -338,13 +360,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_AGREGAR_EDITAR && resultCode == RESULT_OK) {
-            cargarAnimales();
-        }
-    }
+
+
 
     @Override
     protected void onDestroy() {

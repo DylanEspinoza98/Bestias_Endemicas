@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.layouts;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bestiasendemicas.R;
 import com.example.bestiasendemicas.adapter.AnimalAdapter;
 import com.example.bestiasendemicas.database.AnimalCrud;
 import com.example.bestiasendemicas.model.Animal;
@@ -26,13 +28,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
+public class Activity_Centro extends AppCompatActivity implements AnimalAdapter.OnAnimalActionListener {
 
     //Botones originales
-    private Button btnVerMasHuillin, btnVerMasRanitaDarwin, btnVerMasFocaCangrejera;
-    private Button btnVerMasTucuquere, btnVerMasConcon, botonVolver;
+    private Button btnVerMasAbejorro, btnVerMasLoica, btnVerMasMonitoDelMonte;
+    private Button btnVerMasDeguComun, btnVerMasLoroTricahue, botonVolver;
 
-    //Elementos crud
+    //Elementos CRUD
     private RecyclerView recyclerViewAnimales;
     private AnimalAdapter animalAdapter;
     private AnimalCrud animalCrud;
@@ -45,7 +47,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
     private LinearLayout contenedorAnimales;
 
     //Constantes
-    private static final int REGION_SUR_ID = 3; //Ajuste que modifica el id de la region en cuestion
+    private static final int REGION_CENTRO_ID = 2; //Ajuste que modifica el id de la region en cuestion
     private static final int REQUEST_CODE_AGREGAR_EDITAR = 1001;
 
     //Constantes para filtros
@@ -61,7 +63,8 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sur);
+        setContentView(R.layout.activity_centro);
+
 
         inicializarVistas();
         inicializarCrud();
@@ -71,7 +74,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         configurarFiltros();
         cargarAnimales();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainSur), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainCentro), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -80,20 +83,20 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
 
     private void inicializarVistas() {
         //Botones originales
-        btnVerMasHuillin = findViewById(R.id.btn_ver_mas_Hullin);
-        btnVerMasRanitaDarwin = findViewById(R.id.btn_ver_mas_RanitaD);
-        btnVerMasFocaCangrejera = findViewById(R.id.btn_ver_mas_FocaCangrejera);
-        btnVerMasTucuquere = findViewById(R.id.btn_ver_mas_Tucuquere);
-        btnVerMasConcon = findViewById(R.id.btn_ver_mas_Concon);
-        botonVolver = findViewById(R.id.btnVolverS);
+        btnVerMasAbejorro = findViewById(R.id.btn_ver_mas_Abejorro);
+        btnVerMasLoica = findViewById(R.id.btn_ver_mas_Loica);
+        btnVerMasMonitoDelMonte = findViewById(R.id.btn_ver_mas_MonitoDelMonte);
+        btnVerMasDeguComun = findViewById(R.id.btn_ver_mas_Degu_Comun);
+        btnVerMasLoroTricahue = findViewById(R.id.btn_ver_mas_Loro_Tricahue);
+        botonVolver = findViewById(R.id.btnVolverC);
 
         //Nuevas vistas para el crud
-        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_sur);
-        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal_sur);
+        recyclerViewAnimales = findViewById(R.id.recycler_view_animales_centro);
+        fabAgregarAnimal = findViewById(R.id.fab_agregar_animal);
 
         //Vistas para los filtros
         chipGroupFiltros = findViewById(R.id.chipGrupoFiltros);
-        contenedorAnimales = findViewById(R.id.contenedorAnimalesS);
+        contenedorAnimales = findViewById(R.id.contenedorAnimalesC);
     }
 
     private void inicializarCrud() {
@@ -102,15 +105,45 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
     }
 
     private void configurarBotonesOriginales() {
-        botonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        botonVolver.setOnClickListener(v -> finish());
 
-        setupVerMasButtons();
+        btnVerMasAbejorro.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.abejorronativo),
+                getString(R.string.inf_Abejorro),
+                "android.resource://" + getPackageName() + "/" + R.drawable.abejorronativo,
+                ""  // Sin audio
+        ));
+
+        btnVerMasLoica.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.loica),
+                getString(R.string.inf_Loica),
+                "android.resource://" + getPackageName() + "/" + R.drawable.loica,
+                ""  // Sin audio
+        ));
+
+        btnVerMasMonitoDelMonte.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.MonitodelMonte),
+                getString(R.string.inf_MdelMonte),
+                "android.resource://" + getPackageName() + "/" + R.drawable.monito_del_monte_768x786,
+                ""  // Sin audio
+        ));
+
+        btnVerMasDeguComun.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.Degu_Comun),
+                getString(R.string.inf_Degu),
+                "android.resource://" + getPackageName() + "/" + R.drawable.degu_comun,
+                ""  // Sin audio
+        ));
+
+        btnVerMasLoroTricahue.setOnClickListener(v -> showAnimalDetail(
+                getString(R.string.Loro_Tricahue),
+                getString(R.string.inf_lTricahue),
+                "android.resource://" + getPackageName() + "/" + R.drawable.loro2,
+                ""  // Sin audio
+        ));
     }
+
+
 
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
@@ -162,53 +195,15 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
             });
         }
 
-        //Aplica filtro inicial
+        //Aplicar filtro inicial
         aplicarFiltro(TAG_TODOS);
     }
 
-    private void setupVerMasButtons() {
-        btnVerMasHuillin.setOnClickListener(v -> showAnimalDetail(
-                "Huillín",
-                getString(R.string.inf_Huillin) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.huillin,
-                ""  // Sin audio
-        ));
-
-        btnVerMasRanitaDarwin.setOnClickListener(v -> showAnimalDetail(
-                "Ranita de Darwin",
-                getString(R.string.inf_RanitaDarwin) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.rana_de_darwin,
-                ""  // Sin audio
-        ));
-
-        btnVerMasFocaCangrejera.setOnClickListener(v -> showAnimalDetail(
-                "Foca Cangrejera",
-                getString(R.string.inf_FocaCangrejera) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.foca_cangrejera_caracteristicas,
-                ""  // Sin audio
-        ));
-
-        btnVerMasTucuquere.setOnClickListener(v -> showAnimalDetail(
-                "Tucúquere",
-                getString(R.string.inf_Tucuquere),
-                "android.resource://" + getPackageName() + "/" + R.drawable.tucu,
-                ""  // Sin audio
-        ));
-
-        btnVerMasConcon.setOnClickListener(v -> showAnimalDetail(
-                "Concón",
-                getString(R.string.inf_Concón) ,
-                "android.resource://" + getPackageName() + "/" + R.drawable.concon,
-                ""  // Sin audio
-        ));
-    }
-
-
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
-        Log.d("Activity_Sur", "Aplicando filtro: " + tipoFiltro);
+        Log.d("Activity_Centro", "Aplicando filtro: " + tipoFiltro);
 
-        //Filtra animales hardcodeados (estáticos)
+        //Filtrar animales hardcodeados (estáticos)
         if (contenedorAnimales != null) {
             for (int i = 0; i < contenedorAnimales.getChildCount(); i++) {
                 View vistaAnimal = contenedorAnimales.getChildAt(i);
@@ -256,7 +251,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
                     case TAG_TERRESTRE:
                     case TAG_VOLADOR:
                     case TAG_ACUATICO:
-                        //Comparar con animal.getTipo()
+                        //Compara con animal.getTipo()
                         mostrar = filtroActual.equals(animal.getTipo());
                         break;
                 }
@@ -270,15 +265,16 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         }
     }
 
+
     private void cargarAnimales() {
-        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_SUR_ID);
-        Log.d("Activity_Sur", "Animales cargados: " + listaAnimalesCompleta.size());
-        filtrarAnimalesDinamicos(); // Aplicar filtro actual
+        listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_CENTRO_ID);
+        Log.d("Activity_Centro", "Animales cargados: " + listaAnimalesCompleta.size());
+        filtrarAnimalesDinamicos(); //Aplica filtro actual
     }
 
     private void abrirActivityAgregarAnimal() {
         Intent intent = new Intent(this, AddEditAnimal.class);
-        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_SUR_ID);
+        intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_CENTRO_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
@@ -326,6 +322,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
@@ -354,6 +351,7 @@ public class Activity_Sur extends AppCompatActivity implements AnimalAdapter.OnA
         );
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
+
 
     @Override
     protected void onDestroy() {

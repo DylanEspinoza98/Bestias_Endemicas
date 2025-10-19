@@ -8,6 +8,8 @@
     android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
+
+    <!-- Este es el fondo de pantalla -->
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="0dp"
@@ -20,6 +22,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/norte_chile" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <!-- Título principal -->
     <!-- Asegúrate de tener aquí el TextView con id="@+id/titulo" -->
     <TextView
@@ -27,34 +38,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bestias Endémicas de Chile"
-        style="@style/TextViewConBordeBlanco"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:background="@drawable/background_text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
 
     <!-- ESTE ES EL NUEVO CARRUSEL -->
 
     <TextView
         android:id="@+id/textView"
-        style="@style/TextViewConBordeBlanco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="132dp"
         android:text="@string/deslizar"
         android:textColor="@android:color/black"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        android:background="@drawable/background_text"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/carouselViewPager"
@@ -79,14 +98,17 @@
         android:id="@+id/layout_conocenos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
         android:orientation="vertical"
+        android:gravity="center"
         android:padding="16dp"
+
+        android:background="@drawable/social_media"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <!-- ... Tu código de redes sociales sigue igual ... -->
@@ -98,7 +120,6 @@
             android:layout_marginBottom="12dp"
             android:gravity="center"
             android:text="@string/RedesSociales"
-            style="@style/TextViewConBordeBlanco"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -126,7 +147,4 @@
 
         </LinearLayout>
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

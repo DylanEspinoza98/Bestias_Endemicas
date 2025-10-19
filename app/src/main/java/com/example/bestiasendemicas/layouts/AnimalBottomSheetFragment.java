@@ -1,4 +1,4 @@
-package com.example.bestiasendemicas;
+package com.example.bestiasendemicas.layouts;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.bestiasendemicas.R;
 import com.example.bestiasendemicas.audio.AudioManagerHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
