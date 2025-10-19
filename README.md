@@ -1,125 +1,170 @@
-“Bestias Endémicas” es una aplicación Android que muestra animales endémicos de Chile por región.
-Incluye tarjetas de animales predefinidos y un sistema CRUD dinámico con SQLite.
-Permite ver detalles, filtrar por tipo, marcar favoritos y agregar o editar animales.
+<h1 align="center">🐾 Bestias Endémicas</h1>
 
-![Image](https://github.com/user-attachments/assets/e063e691-80e8-43cb-9ec0-79ec49f00a29)
+<!-- FOTO: portada o logo principal del proyecto aquí -->
 
-La estructura principal de la aplicación se puede dividir en 2 grandes carpetas que contienen el funcionamiento y
-el diseño de esta, siendo las carpetas "java" (donde se encuentra com/example/bestiasendemicas que contiene los activitys esenciales)
-y "res" (donde se encuentran todos los recursos visuales y de texto de la aplicación).
+<p align="center">
+  <em>Aplicación Android que muestra animales endémicos de Chile, clasificados por región.</em>
+</p>
 
-“java”
+---
 
-Contiene el paquete com.example.bestiasendemicas con subpaquetes:
+## 🐆 Descripción General
 
-adapter → AnimalAdapter.java
+“Bestias Endémicas” es una aplicación Android que muestra animales endémicos de Chile por región.  
+Incluye tarjetas de animales predefinidos y un sistema CRUD dinámico con SQLite.  
+Permite ver detalles, filtrar por tipo, marcar favoritos y agregar o editar animales.  
+Incluye la opción de reproducir sonidos de cada animal, tanto estáticos (RAW) como dinámicos (MP3 seleccionados).
 
-database → AnimalContract.java, AnimalCrud.java, AnimalDBHelper.java
+---
 
-model → Animal.java, Region.java
+## 🗂️ Estructura del Proyecto
 
-Actividades esenciales:
+La aplicación se divide en dos carpetas principales:
 
-MainActivity.java
+- **java/** → Lógica de funcionamiento.
+- **res/** → Recursos visuales y de texto.
 
-Activity_Norte.java
+---
 
-Activity_Centro.java
+### 📦 Estructura Java real del proyecto
 
-Activity_Sur.java
+  <pre>
+com.example.bestiasendemicas/
+├── adapter/
+│   ├── AnimalAdapter.java
+│   └── CarruselAdapter.java
+├── audio/
+│   ├── AudioManagerHelper.java
+│   └── AudioPicker.java
+├── database/
+│   ├── AnimalContract.java
+│   ├── AnimalCrud.java
+│   └── AnimalDBHelper.java
+├── layouts/
+│   ├── Activity_Austral.java
+│   ├── Activity_Centro.java
+│   ├── Activity_Norte.java
+│   ├── Activity_Sur.java
+│   ├── AddEditAnimal.java
+│   └── AnimalBottomSheetFragment.java
+├── model/
+│   ├── Animal.java
+│   └── Region.java
+├── CarruselItem.java
+├── CarruselTransformer.java
+└── MainActivity.java
+  </pre>
 
-Activity_Austral.java
+---
 
-AddEditAnimal.java
+### 🧩 Funcionalidades principales
 
-AnimalBottomSheetFragment.java
+#### 🦁 MainActivity
+- Muestra cuatro regiones: Norte, Centro, Sur, Austral.
+- Navegación mediante **carrusel visual** (ViewPager2).
 
-“res”
+### Ejemplo visual del MainActivity
 
-Diseños XML en res/layout:
+<!--Acá pon el gif del MainActivity-->
 
-activity_main.xml
 
-activity_norte.xml
+---
 
-activity_centro.xml
+#### 🐻 Activities regionales
 
-activity_sur.xml
+- 5 animales estáticos (hardcodeados) por región con datos y “Ver más”.
+- Filtros por tipo y favoritos (ChipGroup).
+- `RecyclerView` para animales dinámicos (base de datos).
+- Soporte de audio para animales estáticos (`res/raw`) y dinámicos (MP3).
+- “Ver más” abre AnimalBottomSheetFragment.
 
-activity_austral.xml
+### Ejemplo visual del Activity regional
 
-activity_add_edit_animal.xml
+<img width="302" height="669" alt="Activity_Regional" src="https://github.com/user-attachments/assets/4ba33768-6b26-4b63-b42a-a89834367b92" />
 
-fragment_animal_bottom_sheet.xml
+---
 
-Recursos de valores en res/values:
+#### 📝 AddEditAnimal
 
-strings.xml (nombres y descripciones de animales, títulos, etiquetas).
+- Formulario para ingresar animal: nombre, descripción, tipo, región, favorito, imagen, sonido.
+- Guarda datos y recursos en SQLite.
+- Selector para sonido usando AudioPicker.
+- Compatibilidad con audio interno (RAW) y externo (MP3).
 
-dimens.xml (estructura para el selector de region y de tipo de animal).
+### Ejemplo visual de AddEditAnimal
 
-colors.xml, styles.xml (paleta de colores y estilos).
+<img width="270" height="791" alt="AddEditAnimal" src="https://github.com/user-attachments/assets/bbe84c6f-cffe-45c4-b888-1f53d8d2d06c" />
 
-layouts de spinner en spinner_item_black_text.xml.
 
-MainActivity
-Presenta 4 botones regionales: Norte, Centro, Sur, Austral. Cada botón utiliza el Activity correspondiente.
+---
 
-Activity_Norte / Activity_Centro / Activity_Sur / Activity_Austral
-– 5 animales estaticos propios de la región (imagen, nombre, texto corto, botón “Ver más”).
-– ChipGroup para filtrar por Todos, Terrestre, Volador, Acuático y Favoritos.
-– RecyclerView + AnimalAdapter para animales dinámicos obtenidos de SQLite.
-– FloatingActionButton para abrir AddEditAnimal con EXTRA_REGION_ID.
-– Botón “Volver” que finaliza la Activity.
-– Al pulsar “Ver más” se abre AnimalBottomSheetFragment con detalles completos.
+#### 🎧 Sistema de Sonido
 
-AddEditAnimal
-Formulario para añadir o editar:
-– EditText nombre y descripción.
-– Spinners región (habilitado solo en edición) y tipo.
-– CheckBox favorito.
-– Selector de imagen con ActivityResultContracts.PickVisualMedia.
-– Preview de imagen en ImageView.
-– Botones “Guardar”/“Actualizar” y “Cancelar”.
+- AudioManagerHelper reproduce .mp3 y recursos internos (RAW).
+- AudioPicker permite elegir sonido en el dispositivo.
+- BottomSheet permite reproducir sonido del animal si está presente.
 
-AnimalBottomSheetFragment
-BottomSheetDialogFragment que muestra:
-– Imagen amplia.
-– Nombre y descripción completa.
-– Se usa desde todas las Activities para detalles.
+<!-- FOTO: Ejemplo UI audio -->
 
-AnimalAdapter
-Adaptador de RecyclerView:
-– Entrega informacion a item_animal.xml.
-– Vincula datos de Animal (modelo) a vistas.
-– Llamado a OnAnimalActionListener para editar, eliminar y ver detalles.
+---
 
-AnimalCrud
-Clase SQLiteOpenHelper:
-– Define tablas animales y regiones.
-– CRUD: insertar, actualizar, eliminar, obtenerAnimalesPorRegion (usa Cursor), obtenerTodasLasRegiones.
-– Lee columnas del Cursor y mapea a objetos Animal.
+#### 📄 AnimalBottomSheetFragment
 
-AnimalDBHelper
-Gestiona la creación y actualización de la base de datos bestias_endemicas.db:
-– Versión de base 3: añade columna tipo si la versión anterior era menor.
-– Inserta registros en tabla regiones (‘Norte’, ‘Centro’, ‘Sur’, ‘Austral’) en onCreate().
-– Actualiza registros la base de datos con onUpgrade().
-– Habilita las llaves foraneas (foreign_keys=ON) en onConfigure().
+- Panel inferior con imagen, descripción, reproductor de sonido.
+- Usado desde todas las activities para mostrar detalle de animales.
 
-AnimalContract
-Clase final que define constantes para nombres de tablas y columnas.
+### Ejemplo visual del AnimalBottomSheetFragment
 
-Model
-– Animal.java: tabla animal con id, nombre, descripción, rutaImagen, regionId, esFavorito, tipo.
-– Region.java: tabla region con id y nombre.
+<img width="371" height="489" alt="AnimalBottomSheetFragment" src="https://github.com/user-attachments/assets/f9dbe5a3-8469-49db-8f5e-7ae46cd799e8" />
 
-AnimalManifest
-Se declara los activitys y se añade los permisos necesarios para usar la galeria.
 
-Integrantes:
-NramirezAndroid = Nicolás Ramírez
-alecari = Alejandro Carilao
-DylanEspinoza98 = Dylan Espinoza
+---
 
-Todos las pruebas fueron hechas en un telefono pixel 6 pro con la api 31
+### 💾 Base de datos y modelos
+
+- AnimalContract.java: define nombres de tablas y columnas.
+- AnimalDBHelper.java: crea y actualiza la base de datos.
+- AnimalCrud.java: opera CRUD completo y mapeo de datos.
+- Modelos: Animal.java y Region.java.
+
+### Ejemplo visual de la base de datos
+
+<img width="1060" height="391" alt="MERBaseDeDatos" src="https://github.com/user-attachments/assets/f78986e2-cd0f-4da1-ab09-6945cd97fb5e" />
+
+
+
+---
+
+### 🎨 Recursos de res/
+
+| Carpeta   | Descripción                                             |
+|-----------|---------------------------------------------------------|
+| layout    | Layouts XML para interfaces y fragmentos                |
+| values    | strings.xml, colors.xml, dimens.xml, styles.xml         |
+| drawable  | Imágenes e iconos                                       |
+| raw       | Archivos de audio para animales estáticos               |
+
+---
+
+### 🧭 Permisos y configuración
+
+En AndroidManifest.xml:
+- Declaración de Activities.
+- Permiso galería/audio.
+
+---
+
+### 👥 Integrantes
+  
+- NramirezAndroid = Nicolás Ramírez
+- alecari = Alejandro Carilao
+- DylanEspinoza98 = Dylan Espinoza
+
+---
+
+### 🧪 Pruebas
+Todas las pruebas fueron hechas en un teléfono Google Pixel 6 Pro con la API 31.
+
+### Ejemplo visual del Google Pixel 6 Pro
+
+<img width="576" height="576" alt="pixel 6 pro" src="https://github.com/user-attachments/assets/33b772a5-289a-4aa9-9b16-4f9de8f993fa" />
