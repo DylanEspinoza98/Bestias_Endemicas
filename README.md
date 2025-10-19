@@ -2,6 +2,8 @@
 Incluye tarjetas de animales predefinidos y un sistema CRUD dinámico con SQLite.
 Permite ver detalles, filtrar por tipo, marcar favoritos y agregar o editar animales.
 
+![Image](https://github.com/user-attachments/assets/e063e691-80e8-43cb-9ec0-79ec49f00a29)
+
 La estructura principal de la aplicación se puede dividir en 2 grandes carpetas que contienen el funcionamiento y
 el diseño de esta, siendo las carpetas "java" (donde se encuentra com/example/bestiasendemicas que contiene los activitys esenciales)
 y "res" (donde se encuentran todos los recursos visuales y de texto de la aplicación).
