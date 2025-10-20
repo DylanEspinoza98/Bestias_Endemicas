@@ -62,7 +62,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this); // Activa Edge-to-Edge
+        EdgeToEdge.enable(this); //Activa Edge-to-Edge
         setContentView(R.layout.activity_austral);
 
         inicializarVistas();
