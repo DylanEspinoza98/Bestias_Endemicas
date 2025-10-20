@@ -63,9 +63,9 @@ com.example.bestiasendemicas/
 - Muestra cuatro regiones: Norte, Centro, Sur, Austral.
 - Navegación mediante **carrusel visual** (ViewPager2).
 
-### Ejemplo visual del MainActivity
 
-<!--Acá pon el gif del MainActivity-->
+
+![Image](https://github.com/user-attachments/assets/f9671a30-6028-4caa-b285-ff310351070d)
 
 
 ---
