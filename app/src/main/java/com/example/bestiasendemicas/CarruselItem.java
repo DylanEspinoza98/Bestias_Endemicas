@@ -8,12 +8,17 @@ public class CarruselItem {
     private final int backgroundImageResource;
 
     public CarruselItem(int imageResource, String zoneName, Class<?> activityToOpen,  @DrawableRes int backgroundImageResource) {
+
+    /**Constructor*/
+    public CarruselItem(int imageResource, String zoneName, Class<?> activityToOpen) {
+
         this.imageResource = imageResource;
         this.zoneName = zoneName;
         this.activityToOpen = activityToOpen;
         this.backgroundImageResource = backgroundImageResource;
     }
 
+    /**Getters*/
     public int getImageResource() {
         return imageResource;
     }

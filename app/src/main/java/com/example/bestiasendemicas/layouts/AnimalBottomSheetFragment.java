@@ -27,7 +27,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
     private static final String ARG_IMAGE_URI = "imageUri";
     private static final String ARG_AUDIO_URI = "audioUri";
 
-    // Crear instancia para animales
+    /** Crear instancia para animales */
     public static AnimalBottomSheetFragment newInstance(
             String nombre,
             String descripcion,
@@ -44,6 +44,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
 
+    /**  Crear instancia para animales hardcodeados*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -100,6 +101,7 @@ public class AnimalBottomSheetFragment extends BottomSheetDialogFragment {
         return view;
     }
 
+    /** Liberar recursos al destruir la vista. */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

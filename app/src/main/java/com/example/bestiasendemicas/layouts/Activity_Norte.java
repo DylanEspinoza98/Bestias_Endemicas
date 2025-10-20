@@ -59,6 +59,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
 
     private String filtroActual = TAG_TODOS;
 
+    /** Inicializa la Activity, vistas, RecyclerView, filtros y carga animales desde la base de datos. */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         });
     }
 
+    /** Asigna todas las vistas del layout a sus variables correspondientes. */
     private void inicializarVistas() {
         //Botones originales
         btnVerMasGatoAndino = findViewById(R.id.btn_ver_mas_GatoAndino);
@@ -98,11 +101,13 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         contenedorAnimales = findViewById(R.id.contenedorAnimalesN);
     }
 
+    /** Inicializa el CRUD y abre la base de datos para operaciones de animales. */
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
     }
 
+    /** Configura los botones hardcodeados de animales y el botón de volver. */
     private void configurarBotonesOriginales() {
         botonVolver.setOnClickListener(v -> finish());
 
@@ -143,6 +148,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
     }
 
 
+    /** Configura el FAB para agregar un nuevo animal a la base de datos. */
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +158,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         });
     }
 
+    /** Inicializa la lista de animales y el Adapter para mostrar en RecyclerView. */
     private void configurarRecyclerView() {
         listaAnimales = new ArrayList<>();
         listaAnimalesCompleta = new ArrayList<>();
@@ -160,6 +167,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         recyclerViewAnimales.setAdapter(animalAdapter);
     }
 
+    /** Configura los chips de filtro y aplica el filtro inicial. */
     private void configurarFiltros() {
         if (chipGroupFiltros != null) {
             chipGroupFiltros.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -197,6 +205,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         aplicarFiltro(TAG_TODOS);
     }
 
+    /** Filtra animales hardcodeados y dinámicos según el filtro seleccionado. */
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
         Log.d("Activity_Norte", "Aplicando filtro: " + tipoFiltro);
@@ -232,6 +241,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         filtrarAnimalesDinamicos();
     }
 
+    /** Filtra la lista de animales de RecyclerView según el filtro activo. */
     private void filtrarAnimalesDinamicos() {
         if (animalAdapter != null && listaAnimalesCompleta != null) {
             List<Animal> animalesFiltrados = new ArrayList<>();
@@ -263,18 +273,21 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         }
     }
 
+    /** Obtiene los animales de la región Norte desde la base de datos y aplica filtro. */
     private void cargarAnimales() {
         listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_NORTE_ID);
         Log.d("Activity_Norte", "Animales cargados: " + listaAnimalesCompleta.size());
         filtrarAnimalesDinamicos(); //Aplica filtro actual
     }
 
+    /** Abre la Activity para agregar un nuevo animal y pasa la región. */
     private void abrirActivityAgregarAnimal() {
         Intent intent = new Intent(this, AddEditAnimal.class);
         intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_NORTE_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Abre la Activity para editar un animal existente. */
     @Override
     public void onEditarAnimal(Animal animal) {
         Intent intent = new Intent(this, AddEditAnimal.class);
@@ -282,6 +295,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Muestra un diálogo de confirmación para eliminar un animal. */
     @Override
     public void onEliminarAnimal(Animal animal) {
         new AlertDialog.Builder(this)
@@ -303,6 +317,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
                 .show();
     }
 
+    /** Muestra un BottomSheet con detalles e información multimedia del animal. */
     @Override
     public void onVerDetalles(Animal animal) {
         Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
@@ -319,6 +334,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+    /** Elimina el animal de la base de datos y actualiza la lista. */
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
@@ -330,6 +346,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         }
     }
 
+    /** Muestra BottomSheet con detalles de un animal hardcodeado o seleccionado. */
     private void showAnimalDetail(String animalName, String description, String imageUri, String audioUri) {
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animalName,
@@ -340,6 +357,8 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
+    /** Recibe resultado de agregar/editar animal y recarga la lista. */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -348,6 +367,7 @@ public class Activity_Norte extends AppCompatActivity implements AnimalAdapter.O
         }
     }
 
+    /** Cierra la base de datos al destruir la Activity. */
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -61,6 +61,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
                 }
             });
 
+    /** Inicializa la Activity, vistas, CRUD, carga regiones, verifica si es modo edición y configura botones. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         configurarBotones();
     }
 
+    /** Asigna todas las vistas del layout a sus variables correspondientes y asegura que el spinner de región esté habilitado. */
     private void inicializarVistas() {
         etNombre = findViewById(R.id.et_nombre_animal);
         etDescripcion = findViewById(R.id.et_descripcion_animal);
@@ -90,12 +92,14 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         spinnerRegion.setAlpha(1f);
     }
 
+    /** Inicializa el CRUD de animales y el AudioPicker para seleccionar archivos de audio. */
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
         audioPicker = new AudioPicker(this, this);
     }
 
+    /** Obtiene todas las regiones de la base de datos y llena los spinners de región y tipo de animal. */
     private void cargarRegiones() {
         regiones = animalCrud.obtenerTodasLasRegiones();
         ArrayAdapter<String> adapterRegiones = new ArrayAdapter<>(
@@ -112,6 +116,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         spinnerTipo.setAdapter(adapterTipos);
     }
 
+    /** Determina si se está editando un animal existente o creando uno nuevo y ajusta la UI (título, texto botón, spinner). */
     private void verificarModoEdicion() {
         Intent intent = getIntent();
         animalId = intent.getIntExtra(EXTRA_ANIMAL_ID, -1);
@@ -129,6 +134,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         }
     }
 
+    /** Carga los datos del animal a editar en los campos de texto, spinners, checkbox, imagen y audio. */
     private void cargarDatosAnimal() {
         animalAEditar = animalCrud.obtenerAnimalPorId(animalId);
         if (animalAEditar != null) {
@@ -159,6 +165,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         }
     }
 
+    /** Selecciona la región correcta en el spinner según su ID. */
     private void seleccionarRegionEnSpinner(int regionId) {
         for (int i = 0; i < regiones.size(); i++) {
             if (regiones.get(i).getId() == regionId) {
@@ -168,6 +175,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         }
     }
 
+    /** Configura los botones: seleccionar imagen, seleccionar audio, cancelar y guardar animal. */
     private void configurarBotones() {
         btnSeleccionarImagen.setOnClickListener(v ->
                 pickImagen.launch(new PickVisualMediaRequest.Builder()
@@ -180,12 +188,14 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         btnGuardar.setOnClickListener(v -> guardarAnimal());
     }
 
+    /** Callback de AudioPicker; almacena URI y muestra el nombre del archivo seleccionado. */
     @Override
     public void onAudioSelected(Uri audioUri, String fileName) {
         audioSeleccionadoUri = audioUri;
         tvAudioFilename.setText(fileName);
     }
 
+    /** Valida los campos, conserva o copia archivos de imagen/audio, crea o actualiza el animal en la base de datos y devuelve resultado. */
     private void guardarAnimal() {
         String nombre = etNombre.getText().toString().trim();
         String descripcion = etDescripcion.getText().toString().trim();
@@ -256,6 +266,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         }
     }
 
+    /** Copia la imagen o audio seleccionado al almacenamiento interno de la app y devuelve la ruta. */
     private String copiarArchivoAAlmacenamientoInterno(Uri uri, String tipo) {
         try (InputStream in = getContentResolver().openInputStream(uri)) {
             if (in != null) {
@@ -277,6 +288,7 @@ public class AddEditAnimal extends AppCompatActivity implements AudioPicker.Audi
         return "";
     }
 
+    /** Cierra la base de datos al destruir la Activity. */
     @Override
     protected void onDestroy() {
         super.onDestroy();

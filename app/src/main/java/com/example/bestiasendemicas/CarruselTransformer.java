@@ -9,7 +9,6 @@ public class CarruselTransformer implements ViewPager2.PageTransformer {
     private static final float MIN_SCALE = 0.85f; // Escala mínima para las páginas de los lados
     private static final float MIN_ALPHA = 0.5f;  // Opacidad mínima para las páginas de los lados
 
-
     /** Método que se llama cada vez que una página se desplaza en el ViewPager2*/
     @Override
     public void transformPage(@NonNull View page, float position) {

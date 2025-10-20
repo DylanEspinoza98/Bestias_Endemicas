@@ -57,12 +57,12 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     private static final String TAG_ACUATICO = "acuatico";
     private static final String TAG_FAVORITOS = "favoritos";
 
-    private String filtroActual = TAG_TODOS;
+    private String filtroActual = TAG_TODOS; // Filtro actualmente aplicado
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(this); // Activa Edge-to-Edge
         setContentView(R.layout.activity_austral);
 
         inicializarVistas();
@@ -73,6 +73,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         configurarFiltros();
         cargarAnimales();
 
+        // Ajusta padding según inset de sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainAustral), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -80,6 +81,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         });
     }
 
+    /** Inicializa vistas y botones */
     private void inicializarVistas() {
         //Botones originales
         btnVerMasHuemul = findViewById(R.id.btn_ver_mas_huemul);
@@ -98,11 +100,13 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         contenedorAnimales = findViewById(R.id.contenedorAnimalesA);
     }
 
+    /** Inicializa la base de datos y la abre */
     private void inicializarCrud() {
         animalCrud = new AnimalCrud(this);
         animalCrud.open();
     }
 
+    /** Configura botones de navegación y originales */
     private void configurarBotonesOriginales() {
         botonVolver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +118,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         setupVerMasButtons();
     }
 
+    /** Configura botón flotante para agregar animal */
     private void configurarBotonesCrud() {
         fabAgregarAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +128,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         });
     }
 
+    /** Inicializa RecyclerView y su adapter */
     private void configurarRecyclerView() {
         listaAnimales = new ArrayList<>();
         listaAnimalesCompleta = new ArrayList<>();
@@ -131,6 +137,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         recyclerViewAnimales.setAdapter(animalAdapter);
     }
 
+    /** Configura filtros de animales usando chips */
     private void configurarFiltros() {
         if (chipGroupFiltros != null) {
             chipGroupFiltros.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -168,6 +175,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         aplicarFiltro(TAG_TODOS);
     }
 
+    /** Configura los botones "Ver más" de animales hardcodeados */
     private void setupVerMasButtons(){
         btnVerMasHuemul.setOnClickListener(v -> showAnimalDetail(
                 "Huemul",
@@ -206,6 +214,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
     }
 
 
+    /** Aplica un filtro a los animales, tanto hardcodeados como dinámicos */
     private void aplicarFiltro(String tipoFiltro) {
         filtroActual = tipoFiltro;
         Log.d("Activity_Austral", "Aplicando filtro: " + tipoFiltro);
@@ -241,6 +250,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         filtrarAnimalesDinamicos();
     }
 
+    /** Filtra animales dinámicos según el filtro actual */
     private void filtrarAnimalesDinamicos() {
         if (animalAdapter != null && listaAnimalesCompleta != null) {
             List<Animal> animalesFiltrados = new ArrayList<>();
@@ -272,18 +282,21 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         }
     }
 
+    /** Carga animales desde la base de datos */
     private void cargarAnimales() {
         listaAnimalesCompleta = animalCrud.obtenerAnimalesPorRegion(REGION_AUSTRAL_ID);
         Log.d("Activity_Austral", "Animales cargados: " + listaAnimalesCompleta.size());
         filtrarAnimalesDinamicos(); //Aplicar filtro actual
     }
 
+    /** Abre Activity para agregar un nuevo animal */
     private void abrirActivityAgregarAnimal() {
         Intent intent = new Intent(this, AddEditAnimal.class);
         intent.putExtra(AddEditAnimal.EXTRA_REGION_ID, REGION_AUSTRAL_ID);
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Abre la Activity para editar un animal existente. */
     @Override
     public void onEditarAnimal(Animal animal) {
         Intent intent = new Intent(this, AddEditAnimal.class);
@@ -291,6 +304,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         startActivityForResult(intent, REQUEST_CODE_AGREGAR_EDITAR);
     }
 
+    /** Muestra un diálogo de confirmación para eliminar un animal. */
     @Override
     public void onEliminarAnimal(Animal animal) {
         new AlertDialog.Builder(this)
@@ -312,6 +326,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
                 .show();
     }
 
+    /** Muestra un BottomSheet con detalles e información multimedia del animal. */
     @Override
     public void onVerDetalles(Animal animal) {
         Log.d("Activity_Austral", "Ver detalles de: " + animal.getNombre());
@@ -330,7 +345,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
 
 
 
-
+    /** Elimina el animal de la base de datos y actualiza la lista. */
     private void eliminarAnimal(Animal animal) {
         int resultado = animalCrud.eliminarAnimal(animal.getId());
         if (resultado > 0) {
@@ -342,6 +357,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         }
     }
 
+    /** Recibe resultado de agregar/editar animal y recarga la lista. */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -350,6 +366,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         }
     }
 
+    /** Muestra BottomSheet con detalles de un animal hardcodeado o seleccionado. */
     private void showAnimalDetail(String animalName, String description, String imageUri, String audioUri) {
         AnimalBottomSheetFragment bottomSheet = AnimalBottomSheetFragment.newInstance(
                 animalName,
@@ -360,9 +377,7 @@ public class Activity_Austral extends AppCompatActivity implements AnimalAdapter
         bottomSheet.show(getSupportFragmentManager(), "AnimalBottomSheet");
     }
 
-
-
-
+    /** Cierra la base de datos al destruir la Activity. */
     @Override
     protected void onDestroy() {
         super.onDestroy();
