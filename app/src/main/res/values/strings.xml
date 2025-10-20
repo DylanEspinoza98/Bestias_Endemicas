@@ -11,6 +11,8 @@
     <string name="austral">Austral</string>
     <string name="ver">Ver más</string>
     <string name="RedesSociales">Visitenos en nuestras Redes Sociales</string>
+    <string name="descripcion_fondo">Imagen de fondo decorativa</string>
+    <string name="deslizar"> Deslice derecha o izquierda</string>
 
     <string name="Txt_ReproducirAudio">Presiona el Boton para escuchar el sonido del animal</string>
     <string name="Txt_NoAudio">No hay sonido disponible para este animal</string>
@@ -122,5 +124,6 @@
         <item>volador</item>
         <item>acuatico</item>
     </string-array>
+
 
 </resources>

@@ -7,7 +7,6 @@
 
     <style name="Theme.BestiasEndemicas" parent="Base.Theme.BestiasEndemicas" />
 
-
     <!-- Codigo que permite la capacidad de no repetir un codigo y simplemente se hara un llamado-->
     <style name="SocialMediaButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">60dp</item>

@@ -88,5 +88,3 @@ public class AnimalDBHelper extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 }
-
-
