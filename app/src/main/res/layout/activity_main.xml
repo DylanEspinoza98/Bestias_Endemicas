@@ -30,6 +30,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Título principal -->
     <!-- Asegúrate de tener aquí el TextView con id="@+id/titulo" -->
@@ -42,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"
-        android:textColor="@android:color/black"
+        android:textColor="#006400"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText"
@@ -61,7 +69,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="132dp"
         android:text="@string/deslizar"
-        android:textColor="@android:color/black"
+        android:textColor="#006400"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +82,7 @@
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"/>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/carouselViewPager"
@@ -111,7 +120,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- ... Tu código de redes sociales sigue igual ... -->
+        <!-- ...  Código de redes sociales sigue igual ... -->
 
         <TextView
             android:id="@+id/text_conocenos"
