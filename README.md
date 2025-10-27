@@ -26,7 +26,7 @@ La aplicación se divide en dos carpetas principales:
 
 ---
 
-### 📦 Estructura Java real del proyecto
+### 📦 Estructura de las clases del proyecto
 
   <pre>
 com.example.bestiasendemicas/
